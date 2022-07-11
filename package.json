@@ -1,37 +1,26 @@
 {
   "name": "misterdonut",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "gen": "graphql-codegen --config codegen.yml"
-  },
-  "dependencies": {
-    "@graphql-codegen/cli": "^2.8.0",
-    "@graphql-tools/load-files": "^6.6.0",
-    "@graphql-yoga/node": "^2.12.0",
-    "apollo-server-micro": "^3.9.0",
-    "graphql": "^16.5.0",
-    "isomorphic-unfetch": "^3.1.0",
-    "micro": "^9.3.4",
-    "micro-cors": "^0.1.1",
-    "next": "12.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "urql": "^2.2.2"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.8.0",
-    "@graphql-codegen/typescript": "2.7.1",
-    "@types/micro-cors": "^0.1.2",
-    "@types/node": "18.0.1",
-    "@types/react": "18.0.14",
-    "@types/react-dom": "18.0.6",
-    "eslint": "8.19.0",
-    "eslint-config-next": "12.2.0",
-    "typescript": "4.7.4"
-  }
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "npm@8.1.0"
 }
