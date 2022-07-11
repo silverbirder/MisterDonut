@@ -17,10 +17,10 @@ export default function Home({ articles }: any) {
 }
 
 export const getStaticProps = async () => {
-//   const articles = await getArticles();
-//   return {
-//     props: {
-//       articles,
-//     },
-//   };
+  const articles = await getArticles();
+  return {
+    props: {
+      articles,
+    },
+  };
 };

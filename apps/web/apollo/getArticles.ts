@@ -12,9 +12,9 @@ const myQuery = `
 
 export const getArticles = async (): Promise<Article[]> => {
   const {
-    data: { articles },
+    data: { getArticles: Articles },
   } = await client.query(myQuery).toPromise();
-  return articles.map((article: Article) => ({
+  return Articles.map((article: Article) => ({
     ...article,
     content: article.content,
   }));
