@@ -1,7 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getArticles } from "../../apollo/getArticles";
-import { Article } from "../../apollo/generated/graphql";
+import { getArticles } from "../../graphql-client/getArticles";
+import { Article } from "../../graphql-client/generated/graphql";
 
 export default function Home({ articles }: any) {
   return (
