@@ -1,21 +1,9 @@
 import { client } from "./client";
-import { Article } from "./generated/graphql";
-const myQuery = `
-  query myQuery {
-    getArticles {
-      id
-      title
-      content
-    }
-  }
-`;
+import { MyQueryQuery } from "./generated/graphql";
+import { readFileSync } from "fs";
+const documents = readFileSync("./graphql-client/documents/documents.graphql", "utf8");
 
-export const getArticles = async (): Promise<Article[]> => {
-  const {
-    data: { getArticles: Articles },
-  } = await client.query(myQuery).toPromise();
-  return Articles.map((article: Article) => ({
-    ...article,
-    content: article.content,
-  }));
+export const getArticles = async (): Promise<MyQueryQuery | undefined> => {
+  const { data } = await client.query<MyQueryQuery>(documents).toPromise();
+  return data;
 };

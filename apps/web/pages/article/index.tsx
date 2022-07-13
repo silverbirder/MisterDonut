@@ -1,13 +1,13 @@
 import { getArticles } from "../../graphql-client/getArticles";
-import { Article } from "../../graphql-client/generated/graphql";
+import { Article, MyQueryQuery } from "../../graphql-client/generated/graphql";
 
-export default function Home({ articles }: any) {
+export default function Home({ getArticles }: MyQueryQuery) {
   return (
     <ul>
-      {articles.map((article: Article) => (
-        <li key={article.id}>
-          <div>{article.title}</div>
-          <div>{article.content}</div>
+      {getArticles?.map((article: Article | null) => (
+        <li key={article?.id}>
+          <div>{article?.title}</div>
+          <div>{article?.content}</div>
         </li>
       ))}
     </ul>
@@ -15,10 +15,10 @@ export default function Home({ articles }: any) {
 }
 
 export const getStaticProps = async () => {
-  const articles = await getArticles();
+  const getArticlesResult = await getArticles();
   return {
     props: {
-      articles,
+      getArticles: getArticlesResult?.getArticles,
     },
   };
 };
