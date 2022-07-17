@@ -44,4 +44,19 @@ export const resolvers = {
       return donut;
     },
   },
+  Mutation: {
+    addDonut: (_: any, { input }: { input: any }) => {
+      return "aaa";
+    },
+  },
+  Subscription: {
+    countdown: {
+      subscribe: async function* (_: any, { from }: { from: any }) {
+        for (let i = from; i >= 0; i--) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          yield { countdown: i };
+        }
+      },
+    },
+  },
 };

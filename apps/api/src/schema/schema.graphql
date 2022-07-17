@@ -26,3 +26,17 @@ type Query {
   getArticles: [Article]
   getDonut(id: Int): Donut
 }
+
+input DonutInput {
+  name: String
+  price: Int
+  description: String
+}
+
+type Mutation {
+  addDonut(input: DonutInput): String
+}
+
+type Subscription {
+  countdown(from: Int!): Int!
+}
