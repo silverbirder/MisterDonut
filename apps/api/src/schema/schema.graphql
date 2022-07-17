@@ -4,7 +4,25 @@ type Article {
   content: String
 }
 
+type Donut {
+  id: ID!
+  name: String
+  price: Int
+  description: String
+  # dateOfSale: Date https://www.graphql-scalars.dev/docs/scalars/date
+  category: DonutCategory
+}
+
+type DonutCategory {
+  name: String
+}
+
+# enum DonutCategory {
+#   PONDERING
+# }
+
 type Query {
   getArticle(id: Int): Article
   getArticles: [Article]
+  getDonut(id: Int): Donut
 }
