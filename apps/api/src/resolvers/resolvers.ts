@@ -1,6 +1,6 @@
-import { EventEmitter } from "events";
-// import { createPubSub } from "@graphql-yoga/node";
-// const pubSub = createPubSub();
+// import { EventEmitter } from "events";
+import { createPubSub } from "@graphql-yoga/node";
+const pubSub = createPubSub();
 
 const DB = {
   articles: [
@@ -26,22 +26,22 @@ const DB = {
   categories: [{ id: 1, name: "ポン・デ・リング" }],
 };
 
-const myEmitter = new EventEmitter();
+// const myEmitter = new EventEmitter();
 
-const asyncIterable = {
-  [Symbol.asyncIterator]() {
-    return {
-      async next() {
-        const input = await new Promise((resolve, reject) => {
-          myEmitter.addListener("myEmit", (input) => {
-            resolve(input);
-          });
-        });
-        return Promise.resolve({ value: input, done: false });
-      },
-    };
-  },
-};
+// const asyncIterable = {
+//   [Symbol.asyncIterator]() {
+//     return {
+//       async next() {
+//         const input = await new Promise((resolve, reject) => {
+//           myEmitter.addListener("myEmit", (input) => {
+//             resolve(input);
+//           });
+//         });
+//         return Promise.resolve({ value: input, done: false });
+//       },
+//     };
+//   },
+// };
 
 export const resolvers = {
   Query: {
@@ -67,8 +67,8 @@ export const resolvers = {
   },
   Mutation: {
     addDonut: (_: any, { input }: { input: any }) => {
-      myEmitter.emit("myEmit", input);
-      // pubSub.publish("donuts", input);
+      // myEmitter.emit("myEmit", input);
+      pubSub.publish("addDonut", input);
       return "aaa";
     },
   },
@@ -82,8 +82,8 @@ export const resolvers = {
       },
     },
     donut: {
-      subscribe: () => asyncIterable,
-      // subscribe: () => pubSub.subscribe("donuts"),
+      // subscribe: () => asyncIterable,
+      subscribe: () => pubSub.subscribe("addDonut"),
       resolve: (payload: any) => payload,
     },
   },
