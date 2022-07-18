@@ -39,4 +39,5 @@ type Mutation {
 
 type Subscription {
   countdown(from: Int!): Int!
+  donut: Donut
 }

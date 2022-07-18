@@ -1,3 +1,7 @@
+import { EventEmitter } from "events";
+// import { createPubSub } from "@graphql-yoga/node";
+// const pubSub = createPubSub();
+
 const DB = {
   articles: [
     { id: 1, title: "foo", content: "foooooooooooooo" },
@@ -20,6 +24,23 @@ const DB = {
     },
   ],
   categories: [{ id: 1, name: "ポン・デ・リング" }],
+};
+
+const myEmitter = new EventEmitter();
+
+const asyncIterable = {
+  [Symbol.asyncIterator]() {
+    return {
+      async next() {
+        const input = await new Promise((resolve, reject) => {
+          myEmitter.addListener("myEmit", (input) => {
+            resolve(input);
+          });
+        });
+        return Promise.resolve({ value: input, done: false });
+      },
+    };
+  },
 };
 
 export const resolvers = {
@@ -46,6 +67,8 @@ export const resolvers = {
   },
   Mutation: {
     addDonut: (_: any, { input }: { input: any }) => {
+      myEmitter.emit("myEmit", input);
+      // pubSub.publish("donuts", input);
       return "aaa";
     },
   },
@@ -57,6 +80,11 @@ export const resolvers = {
           yield { countdown: i };
         }
       },
+    },
+    donut: {
+      subscribe: () => asyncIterable,
+      // subscribe: () => pubSub.subscribe("donuts"),
+      resolve: (payload: any) => payload,
     },
   },
 };
