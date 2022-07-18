@@ -69,6 +69,7 @@ export const resolvers = {
     addDonut: (_: any, { input }: { input: any }) => {
       // myEmitter.emit("myEmit", input);
       pubSub.publish("addDonut", input);
+      console.log("addDonut", { input });
       return "aaa";
     },
   },
