@@ -2,8 +2,12 @@ import ArticleList from "../../components/article-list";
 import Donut from "../../components/Donut";
 
 export default function Home() {
-  return <ArticleList />;
-  // return <Donut />;
+  return (
+    <>
+      <ArticleList />
+      <Donut />
+    </>
+  );
 }
 
 // export const getStaticProps = async () => {

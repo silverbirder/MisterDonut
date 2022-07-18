@@ -49,7 +49,9 @@ export const resolvers = {
       const articles = DB.articles?.filter((a) => a.id === id);
       return articles ? articles[0] : [];
     },
-    getArticles: () => DB.articles,
+    getArticles: () => {
+      return DB.articles;
+    },
     getDonut: (_: any, { id }: { id: number }) => {
       const donuts = DB.donuts.filter((d) => d.id === id);
       if (!donuts) {
@@ -69,7 +71,6 @@ export const resolvers = {
     addDonut: (_: any, { input }: { input: any }) => {
       // myEmitter.emit("myEmit", input);
       pubSub.publish("addDonut", input);
-      console.log("addDonut", { input });
       return "aaa";
     },
   },

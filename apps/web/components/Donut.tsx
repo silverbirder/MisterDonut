@@ -4,17 +4,19 @@ import {
   Article,
 } from "../graphql-client/generated/graphql";
 import { useMutation } from "urql";
+import { useEffect } from "react";
 
 const Donut = () => {
-  const [result, reexecuteQuery] =
+  const [result, executeMutation] =
     useMutation<AddDonutMutationMutation>(AddDonutMutation);
 
   const { data, fetching, error } = result;
+  useEffect(() => {
+    executeMutation();
+  }, []);
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
-
-  console.log({ data });
-  return <ul>{data?.addDonut}</ul>;
+  return <div>{data?.addDonut}</div>;
 };
 
 export default Donut;
