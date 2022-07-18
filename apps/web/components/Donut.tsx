@@ -2,11 +2,25 @@ import {
   AddDonutMutation,
   AddDonutMutationMutation,
   Article,
+  DonutSubscribe,
+  DonutSubscribeSubscription,
 } from "../graphql-client/generated/graphql";
-import { useMutation } from "urql";
+import { useMutation, useSubscription } from "urql";
 import { useEffect } from "react";
 
+const handleSubscription = (previousData: any, data: any) => {
+  return data;
+};
 const Donut = () => {
+  const [res] = useSubscription<DonutSubscribeSubscription>(
+    { query: DonutSubscribe },
+    handleSubscription
+  );
+
+  useEffect(() => {
+    console.log(res.data?.donut);
+  }, [res.data?.donut]);
+
   const [result, executeMutation] =
     useMutation<AddDonutMutationMutation>(AddDonutMutation);
 
