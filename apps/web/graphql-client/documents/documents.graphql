@@ -5,3 +5,13 @@ query myQuery {
     content
   }
 }
+
+subscription donutSubscribe {
+  donut {
+    name
+  }
+}
+
+mutation addDonutMutation {
+  addDonut(input: { name: "ee", price: 2002, description: "hogehoge" })
+}
