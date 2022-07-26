@@ -5,7 +5,7 @@ export const client = createClient({
   exchanges: [
     ...defaultExchanges,
     subscriptionExchange({
-      forwardSubscription(operation) {
+      forwardSubscription(operation: any) {
         const url = new URL("http://localhost:4000/graphql");
         url.searchParams.append("query", operation.query);
         if (operation.variables) {
@@ -15,7 +15,7 @@ export const client = createClient({
           );
         }
         return {
-          subscribe: (sink) => {
+          subscribe: (sink: any) => {
             const eventsource = new EventSource(url.toString(), {
               withCredentials: true, // This is required for cookies
             });
