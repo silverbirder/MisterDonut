@@ -13,5 +13,17 @@ subscription donutSubscribe {
 }
 
 mutation addDonutMutation {
-  addDonut(input: { name: "ee", price: 2002, description: "hogehoge" })
+  addDonut(input: { name: "ee", price: 2002 }) {
+    id
+    name
+    price
+  }
+}
+
+query myDonutsQuery {
+  donuts {
+    id
+    name
+    price
+  }
 }

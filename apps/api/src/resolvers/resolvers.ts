@@ -12,18 +12,13 @@ const DB = {
       id: 1,
       name: "ポン・デ・リング",
       price: 120,
-      description: "大人気のもちもち食感！",
-      category_id: 1,
     },
     {
       id: 2,
       name: "ポン・デ・黒糖",
       price: 120,
-      description: "黒米や黒豆入りの黒五黒糖シュガーで、あっさり仕上げ。",
-      category_id: 1,
     },
   ],
-  categories: [{ id: 1, name: "ポン・デ・リング" }],
 };
 
 // const myEmitter = new EventEmitter();
@@ -58,20 +53,24 @@ export const resolvers = {
         return null;
       }
       const donut = donuts[0];
-      const categories = DB.categories.filter(
-        (c) => c.id === donut.category_id
-      );
-      const category = categories ? categories[0] : null;
-      //@ts-ignore
-      donut["category"] = category;
       return donut;
+    },
+    donuts: (_: any) => {
+      return DB.donuts;
     },
   },
   Mutation: {
     addDonut: (_: any, { input }: { input: any }) => {
       // myEmitter.emit("myEmit", input);
-      pubSub.publish("addDonut", input);
-      return "aaa";
+      // pubSub.publish("addDonut", input);
+      console.log({ input });
+      const donut = {
+        id: DB.donuts.length + 1,
+        name: input.name,
+        price: input.price,
+      };
+      DB.donuts.push(donut);
+      return donut;
     },
   },
   Subscription: {

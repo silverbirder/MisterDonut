@@ -8,13 +8,6 @@ type Donut {
   id: ID!
   name: String
   price: Int
-  description: String
-  # dateOfSale: Date https://www.graphql-scalars.dev/docs/scalars/date
-  category: DonutCategory
-}
-
-type DonutCategory {
-  name: String
 }
 
 # enum DonutCategory {
@@ -25,16 +18,16 @@ type Query {
   getArticle(id: Int): Article
   getArticles: [Article]
   getDonut(id: Int): Donut
+  donuts: [Donut]
 }
 
 input DonutInput {
   name: String
   price: Int
-  description: String
 }
 
 type Mutation {
-  addDonut(input: DonutInput): String
+  addDonut(input: DonutInput): Donut
 }
 
 type Subscription {
