@@ -27,7 +27,7 @@ const Donut = () => {
   const { data, fetching, error } = result;
   useEffect(() => {
     executeMutation();
-  }, []);
+  }, [executeMutation]);
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
   return <div>{data?.addDonut}</div>;

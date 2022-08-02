@@ -21,6 +21,9 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
+  "resolutions": {
+    "react": "^18.2.0"
+  },
   "dependencies": {},
   "packageManager": "npm@8.1.0"
 }
