@@ -21,15 +21,15 @@ export default function Home() {
       <label>price</label>
       <input type="number" id="price"></input>
       <button onClick={onClick}>mutation</button>
-      <li>
+      <ul>
         {data?.donuts?.map((d) => {
           return (
-            <ul key={d?.id}>
+            <li key={d?.id}>
               {d?.name} {d?.price}
-            </ul>
+            </li>
           );
         })}
-      </li>
+      </ul>
     </>
   );
 }

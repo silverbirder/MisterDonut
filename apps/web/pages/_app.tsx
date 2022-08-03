@@ -1,14 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { client } from "../graphql-client/client";
-import { Provider } from "urql";
+import { withUrqlClient } from "next-urql";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Provider value={client}>
-      <Component {...pageProps} />
-    </Provider>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default withUrqlClient((_ssrExchange, ctx) => ({
+  url: "http://localhost:4000/graphql",
+  suspense: true,
+}))(MyApp);
