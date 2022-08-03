@@ -2,10 +2,15 @@
   "name": "misterdonut",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -22,7 +27,8 @@
     "node": ">=14.0.0"
   },
   "resolutions": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "@types/react": "18.0.15"
   },
   "dependencies": {},
   "packageManager": "npm@8.1.0"
