@@ -12,8 +12,8 @@ subscription donutSubscribe {
   }
 }
 
-mutation addDonutMutation {
-  addDonut(input: { name: "ee", price: 2002 }) {
+mutation addDonutMutation($input: DonutInput) {
+  addDonut(input: $input) {
     id
     name
     price

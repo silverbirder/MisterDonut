@@ -5,14 +5,21 @@ import {
 
 export default function Home() {
   const [result1] = useMyDonutsQueryQuery();
-  const { data, fetching } = result1;
-  const [result2, executeMutation] = useAddDonutMutationMutation();
+  const { data } = result1;
+  const [, executeMutation] = useAddDonutMutationMutation();
   const onClick = () => {
-    executeMutation();
+    const name = (document.querySelector("#name") as HTMLInputElement)?.value;
+    const price = Number(
+      (document.querySelector("#price") as HTMLInputElement)?.value
+    );
+    executeMutation({ input: { name, price } });
   };
-  console.log({ result2 });
   return (
     <>
+      <label>name</label>
+      <input type="text" id="name"></input>
+      <label>price</label>
+      <input type="number" id="price"></input>
       <button onClick={onClick}>mutation</button>
       <li>
         {data?.donuts?.map((d) => {
