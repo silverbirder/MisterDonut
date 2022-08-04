@@ -11,7 +11,10 @@ export default function Donut() {
   const [useDonutResult] = useDonutQuery({ variables: { id: Number(id) } });
   const [, executeMutation] = useDeleteDonutMutation();
   const onClick = () => {
-    executeMutation({ id: Number(id) }).then(() => alert("Deleted"));
+    executeMutation({ id: Number(id) }).then(() => {
+      alert("Deleted");
+      router.push("/donuts/");
+    });
   };
   return (
     <>
@@ -20,7 +23,7 @@ export default function Donut() {
       <div>{useDonutResult.data?.donut?.price}円</div>
       <br></br>
       <div>
-        <Link href={`/donuts/edit/${useDonutResult.data?.donut?.id || 0}`}>
+        <Link href={`/donuts/edit/${useDonutResult.data?.donut?.id || 0}/`}>
           [Edit]
         </Link>
         <button onClick={onClick}>Delete</button>

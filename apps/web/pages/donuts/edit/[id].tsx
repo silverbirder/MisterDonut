@@ -19,12 +19,18 @@ export default function EditDonut() {
   }, [useDonutResult]);
   const [, executeDeleteDonutMutation] = useDeleteDonutMutation();
   const onClick = () => {
-    executeMutation({ id: Number(id), donutInput: { name, price } }).then(() =>
-      alert("Saved")
+    executeMutation({ id: Number(id), donutInput: { name, price } }).then(
+      () => {
+        alert("Saved");
+        router.push(`/donuts/${id}/`);
+      }
     );
   };
   const onDeleteClick = () => {
-    executeDeleteDonutMutation({ id: Number(id) }).then(() => alert("Deleted"));
+    executeDeleteDonutMutation({ id: Number(id) }).then(() => {
+      alert("Deleted");
+      router.push("/donuts/");
+    });
   };
   return (
     <>

@@ -1,18 +1,17 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import {
-  useAddDonutMutation,
-  useDeleteDonutMutation,
-  useDonutQuery,
-  useEditDonutMutation,
-} from "../../../graphql-client/generated/graphql";
+import { useState } from "react";
+import { useAddDonutMutation } from "../../../graphql-client/generated/graphql";
 
 export default function AddDonut() {
+  const router = useRouter();
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [, executeMutation] = useAddDonutMutation();
   const onClick = () => {
-    executeMutation({ input: { name, price } }).then(() => alert("Added"));
+    executeMutation({ input: { name, price } }).then((result: any) => {
+      alert("Added");
+      router.push(`/donuts/${result.data.addDonut.id}/`);
+    });
   };
   return (
     <>
