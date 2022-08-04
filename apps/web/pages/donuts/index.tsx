@@ -1,31 +1,31 @@
 import {
-  useAddDonutMutationMutation,
-  useMyDonutsQueryQuery,
+  useDeleteDonutMutation,
+  useDonutsQuery,
 } from "../../graphql-client/generated/graphql";
+import Link from "next/link";
 
-export default function Home() {
-  const [result1] = useMyDonutsQueryQuery();
-  const { data } = result1;
-  const [, executeMutation] = useAddDonutMutationMutation();
-  const onClick = () => {
-    const name = (document.querySelector("#name") as HTMLInputElement)?.value;
-    const price = Number(
-      (document.querySelector("#price") as HTMLInputElement)?.value
-    );
-    executeMutation({ input: { name, price } });
+export default function Donuts() {
+  const [result] = useDonutsQuery();
+  const [, executeMutation] = useDeleteDonutMutation();
+  const onClick = (id: string) => {
+    executeMutation({ id: Number(id) }).then(() => alert("Deleted"));
   };
   return (
     <>
-      <label>name</label>
-      <input type="text" id="name"></input>
-      <label>price</label>
-      <input type="number" id="price"></input>
-      <button onClick={onClick}>mutation</button>
+      <h2>List</h2>
+      <Link href="/donuts/add">[Add]</Link>
       <ul>
-        {data?.donuts?.map((d) => {
+        {result.data?.donuts?.map((d: any) => {
           return (
-            <li key={d?.id}>
-              {d?.name} {d?.price}
+            <li key={d.id}>
+              <span>
+                {d.name} {d.price}円
+              </span>
+              <span>
+                <Link href={`/donuts/edit/${d.id}`}> [Edit]</Link>
+                <Link href={`/donuts/${d.id}`}> [View]</Link>
+                <button onClick={() => onClick(d.id)}>Delete</button>
+              </span>
             </li>
           );
         })}

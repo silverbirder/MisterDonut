@@ -1,27 +1,37 @@
-query myQuery {
-  getArticles {
-    id
-    title
-    content
-  }
-}
-
-subscription donutSubscribe {
-  donut {
-    name
-  }
-}
-
-mutation addDonutMutation($input: DonutInput) {
-  addDonut(input: $input) {
+query donuts {
+  donuts {
     id
     name
     price
   }
 }
 
-query myDonutsQuery {
-  donuts {
+query donut($id: Int) {
+  donut(id: $id) {
+    id
+    name
+    price
+  }
+}
+
+mutation editDonut($id: Int, $donutInput: DonutInput) {
+  editDonut(id: $id, input: $donutInput) {
+    id
+    name
+    price
+  }
+}
+
+mutation deleteDonut($id: Int) {
+  deleteDonut(id: $id) {
+    id
+    name
+    price
+  }
+}
+
+mutation addDonut($input: DonutInput) {
+  addDonut(input: $input) {
     id
     name
     price
