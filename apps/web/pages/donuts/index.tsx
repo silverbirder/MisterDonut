@@ -1,7 +1,7 @@
 import {
   useDeleteDonutMutation,
   useDonutsQuery,
-} from "../../graphql-client/generated/graphql";
+} from "@misterdonut/graphql-codegen";
 import Link from "next/link";
 
 export default function Donuts() {

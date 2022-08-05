@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import {
   useDeleteDonutMutation,
   useDonutQuery,
-} from "../../graphql-client/generated/graphql";
+} from "@misterdonut/graphql-codegen";
 
 export default function Donut() {
   const router = useRouter();

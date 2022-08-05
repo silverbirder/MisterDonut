@@ -1,10 +1,9 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { withUrqlClient } from "next-urql";
-import { client } from "../graphql-client/client";
+import { withUrqlClient } from "@misterdonut/graphql-codegen";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
-export default withUrqlClient((_ssrExchange, ctx) => client)(MyApp);
+export default withUrqlClient(MyApp);

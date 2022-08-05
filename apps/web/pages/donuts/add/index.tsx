@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useAddDonutMutation } from "../../../graphql-client/generated/graphql";
+import { useAddDonutMutation } from "@misterdonut/graphql-codegen";
 
 export default function AddDonut() {
   const router = useRouter();

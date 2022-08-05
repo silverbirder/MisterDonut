@@ -1,11 +1,14 @@
-const withTM = require("next-transpile-modules")(["@misterdonut/ui"]);
+const withTM = require("next-transpile-modules")([
+  "@misterdonut/graphql-codegen",
+  "@misterdonut/ui",
+]);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withTM({
   reactStrictMode: true,
   output: "standalone",
   images: {
-    domains: ['img.pokemondb.net'],
+    domains: ["img.pokemondb.net"],
   },
 });
 

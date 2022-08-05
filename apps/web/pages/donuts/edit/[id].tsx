@@ -4,7 +4,7 @@ import {
   useDeleteDonutMutation,
   useDonutQuery,
   useEditDonutMutation,
-} from "../../../graphql-client/generated/graphql";
+} from "@misterdonut/graphql-codegen";
 
 export default function EditDonut() {
   const router = useRouter();
