@@ -4844,7 +4844,7 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-urql@^2.2.2, urql@^2.2.3:
+urql@^2.2.3:
   version "2.2.3"
   resolved "https://registry.npmjs.org/urql/-/urql-2.2.3.tgz"
   integrity sha512-XMkSYJKW9s4ZlbSuxcUz3fTBIykOn0sGileRXQeyZpaRBXJPVz5saSY05k7jdefNxShZtTI+/nr7PYUWQertfg==
