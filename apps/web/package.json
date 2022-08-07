@@ -9,11 +9,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "eslint-config-custom": "*",
     "@misterdonut/tsconfig": "*",
     "@misterdonut/ui": "*",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "eslint-config-custom": "*",
     "next": "^12.2.3",
     "next-transpile-modules": "^9.0.0",
     "react": "^18.2.0",
