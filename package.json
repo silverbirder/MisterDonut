@@ -18,14 +18,18 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\" && sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
     "gen": "npm run gen -w @misterdonut/graphql-codegen",
     "graph": "turbo run build --graph=assets/dependencies-graph.png",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "prepare": "husky install"
   },
   "resolutions": {
     "@types/react": "18.0.15",
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "commitlint-config-gitmoji": "^2.2.5",
     "eslint-config-custom": "^0.0.0",
+    "husky": "^8.0.0",
     "prettier": "latest",
     "sort-package-json": "^1.57.0",
     "turbo": "latest"
