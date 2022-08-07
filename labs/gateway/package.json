@@ -1,0 +1,27 @@
+{
+  "name": "@misterdonut/gateway",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev2": "mesh dev --port 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Silver-birder/MisterDonut.git"
+  },
+  "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Silver-birder/MisterDonut/issues"
+  },
+  "homepage": "https://github.com/Silver-birder/MisterDonut#readme",
+  "dependencies": {
+    "@graphql-mesh/cli": "^0.75.5",
+    "@graphql-mesh/graphql": "^0.29.7",
+    "@graphql-mesh/transform-naming-convention": "^0.10.63",
+    "@graphql-mesh/transform-rename": "^0.12.63",
+    "graphql": "^16.5.0"
+  }
+}

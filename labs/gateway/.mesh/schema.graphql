@@ -1,0 +1,33 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Donut {
+  id: ID!
+  name: String
+  price: Int
+}
+
+type Query {
+  donuts2: [Donut]
+  donut(id: Int): Donut
+}
+
+input DonutInput {
+  name: String
+  price: Int
+}
+
+type Mutation {
+  add_donut(input: DonutInput): Donut
+  edit_donut(id: Int, input: DonutInput): Donut
+  delete_donut(id: Int): Donut
+}
+
+type Subscription {
+  add_donut: Donut
+  edit_donut(id: Int): Donut
+  delete_donut(id: Int): Donut
+}
