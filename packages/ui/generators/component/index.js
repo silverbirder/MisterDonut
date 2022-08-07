@@ -48,13 +48,13 @@ module.exports = {
           "/{{properCase name}}/{{properCase name}}.tsx",
         templateFile: "generators/component/Component.tsx.hbs",
       },
-    //   {
-    //     type: "add",
-    //     path:
-    //       componentGeneratePath +
-    //       "/{{properCase name}}/{{properCase name}}.stories.tsx",
-    //     templateFile: "generators/component/Component.stories.tsx.hbs",
-    //   },
+      //   {
+      //     type: "add",
+      //     path:
+      //       componentGeneratePath +
+      //       "/{{properCase name}}/{{properCase name}}.stories.tsx",
+      //     templateFile: "generators/component/Component.stories.tsx.hbs",
+      //   },
     ];
   },
 };
