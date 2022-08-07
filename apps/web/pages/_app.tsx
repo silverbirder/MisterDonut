@@ -1,9 +1,16 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { withUrqlClient } from "@misterdonut/graphql-codegen";
+import { Provider, client } from "@misterdonut/graphql-codegen";
+import { Suspense } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Provider value={client}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Component {...pageProps} />
+      </Suspense>
+    </Provider>
+  );
 }
 
-export default withUrqlClient(MyApp);
+export default MyApp;

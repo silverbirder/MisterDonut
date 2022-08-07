@@ -1,5 +1,10 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { EditDonut as EditDonutUi } from "@misterdonut/ui";
+
+const EditDonutUi = dynamic(
+  () => import("@misterdonut/ui/").then((module) => module.EditDonut),
+  { ssr: false }
+);
 
 export default function EditDonut() {
   const router = useRouter();

@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ViewDonut } from "@misterdonut/ui";
+import dynamic from "next/dynamic";
+
+const ViewDonut = dynamic(
+  () => import("@misterdonut/ui/").then((module) => module.ViewDonut),
+  { ssr: false }
+);
 
 export default function Donut() {
   const router = useRouter();

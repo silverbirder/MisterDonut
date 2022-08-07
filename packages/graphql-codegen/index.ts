@@ -1,2 +1,3 @@
 export * from "./generated/graphql";
-export { withUrqlClientWrap as withUrqlClient } from "./src/client";
+export { client } from "./src/client";
+export { Provider } from "urql";

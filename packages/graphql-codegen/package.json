@@ -10,7 +10,6 @@
   "dependencies": {
     "@graphql-codegen/cli": "^2.8.0",
     "graphql": "^16.5.0",
-    "next-urql": "^3.3.3",
     "urql": "^2.2.3"
   },
   "devDependencies": {
