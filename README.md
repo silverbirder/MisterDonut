@@ -81,3 +81,7 @@ Learn more about the power of Turborepo:
 ```
 npm install @misterdonut/ui -w @misterdonut/web
 ```
+
+## Dependecies Graph
+
+![dependencies-graph](./assets/dependencies-graph.png)

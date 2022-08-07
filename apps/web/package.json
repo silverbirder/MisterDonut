@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@misterdonut/eslint-config-custom": "*",
-    "@misterdonut/graphql-codegen": "*",
     "@misterdonut/tsconfig": "*",
     "@misterdonut/ui": "*",
     "@types/react": "^18.0.15",
