@@ -9,7 +9,7 @@
     "lint": "eslint *.ts*"
   },
   "devDependencies": {
-    "@misterdonut/eslint-config-custom": "*",
+    "eslint-config-custom": "*",
     "@misterdonut/graphql-codegen": "*",
     "@misterdonut/tsconfig": "*",
     "@types/react": "^17.0.37",

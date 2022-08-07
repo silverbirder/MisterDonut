@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@misterdonut/eslint-config-custom": "*",
+    "eslint-config-custom": "*",
     "@misterdonut/tsconfig": "*",
     "@misterdonut/ui": "*",
     "@types/react": "^18.0.15",
@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.10",
     "@types/node": "^18.6.4",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.0",
