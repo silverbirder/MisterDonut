@@ -6,9 +6,6 @@
     "packages": [
       "apps/*",
       "packages/*"
-    ],
-    "nohoist": [
-      "**"
     ]
   },
   "scripts": {
@@ -31,7 +28,7 @@
     "commitlint-config-gitmoji": "^2.2.5",
     "eslint-config-custom": "*",
     "husky": "^8.0.0",
-    "prettier": "latest",
+    "prettier": "^2.7.1",
     "sort-package-json": "^1.57.0",
     "turbo": "latest"
   },
