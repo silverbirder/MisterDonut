@@ -1,10 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Suspense, useState } from "react";
 import { useAddDonutMutation } from "@misterdonut/graphql-codegen";
 
 type AddDonutProps = {
   onSaveClickHandler: (id: number) => void;
 };
-export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
+export const AddDonutInner = ({ onSaveClickHandler }: AddDonutProps) => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [, executeMutation] = useAddDonutMutation();
@@ -35,5 +35,13 @@ export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
       </label>
       <button onClick={onClick}>Save</button>
     </>
+  );
+};
+
+export const AddDonut = (props: AddDonutProps) => {
+  return (
+    <Suspense fallback={<>Loading...</>}>
+      <AddDonutInner {...props}></AddDonutInner>
+    </Suspense>
   );
 };

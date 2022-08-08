@@ -2,13 +2,14 @@ import {
   useDeleteDonutMutation,
   useDonutsQuery,
 } from "@misterdonut/graphql-codegen";
+import { Suspense } from "react";
 
 type ListDonutsProps = {
   onDeleteClickHandler: () => void;
   renderLink: (id: number) => React.ReactNode;
 };
 
-export const ListDonuts = ({
+const ListDonutsInner = ({
   onDeleteClickHandler,
   renderLink,
 }: ListDonutsProps) => {
@@ -39,5 +40,13 @@ export const ListDonuts = ({
         })}
       </ul>
     </>
+  );
+};
+
+export const ListDonuts = (props: ListDonutsProps) => {
+  return (
+    <Suspense fallback={<>Loading...</>}>
+      <ListDonutsInner {...props} />
+    </Suspense>
   );
 };
