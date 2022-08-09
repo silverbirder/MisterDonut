@@ -6,3 +6,4 @@
 - [] state management (?)
 - [] cache strategy
 - [] nest data
+- [] Github action (dagger)
