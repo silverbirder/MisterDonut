@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@misterdonut/graphql-codegen": "*",
     "@misterdonut/ui": "*",
     "next": "^12.2.3",
     "react": "^18.2.0",

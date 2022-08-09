@@ -8,15 +8,17 @@
     "generate": "plop",
     "lint": "eslint *.ts*"
   },
-  "devDependencies": {
+  "dependencies": {
     "@misterdonut/graphql-codegen": "*",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
     "@misterdonut/tsconfig": "*",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "eslint": "8.19.0",
     "eslint-config-custom": "*",
     "plop": "^3.1.1",
-    "react": "^18.2.0",
     "typescript": "^4.5.2"
   }
 }

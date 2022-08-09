@@ -1,5 +1,8 @@
 {
   "extends": "@misterdonut/tsconfig/react-library.json",
   "include": [".", ".eslintrc.js"],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "lib": ["DOM"]
+  }
 }

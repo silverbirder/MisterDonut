@@ -26,20 +26,18 @@ export const EditDonut = ({
     setPrice(useDonutResult.data?.donut?.price || 0);
   }, [useDonutResult]);
   const [, executeDeleteDonutMutation] = useDeleteDonutMutation();
-  const onSaveClick = () => {
-    executeMutation({ id, donutInput: { name, price } }).then(() => {
-      onSaveClickHandler();
-    });
+  const onSaveClick = async () => {
+    await executeMutation({ id, donutInput: { name, price } });
+    onSaveClickHandler();
   };
-  const onDeleteClick = () => {
-    executeDeleteDonutMutation({ id }).then(() => {
-      onDeleteClickHandler();
-    });
+  const onDeleteClick = async () => {
+    await executeDeleteDonutMutation({ id });
+    onDeleteClickHandler();
   };
   const onRefreshClick = () => {
     executeDonutQuery({ requestPolicy: "network-only" });
   };
-  const { data, fetching, error } = useDonutResult;
+  const { fetching, error } = useDonutResult;
   if (fetching) {
     return <>Loading...</>;
   }
@@ -48,27 +46,37 @@ export const EditDonut = ({
   }
   return (
     <>
-      <button onClick={onRefreshClick}>Refresh</button>
-      <label>
+      <button onClick={onRefreshClick} type="button">
+        Refresh
+      </button>
+      <label htmlFor="name">
         name
         <input
           type="text"
           id="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) =>
+            setName((e.target as HTMLInputElement).value as string)
+          }
         />
       </label>
-      <label>
+      <label htmlFor="price">
         price
         <input
           type="number"
           id="price"
           value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          onChange={(e) =>
+            setPrice(Number((e.target as HTMLInputElement).value as string))
+          }
         />
       </label>
-      <button onClick={onSaveClick}>Save</button>
-      <button onClick={onDeleteClick}>Delete</button>
+      <button onClick={() => onSaveClick} type="button">
+        Save
+      </button>
+      <button onClick={() => onDeleteClick} type="button">
+        Delete
+      </button>
     </>
   );
 };

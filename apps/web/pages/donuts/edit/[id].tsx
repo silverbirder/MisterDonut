@@ -6,26 +6,28 @@ const EditDonutUi = dynamic(
   { ssr: false, loading: () => <>Loading component...</> }
 );
 
-export default function EditDonut() {
+const EditDonut = () => {
   const router = useRouter();
   const { id } = router.query;
-  const onSaveClickHandler = () => {
+  const onSaveClickHandler = async () => {
     alert("Saved");
-    router.push(`/donuts/${id}/`);
+    await router.push(`/donuts/${id?.toString() || ""}/`);
   };
-  const onDeleteClickHandler = () => {
+  const onDeleteClickHandler = async () => {
     alert("Deleted");
-    router.push("/donuts/");
+    await router.push("/donuts/");
   };
-  const prop = {
-    id: Number(id),
-    onSaveClickHandler,
-    onDeleteClickHandler,
-  };
+
   return (
     <>
       <h2>Edit</h2>
-      <EditDonutUi {...prop}></EditDonutUi>
+      <EditDonutUi
+        id={Number(id)}
+        onSaveClickHandler={onSaveClickHandler}
+        onDeleteClickHandler={onDeleteClickHandler}
+      />
     </>
   );
-}
+};
+
+export default EditDonut;

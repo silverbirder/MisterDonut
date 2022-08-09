@@ -1,4 +1,5 @@
 import {
+  Donut,
   useDeleteDonutMutation,
   useDonutsQuery,
 } from "@misterdonut/graphql-codegen";
@@ -21,13 +22,12 @@ export const ListDonuts = ({
   });
 
   const [, executeMutation] = useDeleteDonutMutation();
-  const onDeleteClick = (id: string) => {
-    executeMutation({ id: Number(id) }).then(() => {
-      onDeleteClickHandler();
-    });
+  const onDeleteClick = (id: string): void => {
+    executeMutation({ id: Number(id) }).catch(() => {});
+    onDeleteClickHandler();
   };
   const onChangeKeyword = (e: ChangeEvent) => {
-    setKeyword(e.target.value);
+    setKeyword((e.target as HTMLInputElement).value as string);
   };
   const onSearchClick = () => {
     setSearchKeyword(keyword);
@@ -55,24 +55,29 @@ export const ListDonuts = ({
         value={keyword}
         onChange={onChangeKeyword}
       />
-      <button onClick={onSearchClick}>Search</button>
-      <button onClick={onRefreshClick}>Refresh</button>
+      <button onClick={onSearchClick} type="button">
+        Search
+      </button>
+      <button onClick={onRefreshClick} type="button">
+        Refresh
+      </button>
       <ul>
-        {data?.donuts?.map((d: any) => {
-          return (
+        {data?.donuts?.map(
+          (d: Donut | null) =>
             d && (
               <li key={d.id}>
                 <span>
-                  {renderLink(d.id)}
-                  <button onClick={() => onDeleteClick(d.id)}>Delete</button>
+                  {renderLink(Number(d.id))}
+                  <button onClick={() => onDeleteClick(d.id)} type="button">
+                    Delete
+                  </button>
                 </span>
                 <span>
                   {d.name} {d.price}円
                 </span>
               </li>
             )
-          );
-        })}
+        )}
       </ul>
     </>
   );

@@ -6,19 +6,19 @@ const AddDonutUi = dynamic(
   { ssr: false, loading: () => <>Loading component...</> }
 );
 
-export default function AddDonut() {
+const AddDonut = () => {
   const router = useRouter();
-  const onSaveClickHandler = (id: number) => {
+  const onSaveClickHandler = async (id: number) => {
     alert("Added");
-    router.push(`/donuts/${id}/`);
+    await router.push(`/donuts/${id}/`);
   };
-  const props = {
-    onSaveClickHandler,
-  };
+
   return (
     <>
       <h2>Add</h2>
-      <AddDonutUi {...props}></AddDonutUi>
+      <AddDonutUi onSaveClickHandler={onSaveClickHandler} />
     </>
   );
-}
+};
+
+export default AddDonut;

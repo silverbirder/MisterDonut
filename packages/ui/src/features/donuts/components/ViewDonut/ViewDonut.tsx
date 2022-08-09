@@ -10,10 +10,9 @@ type ViewDonutProps = {
 export const ViewDonut = ({ id, onDeleteClickHandler }: ViewDonutProps) => {
   const [useDonutResult] = useDonutQuery({ variables: { id } });
   const [, executeMutation] = useDeleteDonutMutation();
-  const onClick = () => {
-    executeMutation({ id }).then(() => {
-      onDeleteClickHandler();
-    });
+  const onClick = async (): Promise<void> => {
+    await executeMutation({ id });
+    onDeleteClickHandler();
   };
   const { data, fetching, error } = useDonutResult;
   if (fetching) {
@@ -26,7 +25,9 @@ export const ViewDonut = ({ id, onDeleteClickHandler }: ViewDonutProps) => {
     <>
       <div>{data?.donut?.name}</div>
       <div>{data?.donut?.price}円</div>
-      <button onClick={onClick}>Delete</button>
+      <button onClick={() => onClick} type="button">
+        Delete
+      </button>
     </>
   );
 };
