@@ -15,7 +15,9 @@ export const EditDonutInner = ({
   onSaveClickHandler,
   onDeleteClickHandler,
 }: EditDonutProps) => {
-  const [useDonutResult] = useDonutQuery({ variables: { id } });
+  const [useDonutResult, executeDonutQuery] = useDonutQuery({
+    variables: { id },
+  });
   const [, executeMutation] = useEditDonutMutation();
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
@@ -34,8 +36,12 @@ export const EditDonutInner = ({
       onDeleteClickHandler();
     });
   };
+  const onRefreshClick = () => {
+    executeDonutQuery({ requestPolicy: "network-only" });
+  };
   return (
     <>
+      <button onClick={onRefreshClick}>Refresh</button>
       <label>
         name
         <input
