@@ -2,7 +2,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 const ListDonuts = dynamic(
   () => import("@misterdonut/ui/").then((module) => module.ListDonuts),
-  { ssr: false }
+  { ssr: false, loading: () => <>Loading component...</> }
 );
 
 export default function Donuts() {

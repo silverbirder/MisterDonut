@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const ViewDonut = dynamic(
   () => import("@misterdonut/ui/").then((module) => module.ViewDonut),
-  { ssr: false }
+  { ssr: false, loading: () => <>Loading component...</> }
 );
 
 export default function Donut() {

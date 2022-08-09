@@ -2,14 +2,14 @@ import {
   useDeleteDonutMutation,
   useDonutsQuery,
 } from "@misterdonut/graphql-codegen";
-import { ChangeEvent, Suspense, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 type ListDonutsProps = {
   onDeleteClickHandler: () => void;
   renderLink: (id: number) => React.ReactNode;
 };
 
-const ListDonutsInner = ({
+export const ListDonuts = ({
   onDeleteClickHandler,
   renderLink,
 }: ListDonutsProps) => {
@@ -17,7 +17,9 @@ const ListDonutsInner = ({
   const [searchKeyword, setSearchKeyword] = useState("");
   const [result, executeQuery] = useDonutsQuery({
     variables: { name: searchKeyword },
+    requestPolicy: "cache-and-network",
   });
+
   const [, executeMutation] = useDeleteDonutMutation();
   const onDeleteClick = (id: string) => {
     executeMutation({ id: Number(id) }).then(() => {
@@ -33,6 +35,15 @@ const ListDonutsInner = ({
   const onRefreshClick = () => {
     executeQuery({ requestPolicy: "network-only" });
   };
+
+  const { data, fetching, error } = result;
+  if (fetching) {
+    return <>Loading...</>;
+  }
+  if (error) {
+    return <>ERROR</>;
+  }
+
   return (
     <>
       <br />
@@ -47,7 +58,7 @@ const ListDonutsInner = ({
       <button onClick={onSearchClick}>Search</button>
       <button onClick={onRefreshClick}>Refresh</button>
       <ul>
-        {result.data?.donuts?.map((d: any) => {
+        {data?.donuts?.map((d: any) => {
           return (
             d && (
               <li key={d.id}>
@@ -64,13 +75,5 @@ const ListDonutsInner = ({
         })}
       </ul>
     </>
-  );
-};
-
-export const ListDonuts = (props: ListDonutsProps) => {
-  return (
-    <Suspense fallback={<>Loading...</>}>
-      <ListDonutsInner {...props} />
-    </Suspense>
   );
 };

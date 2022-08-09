@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useDeleteDonutMutation,
   useDonutQuery,
@@ -10,7 +10,7 @@ type EditDonutProps = {
   onSaveClickHandler: () => void;
   onDeleteClickHandler: () => void;
 };
-export const EditDonutInner = ({
+export const EditDonut = ({
   id,
   onSaveClickHandler,
   onDeleteClickHandler,
@@ -39,6 +39,13 @@ export const EditDonutInner = ({
   const onRefreshClick = () => {
     executeDonutQuery({ requestPolicy: "network-only" });
   };
+  const { data, fetching, error } = useDonutResult;
+  if (fetching) {
+    return <>Loading...</>;
+  }
+  if (error) {
+    return <>ERROR</>;
+  }
   return (
     <>
       <button onClick={onRefreshClick}>Refresh</button>
@@ -63,13 +70,5 @@ export const EditDonutInner = ({
       <button onClick={onSaveClick}>Save</button>
       <button onClick={onDeleteClick}>Delete</button>
     </>
-  );
-};
-
-export const EditDonut = (props: EditDonutProps) => {
-  return (
-    <Suspense fallback={<>Loading...</>}>
-      <EditDonutInner {...props}></EditDonutInner>
-    </Suspense>
   );
 };

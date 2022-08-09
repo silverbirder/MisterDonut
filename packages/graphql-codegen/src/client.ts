@@ -31,7 +31,7 @@ const transformExchange: Exchange = ({ forward }) => {
       ),
       // sample transform
       map((result: OperationResult<any, any>) => {
-        if (result.data.donuts) {
+        if (result.data && result.data.donuts) {
           const donuts: Donut[] = result.data.donuts;
           result.data.donuts = donuts.map((d: Donut) =>
             Object.assign(
@@ -49,7 +49,6 @@ const transformExchange: Exchange = ({ forward }) => {
 
 const client = createClient({
   url: "http://localhost:4000/graphql",
-  suspense: true,
   fetch: customFetch,
   exchanges: [dedupExchange, cacheExchange, transformExchange, fetchExchange],
 });

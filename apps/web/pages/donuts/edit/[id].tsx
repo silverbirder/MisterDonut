@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const EditDonutUi = dynamic(
   () => import("@misterdonut/ui/").then((module) => module.EditDonut),
-  { ssr: false }
+  { ssr: false, loading: () => <>Loading component...</> }
 );
 
 export default function EditDonut() {
