@@ -1,5 +1,5 @@
-query donuts {
-  donuts {
+query donuts($name: String) {
+  donuts(name: $name) {
     id
     name
     price
