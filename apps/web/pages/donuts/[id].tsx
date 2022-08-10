@@ -19,7 +19,7 @@ const Donut = () => {
     <>
       <h2>View</h2>
       <ViewDonut id={Number(id)} onDeleteClickHandler={onDeleteClickHandler} />
-      <Link href={`/donuts/edit/${id?.toString() || ""}/`}>[Edit]</Link>
+      <Link href={`/donuts/edit/${id?.toString() || 0}/`}>[Edit]</Link>
     </>
   );
 };

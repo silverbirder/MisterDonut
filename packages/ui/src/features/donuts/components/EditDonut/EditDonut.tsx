@@ -71,10 +71,20 @@ export const EditDonut = ({
           }
         />
       </label>
-      <button onClick={() => onSaveClick} type="button">
+      <button
+        onClick={() => {
+          onSaveClick().catch(() => {});
+        }}
+        type="button"
+      >
         Save
       </button>
-      <button onClick={() => onDeleteClick} type="button">
+      <button
+        onClick={() => {
+          onDeleteClick().catch(() => {});
+        }}
+        type="button"
+      >
         Delete
       </button>
     </>

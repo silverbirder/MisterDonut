@@ -25,7 +25,12 @@ export const ViewDonut = ({ id, onDeleteClickHandler }: ViewDonutProps) => {
     <>
       <div>{data?.donut?.name}</div>
       <div>{data?.donut?.price}円</div>
-      <button onClick={() => onClick} type="button">
+      <button
+        onClick={() => {
+          onClick().catch(() => {});
+        }}
+        type="button"
+      >
         Delete
       </button>
     </>
