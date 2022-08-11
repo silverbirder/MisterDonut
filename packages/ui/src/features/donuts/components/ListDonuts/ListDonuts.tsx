@@ -17,10 +17,10 @@ export const ListDonuts = ({
   const [keyword, setKeyword] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [result, executeQuery] = useDonutsQuery({
-    variables: { name: searchKeyword },
+    variables: { query: { name: searchKeyword } },
     requestPolicy: "cache-and-network",
   });
-
+  const { data, fetching, error } = result;
   const [, executeMutation] = useDeleteDonutMutation();
   const onDeleteClick = (id: string): void => {
     executeMutation({ id: Number(id) }).catch(() => {});
@@ -30,13 +30,13 @@ export const ListDonuts = ({
     setKeyword((e.target as HTMLInputElement).value as string);
   };
   const onSearchClick = () => {
-    setSearchKeyword(keyword);
-  };
-  const onRefreshClick = () => {
-    executeQuery({ requestPolicy: "network-only" });
+    if (keyword !== searchKeyword) {
+      setSearchKeyword(keyword);
+    } else {
+      executeQuery();
+    }
   };
 
-  const { data, fetching, error } = result;
   if (fetching) {
     return <>Loading...</>;
   }
@@ -57,9 +57,6 @@ export const ListDonuts = ({
       />
       <button onClick={onSearchClick} type="button">
         Search
-      </button>
-      <button onClick={onRefreshClick} type="button">
-        Refresh
       </button>
       <ul>
         {data?.donuts?.map(
