@@ -1,5 +1,5 @@
-query donuts($name: String) {
-  donuts(name: $name) {
+query donuts($query: DonutsInput) {
+  donuts(query: $query) {
     id
     name
     price
@@ -32,6 +32,14 @@ mutation deleteDonut($id: Int) {
 
 mutation addDonut($input: DonutInput) {
   addDonut(input: $input) {
+    id
+    name
+    price
+  }
+}
+
+subscription editDonutSub($id: Int) {
+  editDonut(id: $id) {
     id
     name
     price
