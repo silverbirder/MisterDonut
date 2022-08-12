@@ -3,6 +3,7 @@ import {
   useDeleteDonutMutation,
   useDonutQuery,
   useEditDonutMutation,
+  useEditDonutSubSubscription,
 } from "@misterdonut/graphql-codegen";
 
 export type EditDonutProps = {
@@ -37,6 +38,10 @@ export const EditDonut = ({
   const onRefreshClick = () => {
     executeDonutQuery({ requestPolicy: "network-only" });
   };
+
+  const [result] = useEditDonutSubSubscription({ variables: { id } });
+  console.log({ result });
+
   const { fetching, error } = useDonutResult;
   if (fetching) {
     return <>Loading...</>;
