@@ -5,7 +5,7 @@ import {
 } from "@misterdonut/graphql-codegen";
 import { ChangeEvent, useState } from "react";
 
-type ListDonutsProps = {
+export type ListDonutsProps = {
   onDeleteClickHandler: () => void;
   renderLink: (id: number) => React.ReactNode;
 };

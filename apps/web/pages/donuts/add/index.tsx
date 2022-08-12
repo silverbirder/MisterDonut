@@ -1,7 +1,8 @@
+import { AddDonutProps } from "@misterdonut/ui/src/features/donuts";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-const AddDonutUi = dynamic(
+const AddDonutUi = dynamic<AddDonutProps>(
   () => import("@misterdonut/ui/").then((module) => module.AddDonut),
   { ssr: false, loading: () => <>Loading component...</> }
 );

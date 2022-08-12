@@ -3,16 +3,16 @@ import {
   useDonutQuery,
 } from "@misterdonut/graphql-codegen";
 
-type ViewDonutProps = {
+export type ViewDonutProps = {
   id: number;
-  onDeleteClickHandler: () => void;
+  onDeleteClickHandler: () => Promise<void>;
 };
 export const ViewDonut = ({ id, onDeleteClickHandler }: ViewDonutProps) => {
   const [useDonutResult] = useDonutQuery({ variables: { id } });
   const [, executeMutation] = useDeleteDonutMutation();
   const onClick = async (): Promise<void> => {
     await executeMutation({ id });
-    onDeleteClickHandler();
+    await onDeleteClickHandler();
   };
   const { data, fetching, error } = useDonutResult;
   if (fetching) {

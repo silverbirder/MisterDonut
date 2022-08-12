@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAddDonutMutation } from "@misterdonut/graphql-codegen";
 
-type AddDonutProps = {
-  onSaveClickHandler: (id: number) => void;
+export type AddDonutProps = {
+  onSaveClickHandler: (id: number) => Promise<void>;
 };
 export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
   const [name, setName] = useState<string>("");
@@ -11,7 +11,7 @@ export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
   const onClick = async () => {
     const result = await executeMutation({ input: { name, price } });
     if (result && result.data && result.data.addDonut) {
-      onSaveClickHandler(Number(result.data.addDonut.id));
+      await onSaveClickHandler(Number(result.data.addDonut.id));
     }
   };
   return (

@@ -5,10 +5,10 @@ import {
   useEditDonutMutation,
 } from "@misterdonut/graphql-codegen";
 
-type EditDonutProps = {
+export type EditDonutProps = {
   id: number;
-  onSaveClickHandler: () => void;
-  onDeleteClickHandler: () => void;
+  onSaveClickHandler: () => Promise<void>;
+  onDeleteClickHandler: () => Promise<void>;
 };
 export const EditDonut = ({
   id,
@@ -28,11 +28,11 @@ export const EditDonut = ({
   const [, executeDeleteDonutMutation] = useDeleteDonutMutation();
   const onSaveClick = async () => {
     await executeMutation({ id, donutInput: { name, price } });
-    onSaveClickHandler();
+    await onSaveClickHandler();
   };
   const onDeleteClick = async () => {
     await executeDeleteDonutMutation({ id });
-    onDeleteClickHandler();
+    await onDeleteClickHandler();
   };
   const onRefreshClick = () => {
     executeDonutQuery({ requestPolicy: "network-only" });
