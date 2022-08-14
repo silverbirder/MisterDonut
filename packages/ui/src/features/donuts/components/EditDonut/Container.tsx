@@ -6,17 +6,18 @@ import {
   useEditDonutMutation,
   useEditDonutSubSubscription,
 } from "@misterdonut/graphql-codegen";
+import { Presenter } from "./Presenter";
 
-export type EditDonutProps = {
+export type ContainerProps = {
   id: number;
   additionalSaveClickHandler?: () => Promise<void>;
   additionalDeleteClickHandler?: () => Promise<void>;
 };
-export const EditDonut = ({
+export const Container = ({
   id,
   additionalSaveClickHandler,
   additionalDeleteClickHandler,
-}: EditDonutProps) => {
+}: ContainerProps) => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
 
@@ -54,56 +55,17 @@ export const EditDonut = ({
     donutQueryExecute({ requestPolicy: "network-only" });
   };
 
-  const { fetching, error } = donutResult;
-  if (fetching) {
-    return <>Loading...</>;
-  }
-  if (error) {
-    return <>ERROR</>;
-  }
   return (
-    <>
-      <button onClick={onRefreshClickHandler} type="button">
-        Refresh
-      </button>
-      <label htmlFor="name">
-        name
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) =>
-            setName((e.target as HTMLInputElement).value as string)
-          }
-        />
-      </label>
-      <label htmlFor="price">
-        price
-        <input
-          type="number"
-          id="price"
-          value={price}
-          onChange={(e) =>
-            setPrice(Number((e.target as HTMLInputElement).value as string))
-          }
-        />
-      </label>
-      <button
-        onClick={() => {
-          onSaveClickHandler().catch(() => {});
-        }}
-        type="button"
-      >
-        Save
-      </button>
-      <button
-        onClick={() => {
-          onDeleteClickHandler().catch(() => {});
-        }}
-        type="button"
-      >
-        Delete
-      </button>
-    </>
+    <Presenter
+      name={name}
+      setName={setName}
+      price={price}
+      setPrice={setPrice}
+      fetching={donutResult.fetching}
+      error={donutResult.error || null}
+      onSaveClickHandler={onSaveClickHandler}
+      onDeleteClickHandler={onDeleteClickHandler}
+      onRefreshClickHandler={onRefreshClickHandler}
+    />
   );
 };

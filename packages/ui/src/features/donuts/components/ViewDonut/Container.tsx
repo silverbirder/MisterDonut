@@ -2,15 +2,16 @@ import {
   useDeleteDonutMutation,
   useDonutQuery,
 } from "@misterdonut/graphql-codegen";
+import { Presenter } from "./Presenter";
 
-export type ViewDonutProps = {
+export type ContainerProps = {
   id: number;
   additionalDeleteClickHandler?: () => Promise<void>;
 };
-export const ViewDonut = ({
+export const Container = ({
   id,
   additionalDeleteClickHandler,
-}: ViewDonutProps) => {
+}: ContainerProps) => {
   const [donutResult] = useDonutQuery({ variables: { id } });
   const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
 
@@ -21,25 +22,12 @@ export const ViewDonut = ({
     }
   };
 
-  const { data, fetching, error } = donutResult;
-  if (fetching) {
-    return <>Loading...</>;
-  }
-  if (error) {
-    return <>ERROR</>;
-  }
   return (
-    <>
-      <div>{data?.donut?.name}</div>
-      <div>{data?.donut?.price}円</div>
-      <button
-        onClick={() => {
-          onClick().catch(() => {});
-        }}
-        type="button"
-      >
-        Delete
-      </button>
-    </>
+    <Presenter
+      donut={donutResult.data?.donut || null}
+      fetching={donutResult.fetching}
+      error={donutResult.error || null}
+      onClick={onClick}
+    />
   );
 };
