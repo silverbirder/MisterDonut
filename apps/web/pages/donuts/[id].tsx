@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { ViewDonutProps } from "@misterdonut/ui/src/features/donuts";
+import { ViewDonutProps } from "@misterdonut/ui";
 
 const ViewDonut = dynamic<ViewDonutProps>(
   () => import("@misterdonut/ui/").then((module) => module.ViewDonut),

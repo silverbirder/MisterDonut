@@ -1,4 +1,4 @@
-import { EditDonutProps } from "@misterdonut/ui/src/features/donuts";
+import { EditDonutProps } from "@misterdonut/ui";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 

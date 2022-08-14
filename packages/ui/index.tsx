@@ -5,3 +5,9 @@ export {
   EditDonut,
   ListDonuts,
 } from "./src/features/donuts";
+export type {
+  AddDonutProps,
+  ViewDonutProps,
+  EditDonutProps,
+  ListDonutsProps,
+} from "./src/features/donuts";
