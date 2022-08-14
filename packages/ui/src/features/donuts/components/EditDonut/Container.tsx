@@ -7,6 +7,7 @@ import {
   useEditDonutSubSubscription,
 } from "@misterdonut/graphql-codegen";
 import { Presenter } from "./Presenter";
+import { Suspense } from "../Suspense";
 
 export type ContainerProps = {
   id: number;
@@ -56,16 +57,16 @@ export const Container = ({
   };
 
   return (
-    <Presenter
-      name={name}
-      setName={setName}
-      price={price}
-      setPrice={setPrice}
-      fetching={donutResult.fetching}
-      error={donutResult.error || null}
-      onSaveClickHandler={onSaveClickHandler}
-      onDeleteClickHandler={onDeleteClickHandler}
-      onRefreshClickHandler={onRefreshClickHandler}
-    />
+    <Suspense fetching={donutResult.fetching} error={donutResult.error || null}>
+      <Presenter
+        name={name}
+        setName={setName}
+        price={price}
+        setPrice={setPrice}
+        onSaveClickHandler={onSaveClickHandler}
+        onDeleteClickHandler={onDeleteClickHandler}
+        onRefreshClickHandler={onRefreshClickHandler}
+      />
+    </Suspense>
   );
 };

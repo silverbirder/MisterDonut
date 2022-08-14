@@ -3,6 +3,7 @@ import {
   useDonutsQuery,
 } from "@misterdonut/graphql-codegen";
 import { ChangeEvent, useState } from "react";
+import { Suspense } from "../Suspense";
 import { Presenter } from "./Presenter";
 
 export type ContainerProps = {
@@ -41,15 +42,18 @@ export const Container = ({
   };
 
   return (
-    <Presenter
-      donuts={donutsResult.data ? donutsResult.data.donuts : []}
-      keyword={keyword}
-      onChangeKeywordHandler={onChangeKeywordHandler}
+    <Suspense
       fetching={donutsResult.fetching}
       error={donutsResult.error || null}
-      onSearchClickHandler={onSearchClickHandler}
-      onDeleteClickHandler={onDeleteClickHandler}
-      renderLink={renderLink}
-    />
+    >
+      <Presenter
+        donuts={donutsResult.data ? donutsResult.data.donuts : []}
+        keyword={keyword}
+        onChangeKeywordHandler={onChangeKeywordHandler}
+        onSearchClickHandler={onSearchClickHandler}
+        onDeleteClickHandler={onDeleteClickHandler}
+        renderLink={renderLink}
+      />
+    </Suspense>
   );
 };
