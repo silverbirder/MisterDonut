@@ -6,25 +6,28 @@ import {
 import { ChangeEvent, useState } from "react";
 
 export type ListDonutsProps = {
-  onDeleteClickHandler: () => void;
+  additionalDeleteClickHandler?: () => void;
   renderLink: (id: number) => React.ReactNode;
 };
 
 export const ListDonuts = ({
-  onDeleteClickHandler,
+  additionalDeleteClickHandler,
   renderLink,
 }: ListDonutsProps) => {
   const [keyword, setKeyword] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [result, executeQuery] = useDonutsQuery({
+
+  const [donutsResult, donutsQueryExecute] = useDonutsQuery({
     variables: { query: { name: searchKeyword } },
     requestPolicy: "cache-and-network",
   });
-  const { data, fetching, error } = result;
-  const [, executeMutation] = useDeleteDonutMutation();
+  const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
+
   const onDeleteClick = (id: string): void => {
-    executeMutation({ id: Number(id) }).catch(() => {});
-    onDeleteClickHandler();
+    deleteDonutMutationExecute({ id: Number(id) }).catch(() => {});
+    if (additionalDeleteClickHandler) {
+      additionalDeleteClickHandler();
+    }
   };
   const onChangeKeyword = (e: ChangeEvent) => {
     setKeyword((e.target as HTMLInputElement).value as string);
@@ -33,10 +36,11 @@ export const ListDonuts = ({
     if (keyword !== searchKeyword) {
       setSearchKeyword(keyword);
     } else {
-      executeQuery();
+      donutsQueryExecute();
     }
   };
 
+  const { data, fetching, error } = donutsResult;
   if (fetching) {
     return <>Loading...</>;
   }

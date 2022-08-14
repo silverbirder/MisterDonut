@@ -8,26 +8,24 @@ const ViewDonut = dynamic<ViewDonutProps>(
   { ssr: false, loading: () => <>Loading component...</> }
 );
 
-const Donut = () => {
+const ViewDonutPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const onDeleteClickHandler = async () => {
+
+  const additionalDeleteClickHandler = async () => {
     alert("Deleted");
     await router.push("/donuts/");
   };
-
   return (
     <>
       <h2>View</h2>
       <ViewDonut
         id={Number(id)}
-        onDeleteClickHandler={async () => {
-          await onDeleteClickHandler();
-        }}
+        additionalDeleteClickHandler={additionalDeleteClickHandler}
       />
       <Link href={`/donuts/edit/${id?.toString() || 0}/`}>[Edit]</Link>
     </>
   );
 };
 
-export default Donut;
+export default ViewDonutPage;

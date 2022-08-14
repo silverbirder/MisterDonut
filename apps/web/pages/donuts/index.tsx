@@ -7,8 +7,8 @@ const ListDonuts = dynamic<ListDonutsProps>(
   { ssr: false, loading: () => <>Loading component...</> }
 );
 
-const Donuts = () => {
-  const onDeleteClickHandler = () => {
+const ListDonutsPage = () => {
+  const additionalDeleteClickHandler = () => {
     alert("Deleted");
   };
   const renderLink = (id: number): React.ReactNode => (
@@ -23,11 +23,11 @@ const Donuts = () => {
       <h2>List</h2>
       <Link href="/donuts/add/">[Add]</Link>
       <ListDonuts
-        onDeleteClickHandler={onDeleteClickHandler}
+        additionalDeleteClickHandler={additionalDeleteClickHandler}
         renderLink={renderLink}
       />
     </>
   );
 };
 
-export default Donuts;
+export default ListDonutsPage;

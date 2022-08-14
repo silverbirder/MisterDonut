@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  EditDonutSubSubscription,
   useDeleteDonutMutation,
   useDonutQuery,
   useEditDonutMutation,
@@ -8,41 +9,52 @@ import {
 
 export type EditDonutProps = {
   id: number;
-  onSaveClickHandler: () => Promise<void>;
-  onDeleteClickHandler: () => Promise<void>;
+  additionalSaveClickHandler?: () => Promise<void>;
+  additionalDeleteClickHandler?: () => Promise<void>;
 };
 export const EditDonut = ({
   id,
-  onSaveClickHandler,
-  onDeleteClickHandler,
+  additionalSaveClickHandler,
+  additionalDeleteClickHandler,
 }: EditDonutProps) => {
-  const [useDonutResult, executeDonutQuery] = useDonutQuery({
-    variables: { id },
-  });
-  const [, executeMutation] = useEditDonutMutation();
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
+
+  const [donutResult, donutQueryExecute] = useDonutQuery({
+    variables: { id },
+  });
+  const [, editDonutMutationExecute] = useEditDonutMutation();
+  const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
+  const [editDonutSubscriptionResult] = useEditDonutSubSubscription(
+    { variables: { id } },
+    (
+      prev: EditDonutSubSubscription | undefined,
+      data: EditDonutSubSubscription
+    ): EditDonutSubSubscription => data
+  );
+
   useEffect(() => {
-    setName(useDonutResult.data?.donut?.name || "");
-    setPrice(useDonutResult.data?.donut?.price || 0);
-  }, [useDonutResult]);
-  const [, executeDeleteDonutMutation] = useDeleteDonutMutation();
-  const onSaveClick = async () => {
-    await executeMutation({ id, donutInput: { name, price } });
-    await onSaveClickHandler();
+    setName(donutResult.data?.donut?.name || "");
+    setPrice(donutResult.data?.donut?.price || 0);
+  }, [donutResult]);
+
+  const onSaveClickHandler = async () => {
+    await editDonutMutationExecute({ id, donutInput: { name, price } });
+    if (additionalSaveClickHandler) {
+      await additionalSaveClickHandler();
+    }
   };
-  const onDeleteClick = async () => {
-    await executeDeleteDonutMutation({ id });
-    await onDeleteClickHandler();
+  const onDeleteClickHandler = async () => {
+    await deleteDonutMutationExecute({ id });
+    if (additionalDeleteClickHandler) {
+      await additionalDeleteClickHandler();
+    }
   };
-  const onRefreshClick = () => {
-    executeDonutQuery({ requestPolicy: "network-only" });
+  const onRefreshClickHandler = () => {
+    donutQueryExecute({ requestPolicy: "network-only" });
   };
 
-  const [result] = useEditDonutSubSubscription({ variables: { id } });
-  console.log({ result });
-
-  const { fetching, error } = useDonutResult;
+  const { fetching, error } = donutResult;
   if (fetching) {
     return <>Loading...</>;
   }
@@ -51,7 +63,7 @@ export const EditDonut = ({
   }
   return (
     <>
-      <button onClick={onRefreshClick} type="button">
+      <button onClick={onRefreshClickHandler} type="button">
         Refresh
       </button>
       <label htmlFor="name">
@@ -78,7 +90,7 @@ export const EditDonut = ({
       </label>
       <button
         onClick={() => {
-          onSaveClick().catch(() => {});
+          onSaveClickHandler().catch(() => {});
         }}
         type="button"
       >
@@ -86,7 +98,7 @@ export const EditDonut = ({
       </button>
       <button
         onClick={() => {
-          onDeleteClick().catch(() => {});
+          onDeleteClickHandler().catch(() => {});
         }}
         type="button"
       >

@@ -2,16 +2,22 @@ import { ChangeEvent, useState } from "react";
 import { useAddDonutMutation } from "@misterdonut/graphql-codegen";
 
 export type AddDonutProps = {
-  onSaveClickHandler: (id: number) => Promise<void>;
+  additionalAddClickHandler?: (id: number) => Promise<void>;
 };
-export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
+export const AddDonut = ({ additionalAddClickHandler }: AddDonutProps) => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
-  const [, executeMutation] = useAddDonutMutation();
-  const onClick = async () => {
-    const result = await executeMutation({ input: { name, price } });
-    if (result && result.data && result.data.addDonut) {
-      await onSaveClickHandler(Number(result.data.addDonut.id));
+  const [, addDonutMutationExecute] = useAddDonutMutation();
+  const onAddClickHandler = async () => {
+    const addDonutResult = await addDonutMutationExecute({
+      input: { name, price },
+    });
+    if (addDonutResult && addDonutResult.data && addDonutResult.data.addDonut) {
+      if (additionalAddClickHandler) {
+        await additionalAddClickHandler(
+          Number(addDonutResult.data.addDonut.id)
+        );
+      }
     }
   };
   return (
@@ -38,7 +44,7 @@ export const AddDonut = ({ onSaveClickHandler }: AddDonutProps) => {
           }
         />
       </label>
-      <button onClick={() => onClick} type="button">
+      <button onClick={() => onAddClickHandler} type="button">
         Save
       </button>
     </>

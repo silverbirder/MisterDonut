@@ -5,16 +5,23 @@ import {
 
 export type ViewDonutProps = {
   id: number;
-  onDeleteClickHandler: () => Promise<void>;
+  additionalDeleteClickHandler?: () => Promise<void>;
 };
-export const ViewDonut = ({ id, onDeleteClickHandler }: ViewDonutProps) => {
-  const [useDonutResult] = useDonutQuery({ variables: { id } });
-  const [, executeMutation] = useDeleteDonutMutation();
+export const ViewDonut = ({
+  id,
+  additionalDeleteClickHandler,
+}: ViewDonutProps) => {
+  const [donutResult] = useDonutQuery({ variables: { id } });
+  const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
+
   const onClick = async (): Promise<void> => {
-    await executeMutation({ id });
-    await onDeleteClickHandler();
+    await deleteDonutMutationExecute({ id });
+    if (additionalDeleteClickHandler) {
+      await additionalDeleteClickHandler();
+    }
   };
-  const { data, fetching, error } = useDonutResult;
+
+  const { data, fetching, error } = donutResult;
   if (fetching) {
     return <>Loading...</>;
   }
