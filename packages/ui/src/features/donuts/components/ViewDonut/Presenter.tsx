@@ -1,15 +1,12 @@
 import { Donut } from "@misterdonut/graphql-codegen";
+import { EditCategoryButton } from "../EditCategoryButton";
+import { EditDonutButton } from "../EditDonutButton";
 
 type PresenterProps = {
   donut: Donut | null;
   onClick: () => Promise<void>;
-  onEditCategoryClickHandler: () => Promise<void>;
 };
-export const Presenter = ({
-  donut,
-  onClick,
-  onEditCategoryClickHandler,
-}: PresenterProps) => (
+export const Presenter = ({ donut, onClick }: PresenterProps) => (
   <>
     <div>{donut?.name}</div>
     <div>{donut?.price}円</div>
@@ -22,13 +19,7 @@ export const Presenter = ({
     >
       Delete
     </button>
-    <button
-      onClick={() => {
-        onEditCategoryClickHandler().catch(() => {});
-      }}
-      type="button"
-    >
-      EditCategory
-    </button>
+    <EditDonutButton id={1} name="テストドーナッツ" price={1000} />
+    <EditCategoryButton id={1} name="テストカテゴリ" />
   </>
 );
