@@ -1,5 +1,11 @@
-import { createClient, defaultExchanges, subscriptionExchange } from "urql";
+import {
+  createClient,
+  dedupExchange,
+  fetchExchange,
+  subscriptionExchange,
+} from "urql";
 import { createClient as createWSClient } from "graphql-ws";
+import { cacheExchange } from "@urql/exchange-graphcache";
 
 const wsClient =
   typeof window !== "undefined"
@@ -25,7 +31,9 @@ const client = createClient({
   url: "http://localhost:4000/graphql",
   fetch: customFetch,
   exchanges: [
-    ...defaultExchanges,
+    dedupExchange,
+    cacheExchange({}),
+    fetchExchange,
     subscriptionExchange({
       forwardSubscription: (operation) => ({
         subscribe: (sink) => {
