@@ -1,5 +1,6 @@
 import {
   useDeleteDonutMutation,
+  useEditCategoryMutation,
   useDonutQuery,
 } from "@misterdonut/graphql-codegen";
 import { Suspense } from "../Suspense";
@@ -22,10 +23,20 @@ export const Container = ({
       await additionalDeleteClickHandler();
     }
   };
-
+  const [, editCategoryMutationExecute] = useEditCategoryMutation();
+  const onEditCategoryClickHandler = async () => {
+    await editCategoryMutationExecute({
+      id: 1,
+      categoryInput: { name: "テスト2" },
+    });
+  };
   return (
     <Suspense fetching={donutResult.fetching} error={donutResult.error || null}>
-      <Presenter donut={donutResult.data?.donut || null} onClick={onClick} />
+      <Presenter
+        donut={donutResult.data?.donut || null}
+        onClick={onClick}
+        onEditCategoryClickHandler={onEditCategoryClickHandler}
+      />
     </Suspense>
   );
 };

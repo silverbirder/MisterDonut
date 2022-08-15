@@ -11,6 +11,10 @@ query donut($id: Int) {
     id
     name
     price
+    category {
+      id
+      name
+    }
   }
 }
 
@@ -19,6 +23,13 @@ mutation editDonut($id: Int, $donutInput: DonutInput) {
     id
     name
     price
+  }
+}
+
+mutation editCategory($id: Int, $categoryInput: CategoryInput) {
+  editCategory(id: $id, input: $categoryInput) {
+    id
+    name
   }
 }
 
