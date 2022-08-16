@@ -6,4 +6,19 @@ module.exports = {
     project: ["./tsconfig.json"],
     tsconfigRootDir: __dirname,
   },
+  overrides: [
+    {
+      files: ["**/*.stories.tsx"],
+      rules: {
+        "import/prefer-default-export": "error",
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            devDependencies: true,
+            packageDir: ["../storybook"],
+          },
+        ],
+      },
+    },
+  ],
 };
