@@ -20,6 +20,7 @@ export const Container = ({
 
   const [donutsResult, donutsQueryExecute] = useDonutsQuery({
     variables: { query: { name: searchKeyword } },
+    requestPolicy: "cache-and-network",
   });
   const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
 
