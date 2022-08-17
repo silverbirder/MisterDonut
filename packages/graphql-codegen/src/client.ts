@@ -5,12 +5,7 @@ import {
   subscriptionExchange,
 } from "urql";
 import { createClient as createWSClient } from "graphql-ws";
-import {
-  cacheExchange,
-  UpdatesConfig,
-  Cache,
-  ResolveInfo,
-} from "@urql/exchange-graphcache";
+import { cacheExchange } from "@urql/exchange-graphcache";
 
 const wsClient =
   typeof window !== "undefined"
@@ -30,20 +25,6 @@ const customFetch = async (
 ): Promise<Response> => {
   await sleep(500);
   return fetch(input, init);
-};
-
-const updates: UpdatesConfig = {
-  Mutation: {
-    editCategory: <EditCategoryMutation, EditCategoryMutationVariables>(
-      result: EditCategoryMutation,
-      args: EditCategoryMutationVariables,
-      cache: Cache,
-      info: ResolveInfo
-    ) => {
-      console.log({ result, args, cache, info });
-    },
-  },
-  Subscription: {},
 };
 
 const client = createClient({

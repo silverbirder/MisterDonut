@@ -6,7 +6,7 @@
   "types": "./index.ts",
   "scripts": {
     "gen": "graphql-codegen --config codegen.yml",
-    "lint": "eslint *.ts*"
+    "lint": "eslint '**/*.ts*'"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^2.8.0",
