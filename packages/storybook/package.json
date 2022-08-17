@@ -22,7 +22,8 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
     "jest": "^27.5.1",
-    "msw": "^0.44.2"
+    "msw": "^0.44.2",
+    "msw-storybook-addon": "^1.6.3"
   },
   "msw": {
     "workerDirectory": ".storybook/public"

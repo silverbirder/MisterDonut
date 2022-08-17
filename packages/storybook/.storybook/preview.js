@@ -1,10 +1,7 @@
-import { setupWorker, rest } from "msw";
+import { initialize, mswDecorator } from "msw-storybook-addon";
 
-if (typeof global.process === "undefined") {
-  const worker = setupWorker();
-  worker.start();
-  window.msw = { worker, rest };
-}
+initialize();
+export const decorators = [mswDecorator];
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
