@@ -1,6 +1,11 @@
-import { useDonutQuery } from "@misterdonut/graphql-codegen";
+import type { ReactEventHandler } from "react";
 
-export const Button = () => {
-  useDonutQuery();
-  return <button type="button">Boop</button>;
+export type ButtonProps = {
+  onClick?: ReactEventHandler<HTMLButtonElement>;
 };
+
+export const Button = ({ onClick }: ButtonProps) => (
+  <button type="button" onClick={onClick}>
+    Boop
+  </button>
+);
