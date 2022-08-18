@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@misterdonut/tsconfig": "*",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -21,9 +22,12 @@
     "@storybook/test-runner": "^0.5.0",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
+    "eslint": "8.19.0",
+    "eslint-config-custom": "*",
     "jest": "^27.5.1",
     "msw": "^0.44.2",
-    "msw-storybook-addon": "^1.6.3"
+    "msw-storybook-addon": "^1.6.3",
+    "typescript": "^4.5.2"
   },
   "msw": {
     "workerDirectory": ".storybook/public"
