@@ -1,9 +1,9 @@
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
-import { expect } from "@storybook/jest"; // eslint-disable-line import/no-extraneous-dependencies
+import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
 import { within, userEvent } from "@storybook/testing-library";
-import { graphql } from "msw"; // eslint-disable-line import/no-extraneous-dependencies
-import { DonutQuery, DonutQueryVariables } from "@misterdonut/graphql-codegen"; // eslint-disable-line import/no-extraneous-dependencies
+import { DonutQuery, DonutQueryVariables } from "@misterdonut/graphql-codegen";
+import { graphql } from "msw";
 import { Button, ButtonProps } from "./Button";
 
 type Component = typeof Button;
