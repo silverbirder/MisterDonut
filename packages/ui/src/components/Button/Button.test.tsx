@@ -1,0 +1,9 @@
+import { render } from "@testing-library/react";
+import { composeStories } from "@storybook/testing-react";
+import * as stories from "./Button.stories";
+
+const { Default } = composeStories(stories);
+test("renders primary button", () => {
+  render(<Default />);
+  expect(1).toBe(1);
+});

@@ -3,7 +3,7 @@ module.exports = {
   root: true,
   overrides: [
     {
-      files: ["**/*.{js,ts,tsx}"],
+      files: ["**/*.{ts,tsx}"],
       extends: ["custom", "prettier"],
       parserOptions: {
         project: ["./tsconfig.json"],
