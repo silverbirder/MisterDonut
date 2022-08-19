@@ -2,9 +2,8 @@ import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
 import { within, userEvent } from "@storybook/testing-library";
-import { DonutQuery, DonutQueryVariables } from "@misterdonut/graphql-codegen";
-import { graphql } from "msw";
 import { Button, ButtonProps } from "./Button";
+import { mockDonuts } from "@misterdonut/msw";
 
 type Component = typeof Button;
 type Meta = ComponentMeta<Component>;
@@ -24,29 +23,9 @@ const Template: ComponentStory<Component> = ({ onClick }: ButtonProps) => (
 );
 
 export const Default = Template.bind({});
-
 Default.parameters = {
-  msw: {
-    handlers: [
-      graphql.query<DonutQuery, DonutQueryVariables>(
-        "donut",
-        (req, res, ctx) => {
-          const { id } = req.variables;
-          return res(
-            ctx.data({
-              donut: {
-                id: id ? id.toString() : "",
-                name: "ドーナッツ",
-                price: 100,
-              },
-            })
-          );
-        }
-      ),
-    ],
-  },
+  msw: { handlers: [mockDonuts] },
 };
-
 Default.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.click(canvas.getByRole("button"));

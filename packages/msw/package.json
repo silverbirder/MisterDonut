@@ -1,0 +1,12 @@
+{
+  "name": "@misterdonut/msw",
+  "version": "0.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@misterdonut/graphql-codegen": "*",
+    "msw": "^0.44.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}

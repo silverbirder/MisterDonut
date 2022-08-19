@@ -1,4 +1,4 @@
-import { useDonutQuery } from "@misterdonut/graphql-codegen";
+import { useDonutsQuery } from "@misterdonut/graphql-codegen";
 import type { ReactEventHandler } from "react";
 
 export type ButtonProps = {
@@ -6,7 +6,7 @@ export type ButtonProps = {
 };
 
 export const Button = ({ onClick }: ButtonProps) => {
-  useDonutQuery({ variables: { id: 1 } });
+  useDonutsQuery();
   return (
     <button type="button" onClick={onClick}>
       Boop

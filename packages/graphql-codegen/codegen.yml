@@ -1,11 +1,19 @@
 overwrite: true
 schema: "../../apps/api/src/schema/schema.graphql"
-documents: "../ui/graphql-client/documents/documents.graphql"
+documents: "../ui/**/*.graphql"
 generates:
-  ./generated/graphql.ts:
+  ./generated/urqlHook.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-document-nodes"
-      - "named-operations-object"
       - "typescript-urql"
+    config:
+      enumsAsTypes: true
+  ./generated/mockHandler.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-msw"
+    config:
+      enumsAsTypes: true
+      noExport: true

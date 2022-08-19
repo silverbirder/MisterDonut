@@ -3,28 +3,15 @@
   "version": "0.0.0",
   "license": "MIT",
   "main": "./index.ts",
-  "types": "./index.ts",
   "scripts": {
-    "gen": "graphql-codegen --config codegen.yml",
-    "lint": "eslint '**/*.ts*'"
-  },
-  "dependencies": {
-    "@graphql-codegen/cli": "^2.8.0",
-    "@urql/exchange-graphcache": "^4.4.3",
-    "graphql": "^16.5.0",
-    "graphql-ws": "^5.10.0",
-    "urql": "^2.2.3"
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.8.0",
-    "@graphql-codegen/named-operations-object": "^2.3.0",
     "@graphql-codegen/typescript": "2.7.1",
-    "@graphql-codegen/typescript-document-nodes": "^2.3.1",
+    "@graphql-codegen/typescript-msw": "^1.1.3",
     "@graphql-codegen/typescript-operations": "^2.5.1",
     "@graphql-codegen/typescript-urql": "^3.6.3",
-    "@misterdonut/tsconfig": "*",
-    "eslint": "8.19.0",
-    "eslint-config-custom": "*",
-    "typescript": "4.7.4"
+    "@misterdonut/tsconfig": "*"
   }
 }

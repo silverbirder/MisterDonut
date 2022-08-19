@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { Provider, client } from "@misterdonut/graphql-codegen";
+import { UrqlProvider } from "@misterdonut/ui";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Provider value={client}>
+  <UrqlProvider>
     <Component {...pageProps} />
-  </Provider>
+  </UrqlProvider>
 );
 
 export default MyApp;

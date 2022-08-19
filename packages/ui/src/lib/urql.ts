@@ -3,7 +3,9 @@ import {
   dedupExchange,
   fetchExchange,
   subscriptionExchange,
+  RequestPolicy,
 } from "urql";
+
 import { createClient as createWSClient } from "graphql-ws";
 import { cacheExchange } from "@urql/exchange-graphcache";
 
@@ -27,29 +29,29 @@ const customFetch = async (
   return fetch(input, init);
 };
 
-const client = createClient({
-  url: "http://localhost:4000/graphql",
-  fetch: customFetch,
-  exchanges: [
-    dedupExchange,
-    cacheExchange({}),
-    fetchExchange,
-    subscriptionExchange({
-      forwardSubscription: (operation) => ({
-        subscribe: (sink) => {
-          if (wsClient) {
-            const dispose = wsClient.subscribe(operation, sink);
+export const createUrqlClient = (requestPolicy?: RequestPolicy) =>
+  createClient({
+    url: "http://localhost:4000/graphql",
+    fetch: customFetch,
+    exchanges: [
+      dedupExchange,
+      cacheExchange({}),
+      fetchExchange,
+      subscriptionExchange({
+        forwardSubscription: (operation) => ({
+          subscribe: (sink) => {
+            if (wsClient) {
+              const dispose = wsClient.subscribe(operation, sink);
+              return {
+                unsubscribe: dispose,
+              };
+            }
             return {
-              unsubscribe: dispose,
+              unsubscribe: () => {},
             };
-          }
-          return {
-            unsubscribe: () => {},
-          };
-        },
+          },
+        }),
       }),
-    }),
-  ],
-});
-
-export { client };
+    ],
+    requestPolicy,
+  });

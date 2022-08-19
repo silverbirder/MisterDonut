@@ -17,5 +17,15 @@ module.exports = {
         "import/no-extraneous-dependencies": 0,
       },
     },
+    {
+      files: ["**/*.graphql"],
+      parser: "@graphql-eslint/eslint-plugin",
+      plugins: ["@graphql-eslint"],
+      parserOptions: {
+        operations: "**/*.graphql",
+        schema: "../../apps/api/src/schema/schema.graphql",
+      },
+      extends: "plugin:@graphql-eslint/operation-all",
+    },
   ],
 };

@@ -1,3 +1,2 @@
-export * from "./generated/graphql";
-export { client } from "./src/client";
-export { Provider } from "urql";
+export * from "./generated/urqlHook";
+export * from "./generated/mockHandler";

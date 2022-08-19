@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react/types";
+import path from "path";
 
 const config: StorybookConfig = {
   stories: ["../../ui/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -11,7 +12,7 @@ const config: StorybookConfig = {
   core: {
     builder: "@storybook/builder-webpack5",
   },
-  staticDirs: ["./public"],
+  staticDirs: [path.join(__dirname, "../../", "msw/public")],
   features: {
     interactionsDebugger: true,
   },
