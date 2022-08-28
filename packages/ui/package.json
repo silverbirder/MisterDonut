@@ -10,7 +10,6 @@
   "types": "./index.tsx",
   "dependencies": {
     "@misterdonut/graphql-codegen": "*",
-    "@urql/exchange-graphcache": "^4.4.3",
     "graphql-ws": "^5.10.1",
     "react": "^18.2.0",
     "urql": "^2.2.3"

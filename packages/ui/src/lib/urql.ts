@@ -1,5 +1,6 @@
 import {
   createClient,
+  cacheExchange,
   dedupExchange,
   fetchExchange,
   subscriptionExchange,
@@ -7,7 +8,6 @@ import {
 } from "urql";
 
 import { createClient as createWSClient } from "graphql-ws";
-import { cacheExchange } from "@urql/exchange-graphcache";
 
 const wsClient =
   typeof window !== "undefined"
@@ -35,7 +35,7 @@ export const createUrqlClient = (requestPolicy?: RequestPolicy) =>
     fetch: customFetch,
     exchanges: [
       dedupExchange,
-      cacheExchange({}),
+      cacheExchange,
       fetchExchange,
       subscriptionExchange({
         forwardSubscription: (operation) => ({
