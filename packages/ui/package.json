@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "main": "./index.tsx",
-  "types": "./index.tsx",
   "scripts": {
     "generate": "plop",
     "lint": "eslint '**/*.@(js|ts|tsx|graphql)*'"
   },
+  "types": "./index.tsx",
   "dependencies": {
     "@misterdonut/graphql-codegen": "*",
     "@urql/exchange-graphcache": "^4.4.3",
