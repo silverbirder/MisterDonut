@@ -1,58 +1,11 @@
-query donuts($query: DonutsInput) {
-  donuts(query: $query) {
-    id
-    name
-    price
-  }
-}
-
-query donut($id: Int) {
-  donut(id: $id) {
-    id
-    name
-    price
-    category {
-      id
-      name
+query donuts {
+  misterdonutCollection {
+    edges {
+      node {
+        id
+        name
+        img
+      }
     }
-  }
-}
-
-mutation editDonut($id: Int, $donutInput: DonutInput) {
-  editDonut(id: $id, input: $donutInput) {
-    id
-    name
-    price
-  }
-}
-
-mutation editCategory($id: Int, $categoryInput: CategoryInput) {
-  editCategory(id: $id, input: $categoryInput) {
-    id
-    name
-  }
-}
-
-mutation deleteDonut($id: Int) {
-  deleteDonut(id: $id) {
-    id
-    name
-    price
-  }
-}
-
-mutation addDonut($input: DonutInput) {
-  addDonut(input: $input) {
-    id
-    name
-    price
-  }
-}
-
-subscription editDonutSub($id: Int) {
-  editDonut(id: $id) {
-    id
-    name
-    price
   }
 }

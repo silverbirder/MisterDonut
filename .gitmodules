@@ -1,3 +1,0 @@
-[submodule "apps/api"]
-	path = apps/api
-	url = https://github.com/Silver-birder/graphql-misterdonut
