@@ -2,49 +2,24 @@
 // import { Suspense } from "../Suspense";
 // import { Presenter } from "./Presenter";
 
+import { useDonuts } from "../../hooks/useDonuts";
+
 export type ContainerProps = {
   additionalDeleteClickHandler?: () => void;
 };
 
-export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => (
-  // const [keyword, setKeyword] = useState("");
-  // const [searchKeyword, setSearchKeyword] = useState("");
-
-  // const [donutsResult, donutsQueryExecute] = useDonutsQuery({
-  //   variables: { query: { name: searchKeyword } },
-  //   requestPolicy: "cache-and-network",
-  // });
-  // const [, deleteDonutMutationExecute] = useDeleteDonutMutation();
-
-  // const onDeleteClickHandler = (id: number): void => {
-  //   deleteDonutMutationExecute({ id }).catch(() => {});
-  //   if (additionalDeleteClickHandler) {
-  //     additionalDeleteClickHandler();
-  //   }
-  // };
-  // const onChangeKeywordHandler = (e: ChangeEvent) => {
-  //   setKeyword((e.target as HTMLInputElement).value as string);
-  // };
-  // const onSearchClickHandler = () => {
-  //   if (keyword !== searchKeyword) {
-  //     setSearchKeyword(keyword);
-  //   } else {
-  //     donutsQueryExecute();
-  //   }
-  // };
-
-  <div>hello</div>
-  // <Suspense
-  //   fetching={donutsResult.fetching}
-  //   error={donutsResult.error || null}
-  // >
-  //   <Presenter
-  //     donuts={donutsResult.data ? donutsResult.data.donuts : []}
-  //     keyword={keyword}
-  //     onChangeKeywordHandler={onChangeKeywordHandler}
-  //     onSearchClickHandler={onSearchClickHandler}
-  //     onDeleteClickHandler={onDeleteClickHandler}
-  //     renderLink={renderLink}
-  //   />
-  // </Suspense>
-);
+export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => {
+  const { donuts, loading, error } = useDonuts();
+  if (loading) <div>loading</div>;
+  if (error) <div>error</div>;
+  return (
+    <ul>
+      {donuts.map((donut) => (
+        <li key={donut.name}>
+          {donut.name}
+          <img src={donut.img} />
+        </li>
+      ))}
+    </ul>
+  );
+};
