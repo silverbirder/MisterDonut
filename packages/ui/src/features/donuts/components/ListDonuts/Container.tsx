@@ -1,8 +1,5 @@
-// import { ChangeEvent, useState } from "react";
-// import { Suspense } from "../Suspense";
-// import { Presenter } from "./Presenter";
-
 import { useDonuts } from "../../hooks/useDonuts";
+import { Image } from "../../../../lib";
 
 export type ContainerProps = {
   additionalDeleteClickHandler?: () => void;
@@ -17,7 +14,7 @@ export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => {
       {donuts.map((donut) => (
         <li key={donut.name}>
           {donut.name}
-          <img src={donut.img} />
+          <Image src={donut.img} alt={donut.name} width={62} height={62} />
         </li>
       ))}
     </ul>

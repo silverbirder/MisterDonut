@@ -16,6 +16,7 @@
     "@apollo/client": "3.6.9",
     "@misterdonut/graphql-codegen": "*",
     "cross-fetch": "3.1.5",
+    "next": "12.2.5",
     "react": "18.2.0"
   },
   "devDependencies": {
@@ -51,6 +52,7 @@
     "jest-environment-jsdom": "29.0.2",
     "msw": "0.47.0",
     "msw-storybook-addon": "1.6.3",
+    "storybook-addon-next": "1.6.9",
     "typescript": "4.5.2"
   }
 }
