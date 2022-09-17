@@ -8,9 +8,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "prepare": "husky install",
+    "storybook": "yarn workspace @misterdonut/ui storybook",
     "test": "turbo run test",
-    "tsc": "turbo run tsc",
-    "storybook": "yarn workspace @misterdonut/ui storybook"
+    "tsc": "turbo run tsc"
   },
   "workspaces": [
     "apps/*",
@@ -30,8 +30,8 @@
     "turbo": "1.4.5"
   },
   "engines": {
-    "node": "16.13.0",
-    "npm": "7.18.1"
+    "node": ">=16 <17",
+    "npm": ">=7 <8"
   },
   "packageManager": "yarn@1.22.19"
 }
