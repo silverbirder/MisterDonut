@@ -1,3 +1,5 @@
+import "../src/main.css";
+
 import { initialize, mswDecorator } from "msw-storybook-addon";
 import { ApolloProvider } from "@misterdonut/ui";
 
