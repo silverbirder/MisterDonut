@@ -1,10 +1,10 @@
-query donuts {
+query Donuts {
   misterdonutCollection {
     edges {
       node {
         id
-        name
         img
+        name
       }
     }
   }

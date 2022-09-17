@@ -1,2 +1,2 @@
-export * from "./generated/urqlHook";
+export * from "./generated/apolloHook";
 export * from "./generated/mockHandler";

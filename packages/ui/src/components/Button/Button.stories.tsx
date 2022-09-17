@@ -2,8 +2,8 @@ import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
 import { within, userEvent } from "@storybook/testing-library";
-import { Button, ButtonProps } from "./Button";
 import { mockDonuts } from "@misterdonut/msw";
+import { Button, ButtonProps } from "./Button";
 
 type Component = typeof Button;
 type Meta = ComponentMeta<Component>;

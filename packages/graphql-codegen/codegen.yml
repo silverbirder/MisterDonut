@@ -2,14 +2,14 @@ overwrite: true
 schema: "../ui/schema.graphql"
 documents: "../ui/**/*.graphql"
 generates:
-  ./generated/urqlHook.ts:
+  generated/apolloHook.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-urql"
+      - "typescript-react-apollo"
     config:
       enumsAsTypes: true
-  ./generated/mockHandler.ts:
+  generated/mockHandler.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
@@ -17,3 +17,6 @@ generates:
     config:
       enumsAsTypes: true
       noExport: true
+config:
+  scalars:
+    URI: string

@@ -1,1 +1,3 @@
-export type Donut = {};
+export type Donut = {
+  name: string;
+};

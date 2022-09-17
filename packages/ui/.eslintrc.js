@@ -3,8 +3,8 @@ module.exports = {
   root: true,
   overrides: [
     {
-      files: ["**/*.{js,ts,tsx}"],
-      extends: ["custom", "prettier"],
+      files: ["**/*.{ts,tsx}"],
+      extends: ["@misterdonut/eslint-config/react"],
       parserOptions: {
         project: ["./tsconfig.json"],
         tsconfigRootDir: __dirname,
@@ -14,7 +14,24 @@ module.exports = {
       files: ["**/*.stories.tsx"],
       rules: {
         "import/prefer-default-export": "error",
-        "import/no-extraneous-dependencies": 0,
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            devDependencies: true,
+          },
+        ],
+      },
+    },
+    {
+      files: ["**/*.test.tsx"],
+      rules: {
+        "import/prefer-default-export": "error",
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            devDependencies: true,
+          },
+        ],
       },
     },
     {
@@ -23,9 +40,9 @@ module.exports = {
       plugins: ["@graphql-eslint"],
       parserOptions: {
         operations: "**/*.graphql",
-        schema: "../../apps/api/src/schema/schema.graphql",
+        schema: "./schema.graphql",
       },
-      extends: "plugin:@graphql-eslint/operation-all",
+      extends: "plugin:@graphql-eslint/operations-all",
     },
   ],
 };

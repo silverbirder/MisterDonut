@@ -9,11 +9,5 @@ module.exports = {
   ],
   rules: {
     "import/prefer-default-export": "off",
-    "react/function-component-definition": [
-      "error",
-      { namedComponents: "arrow-function" },
-    ],
-    "react/react-in-jsx-scope": "off",
-    "react/require-default-props": "off",
   },
 };

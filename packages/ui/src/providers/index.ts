@@ -1,1 +1,1 @@
-export * from "./UrqlProvider";
+export * from "./ApolloProvider";

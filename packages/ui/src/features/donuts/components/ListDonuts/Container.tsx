@@ -6,7 +6,7 @@ export type ContainerProps = {
   additionalDeleteClickHandler?: () => void;
 };
 
-export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => {
+export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => (
   // const [keyword, setKeyword] = useState("");
   // const [searchKeyword, setSearchKeyword] = useState("");
 
@@ -33,20 +33,18 @@ export const Container = ({ additionalDeleteClickHandler }: ContainerProps) => {
   //   }
   // };
 
-  return (
-    <div>hello</div>
-    // <Suspense
-    //   fetching={donutsResult.fetching}
-    //   error={donutsResult.error || null}
-    // >
-    //   <Presenter
-    //     donuts={donutsResult.data ? donutsResult.data.donuts : []}
-    //     keyword={keyword}
-    //     onChangeKeywordHandler={onChangeKeywordHandler}
-    //     onSearchClickHandler={onSearchClickHandler}
-    //     onDeleteClickHandler={onDeleteClickHandler}
-    //     renderLink={renderLink}
-    //   />
-    // </Suspense>
-  );
-};
+  <div>hello</div>
+  // <Suspense
+  //   fetching={donutsResult.fetching}
+  //   error={donutsResult.error || null}
+  // >
+  //   <Presenter
+  //     donuts={donutsResult.data ? donutsResult.data.donuts : []}
+  //     keyword={keyword}
+  //     onChangeKeywordHandler={onChangeKeywordHandler}
+  //     onSearchClickHandler={onSearchClickHandler}
+  //     onDeleteClickHandler={onDeleteClickHandler}
+  //     renderLink={renderLink}
+  //   />
+  // </Suspense>
+);

@@ -4,11 +4,9 @@ const withTM = require("next-transpile-modules")([
 ]);
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withTM({
+const config = {
   reactStrictMode: true,
-  images: {
-    domains: ["img.pokemondb.net"],
-  },
-});
+  output: "standalone",
+};
 
-module.exports = nextConfig;
+module.exports = withTM(config);

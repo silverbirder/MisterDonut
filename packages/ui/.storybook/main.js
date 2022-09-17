@@ -1,8 +1,8 @@
-import type { StorybookConfig } from "@storybook/react/types";
-import path from "path";
+const path = require("path");
 
-const config: StorybookConfig = {
-  stories: ["../../ui/**/*.stories.@(js|jsx|ts|tsx)"],
+/** @type {import("@storybook/react/types").StorybookConfig} */
+module.exports = {
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -17,5 +17,3 @@ const config: StorybookConfig = {
     interactionsDebugger: true,
   },
 };
-
-module.exports = config;

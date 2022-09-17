@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { UrqlProvider } from "@misterdonut/ui";
+import { ApolloProvider } from "@misterdonut/ui";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <UrqlProvider>
+  <ApolloProvider>
     <Component {...pageProps} />
-  </UrqlProvider>
+  </ApolloProvider>
 );
 
 export default MyApp;

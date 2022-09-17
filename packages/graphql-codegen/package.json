@@ -2,16 +2,16 @@
   "name": "@misterdonut/graphql-codegen",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "./index.ts",
+  "main": "index.ts",
   "scripts": {
-    "gen": "graphql-codegen --config codegen.yml"
+    "build": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.8.0",
-    "@graphql-codegen/typescript": "2.7.1",
-    "@graphql-codegen/typescript-msw": "^1.1.3",
-    "@graphql-codegen/typescript-operations": "^2.5.1",
-    "@graphql-codegen/typescript-urql": "^3.6.3",
-    "@misterdonut/tsconfig": "*"
+    "@graphql-codegen/cli": "2.12.0",
+    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript-msw": "1.1.3",
+    "@graphql-codegen/typescript-operations": "2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "3.3.3",
+    "graphql": "16.6.0"
   }
 }
