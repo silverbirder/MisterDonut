@@ -8,7 +8,7 @@ export type ButtonProps = {
 export const Button = ({ onClick }: ButtonProps) => {
   useDonutsQuery();
   return (
-    <button type="button" onClick={onClick}>
+    <button className="bg-white" type="button" onClick={onClick}>
       Boop
     </button>
   );

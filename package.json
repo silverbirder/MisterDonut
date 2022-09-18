@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "prepare": "husky install",
-    "storybook": "yarn workspace @misterdonut/ui storybook",
+    "storybook": "turbo run storybook",
     "test": "turbo run test",
     "tsc": "turbo run tsc"
   },

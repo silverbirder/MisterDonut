@@ -3,7 +3,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**", "generated/**"]
     },
     "test": {
       "outputs": []
@@ -15,6 +15,9 @@
       "cache": false
     },
     "tsc": {
+      "outputs": []
+    },
+    "storybook": {
       "outputs": []
     }
   }

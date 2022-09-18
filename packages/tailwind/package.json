@@ -1,0 +1,18 @@
+{
+  "name": "@misterdonut/tailwind",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "tailwind.css"
+  ],
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./tailwind.css",
+    "dev": "yarn build -- --watch",
+    "storybook": "yarn dev"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.1.8"
+  }
+}
