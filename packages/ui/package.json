@@ -16,7 +16,7 @@
     "@apollo/client": "3.6.9",
     "@misterdonut/graphql-codegen": "*",
     "cross-fetch": "3.1.5",
-    "next": "12.2.5",
+    "next": "12.3.0",
     "react": "18.2.0"
   },
   "devDependencies": {
