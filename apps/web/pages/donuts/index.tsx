@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
-import { ListDonutsProps } from "@misterdonut/ui";
 
-const ListDonuts = dynamic<ListDonutsProps>(
+const ListDonuts = dynamic<unknown>(
   () => import("@misterdonut/ui/").then((module) => module.ListDonuts),
   { ssr: false, loading: () => <>Loading component...</> }
 );
