@@ -6,6 +6,7 @@ export const useDonuts = () => {
   const donuts: Donut[] =
     data && data.misterdonutCollection
       ? data.misterdonutCollection.edges.map((edge) => ({
+          id: edge.node.id ? (edge.node.id as string) : "",
           name: edge.node.name ? edge.node.name : "",
           img: edge.node.img ? edge.node.img : "",
         }))
