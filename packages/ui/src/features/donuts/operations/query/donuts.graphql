@@ -3,8 +3,12 @@ query Donuts {
     edges {
       node {
         id
-        img
+        category
         name
+        price
+        description
+        img
+        created_at
       }
     }
   }
