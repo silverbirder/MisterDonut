@@ -2,13 +2,13 @@ query Donuts {
   misterdonutCollection {
     edges {
       node {
-        id
         category
+        created_at
+        description
+        id
+        img
         name
         price
-        description
-        img
-        created_at
       }
     }
   }

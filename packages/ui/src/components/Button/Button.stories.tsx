@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
-import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
 import { within, userEvent } from "@storybook/testing-library";
 import { mockDonuts } from "@misterdonut/msw";
@@ -26,8 +26,7 @@ export const Default = Template.bind({});
 Default.parameters = {
   msw: { handlers: [mockDonuts] },
 };
-Default.play = ({ canvasElement }) => {
+Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByRole("button"));
-  expect(1).toBe(1);
+  await userEvent.click(canvas.getByRole("button"));
 };
