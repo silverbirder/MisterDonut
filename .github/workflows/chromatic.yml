@@ -1,29 +1,18 @@
 name: "Chromatic"
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    types: [opened, synchronize]
+on: push
 
 jobs:
-  chromatic:
+  chromatic-deployment:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v2
-      - uses: technote-space/get-diff-action@v6
-        with:
-          PATTERNS: |
-            packages/ui/src/**/*.ts{,x}
-      - name: Setup
-        uses: ./.github/actions/setup
-        if: env.GIT_DIFF || github.head_ref == 'main'
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: yarn
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        if: env.GIT_DIFF || github.head_ref == 'main'
         with:
-          workingDir: packages/ui
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui
         env:
           NODE_ENV: test
