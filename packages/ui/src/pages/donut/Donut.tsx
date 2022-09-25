@@ -1,1 +1,1 @@
-export { ListDonuts } from "../../features/donuts";
+export { ListDonuts } from "@ui/features/donuts";

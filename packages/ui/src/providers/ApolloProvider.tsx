@@ -1,5 +1,5 @@
 import { ApolloProvider as Provider, DefaultOptions } from "@apollo/client";
-import { createApolloClient } from "../lib";
+import { createApolloClient } from "@ui/lib";
 
 type Props = {
   children: React.ReactNode;

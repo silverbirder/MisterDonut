@@ -10,6 +10,11 @@
     "node_modules"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@web/*": ["./src/*"],
+      "@ui/*": ["../../packages/ui/src/*"]
+    },
     "jsx": "preserve"
   }
 }

@@ -3,6 +3,9 @@
   "include": [".", ".eslintrc.js"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["./src/*"]
+    }
   }
 }

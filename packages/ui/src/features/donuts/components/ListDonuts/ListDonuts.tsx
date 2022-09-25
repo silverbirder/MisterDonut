@@ -1,5 +1,5 @@
+import { Image } from "@ui/lib";
 import { useDonuts } from "../../hooks/useDonuts";
-import { Image } from "../../../../lib";
 
 export const ListDonuts = () => {
   const { donuts, loading, error } = useDonuts();
