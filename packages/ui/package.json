@@ -15,8 +15,14 @@
   "types": "./index.ts",
   "dependencies": {
     "@apollo/client": "3.6.9",
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
     "@misterdonut/graphql-codegen": "*",
+    "@mui/material": "5.10.6",
+    "@mui/x-data-grid": "5.17.4",
+    "@mui/x-date-pickers": "5.0.3",
     "cross-fetch": "3.1.5",
+    "moment": "2.29.4",
     "next": "12.3.0",
     "react": "18.2.0"
   },
