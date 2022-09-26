@@ -1,7 +1,7 @@
 import "@misterdonut/tailwind/tailwind.css";
 
 import { initialize, mswDecorator } from "msw-storybook-addon";
-import { ApolloProvider } from "@misterdonut/ui";
+import { ApolloProvider, MuiProvider } from "@misterdonut/ui";
 
 // Initialize MSW
 initialize();
@@ -9,7 +9,9 @@ initialize();
 /** @type {import('@storybook/react').DecoratorFn}  */
 const withApolloProvider = (Story) => (
   <ApolloProvider>
-    <Story />
+    <MuiProvider>
+      <Story />
+    </MuiProvider>
   </ApolloProvider>
 );
 
