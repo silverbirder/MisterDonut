@@ -1,5 +1,3 @@
-import "@misterdonut/tailwind/tailwind.css";
-
 import { initialize, mswDecorator } from "msw-storybook-addon";
 import { ApolloProvider, MuiProvider } from "@misterdonut/ui";
 
