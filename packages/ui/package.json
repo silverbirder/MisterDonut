@@ -15,8 +15,15 @@
   "types": "./index.ts",
   "dependencies": {
     "@apollo/client": "3.6.9",
+    "@emotion/cache": "11.10.3",
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
     "@misterdonut/graphql-codegen": "*",
+    "@mui/material": "5.10.6",
+    "@mui/x-data-grid": "5.17.4",
+    "@mui/x-date-pickers": "5.0.3",
     "cross-fetch": "3.1.5",
+    "moment": "2.29.4",
     "next": "12.3.0",
     "react": "18.2.0"
   },
@@ -27,7 +34,6 @@
     "@babel/preset-typescript": "7.18.6",
     "@misterdonut/eslint-config": "*",
     "@misterdonut/msw": "*",
-    "@misterdonut/tailwind": "*",
     "@misterdonut/tsconfig": "*",
     "@storybook/addon-actions": "6.5.10",
     "@storybook/addon-essentials": "6.5.10",
