@@ -6,7 +6,7 @@ export const mockDonuts = mockDonutsQuery((_, res, ctx) =>
     ctx.delay(300),
     ctx.data({
       misterdonutCollection: {
-        edges: mockDonutsData.slice(0, 5),
+        edges: mockDonutsData,
       },
     })
   )
