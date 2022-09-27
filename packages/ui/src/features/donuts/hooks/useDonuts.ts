@@ -10,11 +10,11 @@ export const useDonuts = () => {
           name: edge.node.name ? edge.node.name : "",
           img: edge.node.img ? edge.node.img : "",
           category: edge.node.category ? edge.node.category : "",
-          price: edge.node.price ? (edge.node.price as number) : 0,
+          price: edge.node.price ? Number(edge.node.price) : 0,
           description: edge.node.description ? edge.node.description : "",
           createdAt: edge.node.created_at
-            ? (edge.node.created_at as string)
-            : "",
+            ? new Date(edge.node.created_at as string)
+            : new Date(),
         }))
       : [];
   return { donuts, loading, error };

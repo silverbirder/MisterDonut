@@ -5,5 +5,5 @@ export type Donut = {
   category: string;
   price: number;
   description: string;
-  createdAt: string;
+  createdAt: Date;
 };
