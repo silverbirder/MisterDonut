@@ -11,11 +11,11 @@ express()
   .get(
     "/playground",
     expressPlayground({
-      endpoint: process.env.NEXT_PUBLIC_SUPABASE_API_ENDPOINT,
+      endpoint: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/graphql/v1`,
       settings: {
         "request.globalHeaders": {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_API_PROJECT_API_KEYS,
-          authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_API_PROJECT_API_KEYS}`,
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+          authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
         },
       },
     })
