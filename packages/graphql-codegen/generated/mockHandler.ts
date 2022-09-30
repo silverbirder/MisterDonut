@@ -96,11 +96,24 @@ type JsonFilter = {
 type Mutation = {
   __typename?: 'Mutation';
   /** Deletes zero or more records from the collection */
+  deleteFrombuydonutCollection: BuydonutDeleteResponse;
+  /** Deletes zero or more records from the collection */
   deleteFrommisterdonutCollection: MisterdonutDeleteResponse;
+  /** Adds one or more `buydonutInsertResponse` records to the collection */
+  insertIntobuydonutCollection?: Maybe<BuydonutInsertResponse>;
   /** Adds one or more `misterdonutInsertResponse` records to the collection */
   insertIntomisterdonutCollection?: Maybe<MisterdonutInsertResponse>;
   /** Updates zero or more records in the collection */
+  updatebuydonutCollection: BuydonutUpdateResponse;
+  /** Updates zero or more records in the collection */
   updatemisterdonutCollection: MisterdonutUpdateResponse;
+};
+
+
+/** The root type for creating and mutating data */
+type MutationDeleteFrombuydonutCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<BuydonutFilter>;
 };
 
 
@@ -112,8 +125,22 @@ type MutationDeleteFrommisterdonutCollectionArgs = {
 
 
 /** The root type for creating and mutating data */
+type MutationInsertIntobuydonutCollectionArgs = {
+  objects: Array<BuydonutInsertInput>;
+};
+
+
+/** The root type for creating and mutating data */
 type MutationInsertIntomisterdonutCollectionArgs = {
   objects: Array<MisterdonutInsertInput>;
+};
+
+
+/** The root type for creating and mutating data */
+type MutationUpdatebuydonutCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<BuydonutFilter>;
+  set: BuydonutUpdateInput;
 };
 
 
@@ -146,8 +173,21 @@ type PageInfo = {
 /** The root type for querying data */
 type Query = {
   __typename?: 'Query';
+  /** A pagable collection of type `buydonut` */
+  buydonutCollection?: Maybe<BuydonutConnection>;
   /** A pagable collection of type `misterdonut` */
   misterdonutCollection?: Maybe<MisterdonutConnection>;
+};
+
+
+/** The root type for querying data */
+type QueryBuydonutCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<BuydonutFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<BuydonutOrderBy>>;
 };
 
 
@@ -190,8 +230,85 @@ type UuidFilter = {
   neq?: InputMaybe<Scalars['UUID']>;
 };
 
+type Buydonut = {
+  __typename?: 'buydonut';
+  buy_date?: Maybe<Scalars['Date']>;
+  created_at?: Maybe<Scalars['Datetime']>;
+  id: Scalars['BigInt'];
+  misterdonut?: Maybe<Misterdonut>;
+  misterdonut_id?: Maybe<Scalars['BigInt']>;
+  user_id?: Maybe<Scalars['UUID']>;
+};
+
+type BuydonutConnection = {
+  __typename?: 'buydonutConnection';
+  edges: Array<BuydonutEdge>;
+  pageInfo: PageInfo;
+};
+
+type BuydonutDeleteResponse = {
+  __typename?: 'buydonutDeleteResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Buydonut>;
+};
+
+type BuydonutEdge = {
+  __typename?: 'buydonutEdge';
+  cursor: Scalars['String'];
+  node: Buydonut;
+};
+
+type BuydonutFilter = {
+  buy_date?: InputMaybe<DateFilter>;
+  created_at?: InputMaybe<DatetimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  misterdonut_id?: InputMaybe<BigIntFilter>;
+  user_id?: InputMaybe<UuidFilter>;
+};
+
+type BuydonutInsertInput = {
+  buy_date?: InputMaybe<Scalars['Date']>;
+  created_at?: InputMaybe<Scalars['Datetime']>;
+  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
+  user_id?: InputMaybe<Scalars['UUID']>;
+};
+
+type BuydonutInsertResponse = {
+  __typename?: 'buydonutInsertResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Buydonut>;
+};
+
+type BuydonutOrderBy = {
+  buy_date?: InputMaybe<OrderByDirection>;
+  created_at?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  misterdonut_id?: InputMaybe<OrderByDirection>;
+  user_id?: InputMaybe<OrderByDirection>;
+};
+
+type BuydonutUpdateInput = {
+  buy_date?: InputMaybe<Scalars['Date']>;
+  created_at?: InputMaybe<Scalars['Datetime']>;
+  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
+  user_id?: InputMaybe<Scalars['UUID']>;
+};
+
+type BuydonutUpdateResponse = {
+  __typename?: 'buydonutUpdateResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Buydonut>;
+};
+
 type Misterdonut = {
   __typename?: 'misterdonut';
+  buydonutCollection?: Maybe<BuydonutConnection>;
   category?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['Date']>;
   description?: Maybe<Scalars['String']>;
@@ -200,6 +317,16 @@ type Misterdonut = {
   name?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['BigInt']>;
   row?: Maybe<Scalars['JSON']>;
+};
+
+
+type MisterdonutBuydonutCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<BuydonutFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<BuydonutOrderBy>>;
 };
 
 type MisterdonutConnection = {
@@ -281,7 +408,7 @@ type MisterdonutUpdateResponse = {
 type DonutsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type DonutsQuery = { __typename?: 'Query', misterdonutCollection?: { __typename?: 'misterdonutConnection', edges: Array<{ __typename?: 'misterdonutEdge', node: { __typename?: 'misterdonut', id: any, category?: string | null, name?: string | null, price?: any | null, description?: string | null, img?: string | null, created_at?: any | null } }> } | null };
+type DonutsQuery = { __typename?: 'Query', misterdonutCollection?: { __typename?: 'misterdonutConnection', edges: Array<{ __typename?: 'misterdonutEdge', node: { __typename?: 'misterdonut', category?: string | null, created_at?: any | null, description?: string | null, id: any, img?: string | null, name?: string | null, price?: any | null } }> } | null };
 
 
 /**
