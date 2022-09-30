@@ -11,11 +11,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SupabaseContext } from "@ui/providers";
+import { useRouter } from "@ui/lib";
 
 const theme = createTheme();
 
 export const SignUp = () => {
   const supabase = useContext(SupabaseContext);
+  const router = useRouter();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,9 +26,7 @@ export const SignUp = () => {
         email: data.get("email")?.toString(),
         password: data.get("password")?.toString(),
       })
-      .then(({ user, session, error }) => {
-        console.log({ user, session, error });
-      })
+      .then(() => router.push("/"))
       .catch(() => {});
   };
 

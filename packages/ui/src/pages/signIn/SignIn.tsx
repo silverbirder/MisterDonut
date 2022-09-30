@@ -13,22 +13,25 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SupabaseContext } from "@ui/providers";
+import { useRouter } from "@ui/lib";
 
 const theme = createTheme();
 
 export const SignIn = () => {
   const supabase = useContext(SupabaseContext);
+  const router = useRouter();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     supabase?.auth
-      .signIn({
-        email: data.get("email")?.toString(),
-        password: data.get("password")?.toString(),
-      })
-      .then(({ user, session, error }) => {
-        console.log({ user, session, error });
-      })
+      .signIn(
+        {
+          email: data.get("email")?.toString(),
+          password: data.get("password")?.toString(),
+        },
+        { redirectTo: "/#" }
+      )
+      .then(() => router.push("/"))
       .catch(() => {});
   };
 
