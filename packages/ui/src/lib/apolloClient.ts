@@ -6,18 +6,17 @@ import {
   createHttpLink,
 } from "@apollo/client";
 
-const SUPABASE_API_PROJECT_API_KEYS = process.env
-  .NEXT_PUBLIC_SUPABASE_API_PROJECT_API_KEYS
-  ? process.env.NEXT_PUBLIC_SUPABASE_API_PROJECT_API_KEYS
+const apikey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   : "";
 
 const headers = {
-  apikey: SUPABASE_API_PROJECT_API_KEYS,
-  authorization: `Bearer ${SUPABASE_API_PROJECT_API_KEYS}`,
+  apikey,
+  authorization: `Bearer ${apikey}`,
 };
 
-const uri = process.env.NEXT_PUBLIC_SUPABASE_API_ENDPOINT
-  ? process.env.NEXT_PUBLIC_SUPABASE_API_ENDPOINT
+const uri = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/graphql/v1`
   : "/graphql";
 
 const link = createHttpLink({
