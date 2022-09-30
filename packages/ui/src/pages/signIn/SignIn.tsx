@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,17 +12,24 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { SupabaseContext } from "@ui/providers";
 
 const theme = createTheme();
 
 export const SignIn = () => {
+  const supabase = useContext(SupabaseContext);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    supabase?.auth
+      .signIn({
+        email: data.get("email")?.toString(),
+        password: data.get("password")?.toString(),
+      })
+      .then(({ user, session, error }) => {
+        console.log({ user, session, error });
+      })
+      .catch(() => {});
   };
 
   return (
