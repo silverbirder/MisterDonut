@@ -529,6 +529,13 @@ export type DonutsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type DonutsQuery = { __typename?: 'Query', misterdonutCollection?: { __typename?: 'misterdonutConnection', edges: Array<{ __typename?: 'misterdonutEdge', node: { __typename?: 'misterdonut', category?: string | null, created_at?: any | null, description?: string | null, id: any, img?: string | null, name?: string | null, price?: any | null } }> } | null };
 
+export type MyProfileQueryVariables = Exact<{
+  uid: Scalars['UUID'];
+}>;
+
+
+export type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', username?: string | null, avatar_url?: string | null } }> } | null };
+
 
 export const DonutsDocument = gql`
     query Donuts {
@@ -574,3 +581,43 @@ export function useDonutsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Don
 export type DonutsQueryHookResult = ReturnType<typeof useDonutsQuery>;
 export type DonutsLazyQueryHookResult = ReturnType<typeof useDonutsLazyQuery>;
 export type DonutsQueryResult = Apollo.QueryResult<DonutsQuery, DonutsQueryVariables>;
+export const MyProfileDocument = gql`
+    query MyProfile($uid: UUID!) {
+  profileCollection(filter: {id: {eq: $uid}}) {
+    edges {
+      node {
+        username
+        avatar_url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMyProfileQuery__
+ *
+ * To run a query within a React component, call `useMyProfileQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyProfileQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyProfileQuery({
+ *   variables: {
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useMyProfileQuery(baseOptions: Apollo.QueryHookOptions<MyProfileQuery, MyProfileQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyProfileQuery, MyProfileQueryVariables>(MyProfileDocument, options);
+      }
+export function useMyProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyProfileQuery, MyProfileQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyProfileQuery, MyProfileQueryVariables>(MyProfileDocument, options);
+        }
+export type MyProfileQueryHookResult = ReturnType<typeof useMyProfileQuery>;
+export type MyProfileLazyQueryHookResult = ReturnType<typeof useMyProfileLazyQuery>;
+export type MyProfileQueryResult = Apollo.QueryResult<MyProfileQuery, MyProfileQueryVariables>;

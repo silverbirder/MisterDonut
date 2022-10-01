@@ -527,6 +527,13 @@ type DonutsQueryVariables = Exact<{ [key: string]: never; }>;
 
 type DonutsQuery = { __typename?: 'Query', misterdonutCollection?: { __typename?: 'misterdonutConnection', edges: Array<{ __typename?: 'misterdonutEdge', node: { __typename?: 'misterdonut', category?: string | null, created_at?: any | null, description?: string | null, id: any, img?: string | null, name?: string | null, price?: any | null } }> } | null };
 
+type MyProfileQueryVariables = Exact<{
+  uid: Scalars['UUID'];
+}>;
+
+
+type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', username?: string | null, avatar_url?: string | null } }> } | null };
+
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
@@ -541,5 +548,22 @@ type DonutsQuery = { __typename?: 'Query', misterdonutCollection?: { __typename?
 export const mockDonutsQuery = (resolver: ResponseResolver<GraphQLRequest<DonutsQueryVariables>, GraphQLContext<DonutsQuery>, any>) =>
   graphql.query<DonutsQuery, DonutsQueryVariables>(
     'Donuts',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockMyProfileQuery((req, res, ctx) => {
+ *   const { uid } = req.variables;
+ *   return res(
+ *     ctx.data({ profileCollection })
+ *   )
+ * })
+ */
+export const mockMyProfileQuery = (resolver: ResponseResolver<GraphQLRequest<MyProfileQueryVariables>, GraphQLContext<MyProfileQuery>, any>) =>
+  graphql.query<MyProfileQuery, MyProfileQueryVariables>(
+    'MyProfile',
     resolver
   )
