@@ -532,7 +532,7 @@ type MyProfileQueryVariables = Exact<{
 }>;
 
 
-type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', username?: string | null, avatar_url?: string | null } }> } | null };
+type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', avatar_url?: string | null, id: any, username?: string | null } }> } | null };
 
 
 /**

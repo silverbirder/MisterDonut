@@ -534,7 +534,7 @@ export type MyProfileQueryVariables = Exact<{
 }>;
 
 
-export type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', username?: string | null, avatar_url?: string | null } }> } | null };
+export type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', avatar_url?: string | null, id: any, username?: string | null } }> } | null };
 
 
 export const DonutsDocument = gql`
@@ -586,8 +586,9 @@ export const MyProfileDocument = gql`
   profileCollection(filter: {id: {eq: $uid}}) {
     edges {
       node {
-        username
         avatar_url
+        id
+        username
       }
     }
   }
