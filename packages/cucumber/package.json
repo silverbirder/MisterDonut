@@ -1,0 +1,13 @@
+{
+  "name": "@misterdonut/cucumber",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "8.6.0",
+    "ts-node": "10.9.1"
+  }
+}
