@@ -94,122 +94,97 @@ input JSONFilter {
   neq: JSON
 }
 
-type misterdonut {
-  id: BigInt!
-  category: String
-  name: String
-  price: BigInt
-  description: String
-  img: String
-  created_at: Date
-  row: JSON
-}
-
-type misterdonutConnection {
-  edges: [misterdonutEdge!]!
-  pageInfo: PageInfo!
-}
-
-type misterdonutDeleteResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [misterdonut!]!
-}
-
-type misterdonutEdge {
-  cursor: String!
-  node: misterdonut!
-}
-
-input misterdonutFilter {
-  id: BigIntFilter
-  category: StringFilter
-  name: StringFilter
-  price: BigIntFilter
-  description: StringFilter
-  img: StringFilter
-  created_at: DateFilter
-}
-
-input misterdonutInsertInput {
-  category: String
-  name: String
-  price: BigInt
-  description: String
-  img: String
-  created_at: Date
-  row: JSON
-}
-
-type misterdonutInsertResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [misterdonut!]!
-}
-
-input misterdonutOrderBy {
-  id: OrderByDirection
-  category: OrderByDirection
-  name: OrderByDirection
-  price: OrderByDirection
-  description: OrderByDirection
-  img: OrderByDirection
-  created_at: OrderByDirection
-}
-
-input misterdonutUpdateInput {
-  category: String
-  name: String
-  price: BigInt
-  description: String
-  img: String
-  created_at: Date
-  row: JSON
-}
-
-type misterdonutUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [misterdonut!]!
-}
-
 """The root type for creating and mutating data"""
 type Mutation {
   """Deletes zero or more records from the collection"""
-  deleteFrommisterdonutCollection(
-    """Restricts the mutation's impact to records matching the critera"""
-    filter: misterdonutFilter
-
+  deleteFrombuydonutCollection(
     """
     The maximum number of records in the collection permitted to be affected
     """
     atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: buydonutFilter
+  ): buydonutDeleteResponse!
+
+  """Deletes zero or more records from the collection"""
+  deleteFrommisterdonutCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: misterdonutFilter
   ): misterdonutDeleteResponse!
+
+  """Deletes zero or more records from the collection"""
+  deleteFromprofileCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: profileFilter
+  ): profileDeleteResponse!
+
+  """Adds one or more `buydonutInsertResponse` records to the collection"""
+  insertIntobuydonutCollection(objects: [buydonutInsertInput!]!): buydonutInsertResponse
 
   """Adds one or more `misterdonutInsertResponse` records to the collection"""
   insertIntomisterdonutCollection(objects: [misterdonutInsertInput!]!): misterdonutInsertResponse
 
+  """Adds one or more `profileInsertResponse` records to the collection"""
+  insertIntoprofileCollection(objects: [profileInsertInput!]!): profileInsertResponse
+
   """Updates zero or more records in the collection"""
-  updatemisterdonutCollection(
+  updatebuydonutCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: buydonutFilter
+
     """
     Fields that are set will be updated for all records matching the `filter`
     """
-    set: misterdonutUpdateInput!
+    set: buydonutUpdateInput!
+  ): buydonutUpdateResponse!
+
+  """Updates zero or more records in the collection"""
+  updatemisterdonutCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
 
     """Restricts the mutation's impact to records matching the critera"""
     filter: misterdonutFilter
 
     """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: misterdonutUpdateInput!
+  ): misterdonutUpdateResponse!
+
+  """Updates zero or more records in the collection"""
+  updateprofileCollection(
+    """
     The maximum number of records in the collection permitted to be affected
     """
     atMost: Int! = 1
-  ): misterdonutUpdateResponse!
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: profileFilter
+
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: profileUpdateInput!
+  ): profileUpdateResponse!
 }
 
 """Defines a per-field sorting order"""
@@ -236,26 +211,68 @@ type PageInfo {
 
 """The root type for querying data"""
 type Query {
-  """A pagable collection of type `misterdonut`"""
-  misterdonutCollection(
+  """A pagable collection of type `buydonut`"""
+  buydonutCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: buydonutFilter
+
     """Query the first `n` records in the collection"""
     first: Int
 
     """Query the last `n` records in the collection"""
     last: Int
 
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
+    """Sort order to apply to the collection"""
+    orderBy: [buydonutOrderBy!]
+  ): buydonutConnection
 
+  """A pagable collection of type `misterdonut`"""
+  misterdonutCollection(
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
 
     """Filters to apply to the results set when querying from the collection"""
     filter: misterdonutFilter
 
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
     """Sort order to apply to the collection"""
     orderBy: [misterdonutOrderBy!]
   ): misterdonutConnection
+
+  """A pagable collection of type `profile`"""
+  profileCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: profileFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [profileOrderBy!]
+  ): profileConnection
 }
 
 """
@@ -297,3 +314,253 @@ input UUIDFilter {
   neq: UUID
 }
 
+type buydonut {
+  buy_date: Date
+  created_at: Datetime
+  id: BigInt!
+  misterdonut: misterdonut
+  misterdonut_id: BigInt
+  user_id: UUID
+}
+
+type buydonutConnection {
+  edges: [buydonutEdge!]!
+  pageInfo: PageInfo!
+}
+
+type buydonutDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [buydonut!]!
+}
+
+type buydonutEdge {
+  cursor: String!
+  node: buydonut!
+}
+
+input buydonutFilter {
+  buy_date: DateFilter
+  created_at: DatetimeFilter
+  id: BigIntFilter
+  misterdonut_id: BigIntFilter
+  user_id: UUIDFilter
+}
+
+input buydonutInsertInput {
+  buy_date: Date
+  created_at: Datetime
+  misterdonut_id: BigInt
+  user_id: UUID
+}
+
+type buydonutInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [buydonut!]!
+}
+
+input buydonutOrderBy {
+  buy_date: OrderByDirection
+  created_at: OrderByDirection
+  id: OrderByDirection
+  misterdonut_id: OrderByDirection
+  user_id: OrderByDirection
+}
+
+input buydonutUpdateInput {
+  buy_date: Date
+  created_at: Datetime
+  misterdonut_id: BigInt
+  user_id: UUID
+}
+
+type buydonutUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [buydonut!]!
+}
+
+type misterdonut {
+  buydonutCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: buydonutFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [buydonutOrderBy!]
+  ): buydonutConnection
+  category: String
+  created_at: Date
+  description: String
+  id: BigInt!
+  img: String
+  name: String
+  price: BigInt
+  row: JSON
+}
+
+type misterdonutConnection {
+  edges: [misterdonutEdge!]!
+  pageInfo: PageInfo!
+}
+
+type misterdonutDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [misterdonut!]!
+}
+
+type misterdonutEdge {
+  cursor: String!
+  node: misterdonut!
+}
+
+input misterdonutFilter {
+  category: StringFilter
+  created_at: DateFilter
+  description: StringFilter
+  id: BigIntFilter
+  img: StringFilter
+  name: StringFilter
+  price: BigIntFilter
+}
+
+input misterdonutInsertInput {
+  category: String
+  created_at: Date
+  description: String
+  img: String
+  name: String
+  price: BigInt
+  row: JSON
+}
+
+type misterdonutInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [misterdonut!]!
+}
+
+input misterdonutOrderBy {
+  category: OrderByDirection
+  created_at: OrderByDirection
+  description: OrderByDirection
+  id: OrderByDirection
+  img: OrderByDirection
+  name: OrderByDirection
+  price: OrderByDirection
+}
+
+input misterdonutUpdateInput {
+  category: String
+  created_at: Date
+  description: String
+  img: String
+  name: String
+  price: BigInt
+  row: JSON
+}
+
+type misterdonutUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [misterdonut!]!
+}
+
+type profile {
+  avatar_url: String
+  id: UUID!
+  updated_at: Datetime
+  username: String
+  website: String
+}
+
+type profileConnection {
+  edges: [profileEdge!]!
+  pageInfo: PageInfo!
+}
+
+type profileDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [profile!]!
+}
+
+type profileEdge {
+  cursor: String!
+  node: profile!
+}
+
+input profileFilter {
+  avatar_url: StringFilter
+  id: UUIDFilter
+  updated_at: DatetimeFilter
+  username: StringFilter
+  website: StringFilter
+}
+
+input profileInsertInput {
+  avatar_url: String
+  id: UUID
+  updated_at: Datetime
+  username: String
+  website: String
+}
+
+type profileInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [profile!]!
+}
+
+input profileOrderBy {
+  avatar_url: OrderByDirection
+  id: OrderByDirection
+  updated_at: OrderByDirection
+  username: OrderByDirection
+  website: OrderByDirection
+}
+
+input profileUpdateInput {
+  avatar_url: String
+  id: UUID
+  updated_at: Datetime
+  username: String
+  website: String
+}
+
+type profileUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [profile!]!
+}
