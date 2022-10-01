@@ -101,14 +101,20 @@ export type Mutation = {
   deleteFrombuydonutCollection: BuydonutDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFrommisterdonutCollection: MisterdonutDeleteResponse;
+  /** Deletes zero or more records from the collection */
+  deleteFromprofileCollection: ProfileDeleteResponse;
   /** Adds one or more `buydonutInsertResponse` records to the collection */
   insertIntobuydonutCollection?: Maybe<BuydonutInsertResponse>;
   /** Adds one or more `misterdonutInsertResponse` records to the collection */
   insertIntomisterdonutCollection?: Maybe<MisterdonutInsertResponse>;
+  /** Adds one or more `profileInsertResponse` records to the collection */
+  insertIntoprofileCollection?: Maybe<ProfileInsertResponse>;
   /** Updates zero or more records in the collection */
   updatebuydonutCollection: BuydonutUpdateResponse;
   /** Updates zero or more records in the collection */
   updatemisterdonutCollection: MisterdonutUpdateResponse;
+  /** Updates zero or more records in the collection */
+  updateprofileCollection: ProfileUpdateResponse;
 };
 
 
@@ -127,6 +133,13 @@ export type MutationDeleteFrommisterdonutCollectionArgs = {
 
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromprofileCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfileFilter>;
+};
+
+
+/** The root type for creating and mutating data */
 export type MutationInsertIntobuydonutCollectionArgs = {
   objects: Array<BuydonutInsertInput>;
 };
@@ -135,6 +148,12 @@ export type MutationInsertIntobuydonutCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntomisterdonutCollectionArgs = {
   objects: Array<MisterdonutInsertInput>;
+};
+
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntoprofileCollectionArgs = {
+  objects: Array<ProfileInsertInput>;
 };
 
 
@@ -151,6 +170,14 @@ export type MutationUpdatemisterdonutCollectionArgs = {
   atMost?: Scalars['Int'];
   filter?: InputMaybe<MisterdonutFilter>;
   set: MisterdonutUpdateInput;
+};
+
+
+/** The root type for creating and mutating data */
+export type MutationUpdateprofileCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfileFilter>;
+  set: ProfileUpdateInput;
 };
 
 /** Defines a per-field sorting order */
@@ -179,6 +206,8 @@ export type Query = {
   buydonutCollection?: Maybe<BuydonutConnection>;
   /** A pagable collection of type `misterdonut` */
   misterdonutCollection?: Maybe<MisterdonutConnection>;
+  /** A pagable collection of type `profile` */
+  profileCollection?: Maybe<ProfileConnection>;
 };
 
 
@@ -201,6 +230,17 @@ export type QueryMisterdonutCollectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Array<MisterdonutOrderBy>>;
+};
+
+
+/** The root type for querying data */
+export type QueryProfileCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<ProfileFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<ProfileOrderBy>>;
 };
 
 /** Boolean expression comparing fields on type "String" */
@@ -405,6 +445,83 @@ export type MisterdonutUpdateResponse = {
   affectedCount: Scalars['Int'];
   /** Array of records impacted by the mutation */
   records: Array<Misterdonut>;
+};
+
+export type Profile = {
+  __typename?: 'profile';
+  avatar_url?: Maybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  updated_at?: Maybe<Scalars['Datetime']>;
+  username?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+export type ProfileConnection = {
+  __typename?: 'profileConnection';
+  edges: Array<ProfileEdge>;
+  pageInfo: PageInfo;
+};
+
+export type ProfileDeleteResponse = {
+  __typename?: 'profileDeleteResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
+};
+
+export type ProfileEdge = {
+  __typename?: 'profileEdge';
+  cursor: Scalars['String'];
+  node: Profile;
+};
+
+export type ProfileFilter = {
+  avatar_url?: InputMaybe<StringFilter>;
+  id?: InputMaybe<UuidFilter>;
+  updated_at?: InputMaybe<DatetimeFilter>;
+  username?: InputMaybe<StringFilter>;
+  website?: InputMaybe<StringFilter>;
+};
+
+export type ProfileInsertInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+export type ProfileInsertResponse = {
+  __typename?: 'profileInsertResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
+};
+
+export type ProfileOrderBy = {
+  avatar_url?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  updated_at?: InputMaybe<OrderByDirection>;
+  username?: InputMaybe<OrderByDirection>;
+  website?: InputMaybe<OrderByDirection>;
+};
+
+export type ProfileUpdateInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+export type ProfileUpdateResponse = {
+  __typename?: 'profileUpdateResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
 };
 
 export type DonutsQueryVariables = Exact<{ [key: string]: never; }>;

@@ -99,14 +99,20 @@ type Mutation = {
   deleteFrombuydonutCollection: BuydonutDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFrommisterdonutCollection: MisterdonutDeleteResponse;
+  /** Deletes zero or more records from the collection */
+  deleteFromprofileCollection: ProfileDeleteResponse;
   /** Adds one or more `buydonutInsertResponse` records to the collection */
   insertIntobuydonutCollection?: Maybe<BuydonutInsertResponse>;
   /** Adds one or more `misterdonutInsertResponse` records to the collection */
   insertIntomisterdonutCollection?: Maybe<MisterdonutInsertResponse>;
+  /** Adds one or more `profileInsertResponse` records to the collection */
+  insertIntoprofileCollection?: Maybe<ProfileInsertResponse>;
   /** Updates zero or more records in the collection */
   updatebuydonutCollection: BuydonutUpdateResponse;
   /** Updates zero or more records in the collection */
   updatemisterdonutCollection: MisterdonutUpdateResponse;
+  /** Updates zero or more records in the collection */
+  updateprofileCollection: ProfileUpdateResponse;
 };
 
 
@@ -125,6 +131,13 @@ type MutationDeleteFrommisterdonutCollectionArgs = {
 
 
 /** The root type for creating and mutating data */
+type MutationDeleteFromprofileCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfileFilter>;
+};
+
+
+/** The root type for creating and mutating data */
 type MutationInsertIntobuydonutCollectionArgs = {
   objects: Array<BuydonutInsertInput>;
 };
@@ -133,6 +146,12 @@ type MutationInsertIntobuydonutCollectionArgs = {
 /** The root type for creating and mutating data */
 type MutationInsertIntomisterdonutCollectionArgs = {
   objects: Array<MisterdonutInsertInput>;
+};
+
+
+/** The root type for creating and mutating data */
+type MutationInsertIntoprofileCollectionArgs = {
+  objects: Array<ProfileInsertInput>;
 };
 
 
@@ -149,6 +168,14 @@ type MutationUpdatemisterdonutCollectionArgs = {
   atMost?: Scalars['Int'];
   filter?: InputMaybe<MisterdonutFilter>;
   set: MisterdonutUpdateInput;
+};
+
+
+/** The root type for creating and mutating data */
+type MutationUpdateprofileCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfileFilter>;
+  set: ProfileUpdateInput;
 };
 
 /** Defines a per-field sorting order */
@@ -177,6 +204,8 @@ type Query = {
   buydonutCollection?: Maybe<BuydonutConnection>;
   /** A pagable collection of type `misterdonut` */
   misterdonutCollection?: Maybe<MisterdonutConnection>;
+  /** A pagable collection of type `profile` */
+  profileCollection?: Maybe<ProfileConnection>;
 };
 
 
@@ -199,6 +228,17 @@ type QueryMisterdonutCollectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Array<MisterdonutOrderBy>>;
+};
+
+
+/** The root type for querying data */
+type QueryProfileCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<ProfileFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<ProfileOrderBy>>;
 };
 
 /** Boolean expression comparing fields on type "String" */
@@ -403,6 +443,83 @@ type MisterdonutUpdateResponse = {
   affectedCount: Scalars['Int'];
   /** Array of records impacted by the mutation */
   records: Array<Misterdonut>;
+};
+
+type Profile = {
+  __typename?: 'profile';
+  avatar_url?: Maybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  updated_at?: Maybe<Scalars['Datetime']>;
+  username?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+type ProfileConnection = {
+  __typename?: 'profileConnection';
+  edges: Array<ProfileEdge>;
+  pageInfo: PageInfo;
+};
+
+type ProfileDeleteResponse = {
+  __typename?: 'profileDeleteResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
+};
+
+type ProfileEdge = {
+  __typename?: 'profileEdge';
+  cursor: Scalars['String'];
+  node: Profile;
+};
+
+type ProfileFilter = {
+  avatar_url?: InputMaybe<StringFilter>;
+  id?: InputMaybe<UuidFilter>;
+  updated_at?: InputMaybe<DatetimeFilter>;
+  username?: InputMaybe<StringFilter>;
+  website?: InputMaybe<StringFilter>;
+};
+
+type ProfileInsertInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+type ProfileInsertResponse = {
+  __typename?: 'profileInsertResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
+};
+
+type ProfileOrderBy = {
+  avatar_url?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  updated_at?: InputMaybe<OrderByDirection>;
+  username?: InputMaybe<OrderByDirection>;
+  website?: InputMaybe<OrderByDirection>;
+};
+
+type ProfileUpdateInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+type ProfileUpdateResponse = {
+  __typename?: 'profileUpdateResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profile>;
 };
 
 type DonutsQueryVariables = Exact<{ [key: string]: never; }>;
