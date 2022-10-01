@@ -1,9 +1,10 @@
 ---
 sidebar_position: 1
 ---
-# Feature: Greeting
 
-## Scenario: Say hello
+# 機能: 挨拶
 
-- When the greeter says hello
-- Then I should have heard "hello"
+## シナリオ: Hello と言う
+
+- もし 挨拶者が hello と言う
+- ならば 私は "hello" と聞こえる

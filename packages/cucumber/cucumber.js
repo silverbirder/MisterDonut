@@ -4,5 +4,6 @@ module.exports = {
     requireModule: ["ts-node/register"],
     paths: ["../../apps/docs/**/*.feature.md"],
     publishQuiet: true,
+    language: "ja",
   },
 };
