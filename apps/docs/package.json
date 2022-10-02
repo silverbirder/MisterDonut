@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "docs",
+  "name": "@misterdonut/docs",
   "version": "0.0.0",
   "scripts": {
     "build": "docusaurus build",
