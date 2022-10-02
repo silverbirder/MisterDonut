@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "index.ts",
   "scripts": {
-    "build": "graphql codegen",
+    "codegen": "graphql codegen",
     "coverage": "graphql coverage",
     "dev": "yoga",
     "validate": "graphql validate"

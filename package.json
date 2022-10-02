@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "turbo run build",
+    "codegen": "turbo run codegen",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
