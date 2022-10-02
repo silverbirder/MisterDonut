@@ -1,4 +1,4 @@
-import { mockDonutsQuery } from "@misterdonut/graphql-codegen";
+import { mockDonutsQuery } from "@misterdonut/graphql";
 import { mockDonutsData } from "../../fixtures/donuts";
 
 export const mockDonuts = mockDonutsQuery((_, res, ctx) =>

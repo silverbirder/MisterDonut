@@ -1,4 +1,4 @@
-import { useDonutsQuery } from "@misterdonut/graphql-codegen";
+import { useDonutsQuery } from "@misterdonut/graphql";
 import type { ReactEventHandler } from "react";
 
 export type ButtonProps = {

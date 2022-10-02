@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "index.ts",
   "dependencies": {
-    "@misterdonut/graphql-codegen": "*",
+    "@misterdonut/graphql": "*",
     "msw": "^0.44.2"
   },
   "msw": {
