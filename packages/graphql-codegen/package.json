@@ -5,8 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "build": "graphql codegen",
-    "graphql:coverage": "graphql coverage",
-    "graphql:validate": "graphql validate"
+    "coverage": "graphql coverage",
+    "dev": "yoga",
+    "validate": "graphql validate"
   },
   "devDependencies": {
     "@graphql-cli/codegen": "2.4.4",
@@ -21,6 +22,7 @@
     "dotenv-flow": "3.2.0",
     "graphql": "16.6.0",
     "graphql-cli": "4.1.0",
-    "graphql-config": "4.3.5"
+    "graphql-config": "4.3.5",
+    "graphql-yoga": "2.13.13"
   }
 }
