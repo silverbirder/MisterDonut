@@ -1,4 +1,4 @@
-import { useDonutsQuery } from "@misterdonut/graphql-codegen";
+import { useDonutsQuery } from "@misterdonut/graphql";
 import { Donut } from "../types";
 
 export const useDonuts = () => {

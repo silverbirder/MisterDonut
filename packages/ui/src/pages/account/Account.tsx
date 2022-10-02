@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useMyProfileQuery } from "@misterdonut/graphql-codegen";
+import { useMyProfileQuery } from "@misterdonut/graphql";
 import { Avatar } from "@mui/material";
 import { SupabaseContext } from "@ui/providers";
 import { useContext } from "react";

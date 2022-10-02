@@ -1,5 +1,5 @@
 {
-  "name": "@misterdonut/graphql-codegen",
+  "name": "@misterdonut/graphql",
   "version": "0.0.0",
   "license": "MIT",
   "main": "index.ts",
