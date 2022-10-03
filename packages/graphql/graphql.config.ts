@@ -11,7 +11,7 @@ const graphqlConfig: IGraphQLConfig = {
       [`${process.env.NEXT_PUBLIC_SUPABASE_URL}/graphql/v1`]: {
         headers: {
           apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-          authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ADMIN_KEY}`,
         },
       },
     },

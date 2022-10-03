@@ -96,30 +96,23 @@ type JsonFilter = {
 type Mutation = {
   __typename?: 'Mutation';
   /** Deletes zero or more records from the collection */
-  deleteFrombuydonutCollection: BuydonutDeleteResponse;
-  /** Deletes zero or more records from the collection */
   deleteFrommisterdonutCollection: MisterdonutDeleteResponse;
   /** Deletes zero or more records from the collection */
+  deleteFromorder_historyCollection: Order_HistoryDeleteResponse;
+  /** Deletes zero or more records from the collection */
   deleteFromprofileCollection: ProfileDeleteResponse;
-  /** Adds one or more `buydonutInsertResponse` records to the collection */
-  insertIntobuydonutCollection?: Maybe<BuydonutInsertResponse>;
   /** Adds one or more `misterdonutInsertResponse` records to the collection */
   insertIntomisterdonutCollection?: Maybe<MisterdonutInsertResponse>;
+  /** Adds one or more `order_historyInsertResponse` records to the collection */
+  insertIntoorder_historyCollection?: Maybe<Order_HistoryInsertResponse>;
   /** Adds one or more `profileInsertResponse` records to the collection */
   insertIntoprofileCollection?: Maybe<ProfileInsertResponse>;
   /** Updates zero or more records in the collection */
-  updatebuydonutCollection: BuydonutUpdateResponse;
-  /** Updates zero or more records in the collection */
   updatemisterdonutCollection: MisterdonutUpdateResponse;
   /** Updates zero or more records in the collection */
+  updateorder_historyCollection: Order_HistoryUpdateResponse;
+  /** Updates zero or more records in the collection */
   updateprofileCollection: ProfileUpdateResponse;
-};
-
-
-/** The root type for creating and mutating data */
-type MutationDeleteFrombuydonutCollectionArgs = {
-  atMost?: Scalars['Int'];
-  filter?: InputMaybe<BuydonutFilter>;
 };
 
 
@@ -131,15 +124,16 @@ type MutationDeleteFrommisterdonutCollectionArgs = {
 
 
 /** The root type for creating and mutating data */
-type MutationDeleteFromprofileCollectionArgs = {
+type MutationDeleteFromorder_HistoryCollectionArgs = {
   atMost?: Scalars['Int'];
-  filter?: InputMaybe<ProfileFilter>;
+  filter?: InputMaybe<Order_HistoryFilter>;
 };
 
 
 /** The root type for creating and mutating data */
-type MutationInsertIntobuydonutCollectionArgs = {
-  objects: Array<BuydonutInsertInput>;
+type MutationDeleteFromprofileCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfileFilter>;
 };
 
 
@@ -150,16 +144,14 @@ type MutationInsertIntomisterdonutCollectionArgs = {
 
 
 /** The root type for creating and mutating data */
-type MutationInsertIntoprofileCollectionArgs = {
-  objects: Array<ProfileInsertInput>;
+type MutationInsertIntoorder_HistoryCollectionArgs = {
+  objects: Array<Order_HistoryInsertInput>;
 };
 
 
 /** The root type for creating and mutating data */
-type MutationUpdatebuydonutCollectionArgs = {
-  atMost?: Scalars['Int'];
-  filter?: InputMaybe<BuydonutFilter>;
-  set: BuydonutUpdateInput;
+type MutationInsertIntoprofileCollectionArgs = {
+  objects: Array<ProfileInsertInput>;
 };
 
 
@@ -168,6 +160,14 @@ type MutationUpdatemisterdonutCollectionArgs = {
   atMost?: Scalars['Int'];
   filter?: InputMaybe<MisterdonutFilter>;
   set: MisterdonutUpdateInput;
+};
+
+
+/** The root type for creating and mutating data */
+type MutationUpdateorder_HistoryCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<Order_HistoryFilter>;
+  set: Order_HistoryUpdateInput;
 };
 
 
@@ -200,23 +200,12 @@ type PageInfo = {
 /** The root type for querying data */
 type Query = {
   __typename?: 'Query';
-  /** A pagable collection of type `buydonut` */
-  buydonutCollection?: Maybe<BuydonutConnection>;
   /** A pagable collection of type `misterdonut` */
   misterdonutCollection?: Maybe<MisterdonutConnection>;
+  /** A pagable collection of type `order_history` */
+  order_historyCollection?: Maybe<Order_HistoryConnection>;
   /** A pagable collection of type `profile` */
   profileCollection?: Maybe<ProfileConnection>;
-};
-
-
-/** The root type for querying data */
-type QueryBuydonutCollectionArgs = {
-  after?: InputMaybe<Scalars['Cursor']>;
-  before?: InputMaybe<Scalars['Cursor']>;
-  filter?: InputMaybe<BuydonutFilter>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Array<BuydonutOrderBy>>;
 };
 
 
@@ -228,6 +217,17 @@ type QueryMisterdonutCollectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Array<MisterdonutOrderBy>>;
+};
+
+
+/** The root type for querying data */
+type QueryOrder_HistoryCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<Order_HistoryFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<Order_HistoryOrderBy>>;
 };
 
 
@@ -270,103 +270,27 @@ type UuidFilter = {
   neq?: InputMaybe<Scalars['UUID']>;
 };
 
-type Buydonut = {
-  __typename?: 'buydonut';
-  buy_date?: Maybe<Scalars['Date']>;
-  created_at?: Maybe<Scalars['Datetime']>;
-  id: Scalars['BigInt'];
-  misterdonut?: Maybe<Misterdonut>;
-  misterdonut_id?: Maybe<Scalars['BigInt']>;
-  user_id?: Maybe<Scalars['UUID']>;
-};
-
-type BuydonutConnection = {
-  __typename?: 'buydonutConnection';
-  edges: Array<BuydonutEdge>;
-  pageInfo: PageInfo;
-};
-
-type BuydonutDeleteResponse = {
-  __typename?: 'buydonutDeleteResponse';
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars['Int'];
-  /** Array of records impacted by the mutation */
-  records: Array<Buydonut>;
-};
-
-type BuydonutEdge = {
-  __typename?: 'buydonutEdge';
-  cursor: Scalars['String'];
-  node: Buydonut;
-};
-
-type BuydonutFilter = {
-  buy_date?: InputMaybe<DateFilter>;
-  created_at?: InputMaybe<DatetimeFilter>;
-  id?: InputMaybe<BigIntFilter>;
-  misterdonut_id?: InputMaybe<BigIntFilter>;
-  user_id?: InputMaybe<UuidFilter>;
-};
-
-type BuydonutInsertInput = {
-  buy_date?: InputMaybe<Scalars['Date']>;
-  created_at?: InputMaybe<Scalars['Datetime']>;
-  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
-  user_id?: InputMaybe<Scalars['UUID']>;
-};
-
-type BuydonutInsertResponse = {
-  __typename?: 'buydonutInsertResponse';
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars['Int'];
-  /** Array of records impacted by the mutation */
-  records: Array<Buydonut>;
-};
-
-type BuydonutOrderBy = {
-  buy_date?: InputMaybe<OrderByDirection>;
-  created_at?: InputMaybe<OrderByDirection>;
-  id?: InputMaybe<OrderByDirection>;
-  misterdonut_id?: InputMaybe<OrderByDirection>;
-  user_id?: InputMaybe<OrderByDirection>;
-};
-
-type BuydonutUpdateInput = {
-  buy_date?: InputMaybe<Scalars['Date']>;
-  created_at?: InputMaybe<Scalars['Datetime']>;
-  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
-  user_id?: InputMaybe<Scalars['UUID']>;
-};
-
-type BuydonutUpdateResponse = {
-  __typename?: 'buydonutUpdateResponse';
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars['Int'];
-  /** Array of records impacted by the mutation */
-  records: Array<Buydonut>;
-};
-
 type Misterdonut = {
   __typename?: 'misterdonut';
-  buydonutCollection?: Maybe<BuydonutConnection>;
   category?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['Date']>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['BigInt'];
   img?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  order_historyCollection?: Maybe<Order_HistoryConnection>;
   price?: Maybe<Scalars['BigInt']>;
   row?: Maybe<Scalars['JSON']>;
 };
 
 
-type MisterdonutBuydonutCollectionArgs = {
+type MisterdonutOrder_HistoryCollectionArgs = {
   after?: InputMaybe<Scalars['Cursor']>;
   before?: InputMaybe<Scalars['Cursor']>;
-  filter?: InputMaybe<BuydonutFilter>;
+  filter?: InputMaybe<Order_HistoryFilter>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Array<BuydonutOrderBy>>;
+  orderBy?: InputMaybe<Array<Order_HistoryOrderBy>>;
 };
 
 type MisterdonutConnection = {
@@ -445,13 +369,101 @@ type MisterdonutUpdateResponse = {
   records: Array<Misterdonut>;
 };
 
+type Order_History = {
+  __typename?: 'order_history';
+  created_at?: Maybe<Scalars['Datetime']>;
+  id: Scalars['BigInt'];
+  misterdonut?: Maybe<Misterdonut>;
+  misterdonut_id?: Maybe<Scalars['BigInt']>;
+  order_date?: Maybe<Scalars['Datetime']>;
+  profile?: Maybe<Profile>;
+  profile_id?: Maybe<Scalars['UUID']>;
+};
+
+type Order_HistoryConnection = {
+  __typename?: 'order_historyConnection';
+  edges: Array<Order_HistoryEdge>;
+  pageInfo: PageInfo;
+};
+
+type Order_HistoryDeleteResponse = {
+  __typename?: 'order_historyDeleteResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Order_History>;
+};
+
+type Order_HistoryEdge = {
+  __typename?: 'order_historyEdge';
+  cursor: Scalars['String'];
+  node: Order_History;
+};
+
+type Order_HistoryFilter = {
+  created_at?: InputMaybe<DatetimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  misterdonut_id?: InputMaybe<BigIntFilter>;
+  order_date?: InputMaybe<DatetimeFilter>;
+  profile_id?: InputMaybe<UuidFilter>;
+};
+
+type Order_HistoryInsertInput = {
+  created_at?: InputMaybe<Scalars['Datetime']>;
+  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
+  order_date?: InputMaybe<Scalars['Datetime']>;
+  profile_id?: InputMaybe<Scalars['UUID']>;
+};
+
+type Order_HistoryInsertResponse = {
+  __typename?: 'order_historyInsertResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Order_History>;
+};
+
+type Order_HistoryOrderBy = {
+  created_at?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  misterdonut_id?: InputMaybe<OrderByDirection>;
+  order_date?: InputMaybe<OrderByDirection>;
+  profile_id?: InputMaybe<OrderByDirection>;
+};
+
+type Order_HistoryUpdateInput = {
+  created_at?: InputMaybe<Scalars['Datetime']>;
+  misterdonut_id?: InputMaybe<Scalars['BigInt']>;
+  order_date?: InputMaybe<Scalars['Datetime']>;
+  profile_id?: InputMaybe<Scalars['UUID']>;
+};
+
+type Order_HistoryUpdateResponse = {
+  __typename?: 'order_historyUpdateResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Order_History>;
+};
+
 type Profile = {
   __typename?: 'profile';
   avatar_url?: Maybe<Scalars['String']>;
   id: Scalars['UUID'];
+  order_historyCollection?: Maybe<Order_HistoryConnection>;
   updated_at?: Maybe<Scalars['Datetime']>;
   username?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
+};
+
+
+type ProfileOrder_HistoryCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<Order_HistoryFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<Order_HistoryOrderBy>>;
 };
 
 type ProfileConnection = {
@@ -534,6 +546,13 @@ type MyProfileQueryVariables = Exact<{
 
 type MyProfileQuery = { __typename?: 'Query', profileCollection?: { __typename?: 'profileConnection', edges: Array<{ __typename?: 'profileEdge', node: { __typename?: 'profile', avatar_url?: string | null, id: any, username?: string | null } }> } | null };
 
+type InsertOrderHistoryMutationVariables = Exact<{
+  objects: Array<Order_HistoryInsertInput> | Order_HistoryInsertInput;
+}>;
+
+
+type InsertOrderHistoryMutation = { __typename?: 'Mutation', insertIntoorder_historyCollection?: { __typename?: 'order_historyInsertResponse', records: Array<{ __typename?: 'order_history', id: any }> } | null };
+
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
@@ -565,5 +584,22 @@ export const mockDonutsQuery = (resolver: ResponseResolver<GraphQLRequest<Donuts
 export const mockMyProfileQuery = (resolver: ResponseResolver<GraphQLRequest<MyProfileQueryVariables>, GraphQLContext<MyProfileQuery>, any>) =>
   graphql.query<MyProfileQuery, MyProfileQueryVariables>(
     'MyProfile',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockInsertOrderHistoryMutation((req, res, ctx) => {
+ *   const { objects } = req.variables;
+ *   return res(
+ *     ctx.data({ insertIntoorder_historyCollection })
+ *   )
+ * })
+ */
+export const mockInsertOrderHistoryMutation = (resolver: ResponseResolver<GraphQLRequest<InsertOrderHistoryMutationVariables>, GraphQLContext<InsertOrderHistoryMutation>, any>) =>
+  graphql.mutation<InsertOrderHistoryMutation, InsertOrderHistoryMutationVariables>(
+    'InsertOrderHistory',
     resolver
   )

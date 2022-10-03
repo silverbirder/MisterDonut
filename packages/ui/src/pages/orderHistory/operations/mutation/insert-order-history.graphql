@@ -1,0 +1,7 @@
+mutation InsertOrderHistory($objects: [order_historyInsertInput!]!) {
+  insertIntoorder_historyCollection(objects: $objects) {
+    records {
+      id
+    }
+  }
+}
