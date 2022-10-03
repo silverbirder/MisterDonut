@@ -18,6 +18,9 @@ const graphqlConfig: IGraphQLConfig = {
   ],
   documents: "../ui/**/*.graphql",
   extensions: {
+    diff: {
+      baseSchema: path.join(__dirname, "../ui/schema.graphql"),
+    },
     codegen: {
       overwrite: true,
       config: {

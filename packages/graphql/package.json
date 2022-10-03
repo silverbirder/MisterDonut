@@ -7,11 +7,13 @@
     "codegen": "graphql codegen",
     "coverage": "graphql coverage",
     "dev": "yoga",
+    "diff": "graphql diff",
     "validate": "graphql validate"
   },
   "devDependencies": {
     "@graphql-cli/codegen": "2.4.4",
     "@graphql-cli/coverage": "2.1.0",
+    "@graphql-cli/diff": "2.1.0",
     "@graphql-cli/validate": "2.1.0",
     "@graphql-codegen/schema-ast": "2.5.1",
     "@graphql-codegen/typescript": "2.7.3",
