@@ -2337,6 +2337,16 @@
     "@graphql-inspector/graphql-cli-common" "2.1.0"
     tslib "^2.0.0"
 
+"@graphql-cli/diff@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@graphql-cli/diff/-/diff-2.1.0.tgz#61e65959515a64614061b4d95ea18fb50591751d"
+  integrity sha512-ZUpsaqKyFJ51j/CDOOkbj27afSqaIBa65PAHKYsCZrBv8XJsu+tZOsSuk894oXyrfDdVmLGJQPR4fY+sBdS7/A==
+  dependencies:
+    "@graphql-cli/common" "4.0.0"
+    "@graphql-cli/loaders" "4.0.0"
+    "@graphql-inspector/diff-command" "2.1.0"
+    tslib "^2.0.0"
+
 "@graphql-cli/init@4.1.0":
   version "4.1.0"
   resolved "https://registry.npmjs.org/@graphql-cli/init/-/init-4.1.0.tgz"
@@ -2557,6 +2567,16 @@
     "@graphql-inspector/logger" "2.1.0"
     tslib "^2.0.0"
 
+"@graphql-inspector/diff-command@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@graphql-inspector/diff-command/-/diff-command-2.1.0.tgz#6ee03aa2b8b2fead7223c3515218df254e6e0a09"
+  integrity sha512-sajmF7RmfFcEWXYRt6S7HBECEYvCQKjCX8jL6U0UJdB+qv+x1x1BBbNi5Dg5YO4yZgARRyFy/9ALEDixIJOznw==
+  dependencies:
+    "@graphql-inspector/commands" "2.1.0"
+    "@graphql-inspector/core" "2.1.0"
+    "@graphql-inspector/logger" "2.1.0"
+    tslib "^2.0.0"
+
 "@graphql-inspector/graphql-cli-common@2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@graphql-inspector/graphql-cli-common/-/graphql-cli-common-2.1.0.tgz"
@@ -2746,15 +2766,6 @@
     "@whatwg-node/fetch" "^0.4.0"
     tslib "^2.4.0"
 
-"@graphql-tools/graphql-file-loader@^6.0.0":
-  version "6.2.7"
-  resolved "https://registry.npmjs.org/@graphql-tools/graphql-file-loader/-/graphql-file-loader-6.2.7.tgz"
-  integrity sha512-5k2SNz0W87tDcymhEMZMkd6/vs6QawDyjQXWtqkuLTBF3vxjxPD1I4dwHoxgWPIjjANhXybvulD7E+St/7s9TQ==
-  dependencies:
-    "@graphql-tools/import" "^6.2.6"
-    "@graphql-tools/utils" "^7.0.0"
-    tslib "~2.1.0"
-
 "@graphql-tools/graphql-file-loader@^7.3.7":
   version "7.5.3"
   resolved "https://registry.npmjs.org/@graphql-tools/graphql-file-loader/-/graphql-file-loader-7.5.3.tgz"
@@ -2808,7 +2819,7 @@
     resolve-from "5.0.0"
     tslib "^2.4.0"
 
-"@graphql-tools/import@6.7.6", "@graphql-tools/import@^6.2.6":
+"@graphql-tools/import@6.7.6":
   version "6.7.6"
   resolved "https://registry.npmjs.org/@graphql-tools/import/-/import-6.7.6.tgz"
   integrity sha512-WtUyiO2qCaK/H4u81zAw/NbBvCOzwKl4N+Vl+FqrFCzYobscwL6x6roePyoXM1O3+JJIIn3CETv4kg4kwxaBVw==
@@ -2816,14 +2827,6 @@
     "@graphql-tools/utils" "8.12.0"
     resolve-from "5.0.0"
     tslib "^2.4.0"
-
-"@graphql-tools/json-file-loader@^6.0.0":
-  version "6.2.6"
-  resolved "https://registry.npmjs.org/@graphql-tools/json-file-loader/-/json-file-loader-6.2.6.tgz"
-  integrity sha512-CnfwBSY5926zyb6fkDBHnlTblHnHI4hoBALFYXnrg0Ev4yWU8B04DZl/pBRUc459VNgO2x8/mxGIZj2hPJG1EA==
-  dependencies:
-    "@graphql-tools/utils" "^7.0.0"
-    tslib "~2.0.1"
 
 "@graphql-tools/json-file-loader@^7.3.7":
   version "7.4.4"
@@ -2919,7 +2922,7 @@
     "@graphql-tools/utils" "8.12.0"
     tslib "^2.4.0"
 
-"@graphql-tools/merge@^6.0.0", "@graphql-tools/merge@^6.2.12", "@graphql-tools/merge@^6.2.4":
+"@graphql-tools/merge@^6.2.12", "@graphql-tools/merge@^6.2.4":
   version "6.2.17"
   resolved "https://registry.npmjs.org/@graphql-tools/merge/-/merge-6.2.17.tgz"
   integrity sha512-G5YrOew39fZf16VIrc49q3c8dBqQDD0ax5LYPiNja00xsXDi0T9zsEWVt06ApjtSdSF6HDddlu5S12QjeN8Tow==
@@ -8650,17 +8653,6 @@ cosmiconfig-typescript-loader@4.0.0, cosmiconfig-typescript-loader@^4.0.0:
   resolved "https://registry.npmjs.org/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-4.0.0.tgz"
   integrity sha512-cVpucSc2Tf+VPwCCR7SZzmQTQkPbkk4O01yXsYqXBIbjE1bhwqSyAgYQkRK1un4i0OPziTleqFhdkmOc4RQ/9g==
 
-cosmiconfig@6.0.0, cosmiconfig@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-6.0.0.tgz"
-  integrity sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==
-  dependencies:
-    "@types/parse-json" "^4.0.0"
-    import-fresh "^3.1.0"
-    parse-json "^5.0.0"
-    path-type "^4.0.0"
-    yaml "^1.7.2"
-
 cosmiconfig@7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-7.0.0.tgz"
@@ -8682,6 +8674,17 @@ cosmiconfig@7.0.1, cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+cosmiconfig@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-6.0.0.tgz"
+  integrity sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==
+  dependencies:
+    "@types/parse-json" "^4.0.0"
+    import-fresh "^3.1.0"
+    parse-json "^5.0.0"
+    path-type "^4.0.0"
+    yaml "^1.7.2"
 
 cp-file@^7.0.0:
   version "7.0.0"
@@ -11259,23 +11262,7 @@ graphql-cli@4.1.0:
     open "7.3.0"
     yargs "16.0.3"
 
-graphql-config@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-3.0.3.tgz#58907c65ed7d6e04132321450b60e57863ea9a5f"
-  integrity sha512-MBY0wEjvcgJtZUyoqpPvOE1e5qPI0hJaa1gKTqjonSFiCsNHX2lykNjpOPcodmAgH1V06ELxhGnm9kcVzqvi/g==
-  dependencies:
-    "@graphql-tools/graphql-file-loader" "^6.0.0"
-    "@graphql-tools/json-file-loader" "^6.0.0"
-    "@graphql-tools/load" "^6.0.0"
-    "@graphql-tools/merge" "^6.0.0"
-    "@graphql-tools/url-loader" "^6.0.0"
-    "@graphql-tools/utils" "^6.0.0"
-    cosmiconfig "6.0.0"
-    minimatch "3.0.4"
-    string-env-interpolation "1.0.1"
-    tslib "^2.0.0"
-
-graphql-config@4.3.5, graphql-config@^4.1.0, graphql-config@^4.3.0, graphql-config@^4.3.5:
+graphql-config@3.0.3, graphql-config@4.3.5, graphql-config@^4.1.0, graphql-config@^4.3.0, graphql-config@^4.3.5:
   version "4.3.5"
   resolved "https://registry.npmjs.org/graphql-config/-/graphql-config-4.3.5.tgz"
   integrity sha512-B4jXhHL7j3llCem+ACeo48wvVYhtJxRyt5SfSnvywbRlVYyUzt5ibZV6WJU2Yii2/rcVRIGi7BHDgcAPWdWdJg==

@@ -97,17 +97,6 @@ input JSONFilter {
 """The root type for creating and mutating data"""
 type Mutation {
   """Deletes zero or more records from the collection"""
-  deleteFrombuydonutCollection(
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-
-    """Restricts the mutation's impact to records matching the critera"""
-    filter: buydonutFilter
-  ): buydonutDeleteResponse!
-
-  """Deletes zero or more records from the collection"""
   deleteFrommisterdonutCollection(
     """
     The maximum number of records in the collection permitted to be affected
@@ -117,6 +106,17 @@ type Mutation {
     """Restricts the mutation's impact to records matching the critera"""
     filter: misterdonutFilter
   ): misterdonutDeleteResponse!
+
+  """Deletes zero or more records from the collection"""
+  deleteFromorder_historyCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: order_historyFilter
+  ): order_historyDeleteResponse!
 
   """Deletes zero or more records from the collection"""
   deleteFromprofileCollection(
@@ -129,30 +129,16 @@ type Mutation {
     filter: profileFilter
   ): profileDeleteResponse!
 
-  """Adds one or more `buydonutInsertResponse` records to the collection"""
-  insertIntobuydonutCollection(objects: [buydonutInsertInput!]!): buydonutInsertResponse
-
   """Adds one or more `misterdonutInsertResponse` records to the collection"""
   insertIntomisterdonutCollection(objects: [misterdonutInsertInput!]!): misterdonutInsertResponse
 
+  """
+  Adds one or more `order_historyInsertResponse` records to the collection
+  """
+  insertIntoorder_historyCollection(objects: [order_historyInsertInput!]!): order_historyInsertResponse
+
   """Adds one or more `profileInsertResponse` records to the collection"""
   insertIntoprofileCollection(objects: [profileInsertInput!]!): profileInsertResponse
-
-  """Updates zero or more records in the collection"""
-  updatebuydonutCollection(
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-
-    """Restricts the mutation's impact to records matching the critera"""
-    filter: buydonutFilter
-
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: buydonutUpdateInput!
-  ): buydonutUpdateResponse!
 
   """Updates zero or more records in the collection"""
   updatemisterdonutCollection(
@@ -169,6 +155,22 @@ type Mutation {
     """
     set: misterdonutUpdateInput!
   ): misterdonutUpdateResponse!
+
+  """Updates zero or more records in the collection"""
+  updateorder_historyCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: order_historyFilter
+
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: order_historyUpdateInput!
+  ): order_historyUpdateResponse!
 
   """Updates zero or more records in the collection"""
   updateprofileCollection(
@@ -211,27 +213,6 @@ type PageInfo {
 
 """The root type for querying data"""
 type Query {
-  """A pagable collection of type `buydonut`"""
-  buydonutCollection(
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: buydonutFilter
-
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Sort order to apply to the collection"""
-    orderBy: [buydonutOrderBy!]
-  ): buydonutConnection
-
   """A pagable collection of type `misterdonut`"""
   misterdonutCollection(
     """Query values in the collection after the provided cursor"""
@@ -252,6 +233,27 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [misterdonutOrderBy!]
   ): misterdonutConnection
+
+  """A pagable collection of type `order_history`"""
+  order_historyCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: order_historyFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [order_historyOrderBy!]
+  ): order_historyConnection
 
   """A pagable collection of type `profile`"""
   profileCollection(
@@ -314,81 +316,14 @@ input UUIDFilter {
   neq: UUID
 }
 
-type buydonut {
-  buy_date: Date
-  created_at: Datetime
-  id: BigInt!
-  misterdonut: misterdonut
-  misterdonut_id: BigInt
-  user_id: UUID
-}
-
-type buydonutConnection {
-  edges: [buydonutEdge!]!
-  pageInfo: PageInfo!
-}
-
-type buydonutDeleteResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [buydonut!]!
-}
-
-type buydonutEdge {
-  cursor: String!
-  node: buydonut!
-}
-
-input buydonutFilter {
-  buy_date: DateFilter
-  created_at: DatetimeFilter
-  id: BigIntFilter
-  misterdonut_id: BigIntFilter
-  user_id: UUIDFilter
-}
-
-input buydonutInsertInput {
-  buy_date: Date
-  created_at: Datetime
-  misterdonut_id: BigInt
-  user_id: UUID
-}
-
-type buydonutInsertResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [buydonut!]!
-}
-
-input buydonutOrderBy {
-  buy_date: OrderByDirection
-  created_at: OrderByDirection
-  id: OrderByDirection
-  misterdonut_id: OrderByDirection
-  user_id: OrderByDirection
-}
-
-input buydonutUpdateInput {
-  buy_date: Date
-  created_at: Datetime
-  misterdonut_id: BigInt
-  user_id: UUID
-}
-
-type buydonutUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [buydonut!]!
-}
-
 type misterdonut {
-  buydonutCollection(
+  category: String
+  created_at: Date
+  description: String
+  id: BigInt!
+  img: String
+  name: String
+  order_historyCollection(
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
@@ -396,7 +331,7 @@ type misterdonut {
     before: Cursor
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: buydonutFilter
+    filter: order_historyFilter
 
     """Query the first `n` records in the collection"""
     first: Int
@@ -405,14 +340,8 @@ type misterdonut {
     last: Int
 
     """Sort order to apply to the collection"""
-    orderBy: [buydonutOrderBy!]
-  ): buydonutConnection
-  category: String
-  created_at: Date
-  description: String
-  id: BigInt!
-  img: String
-  name: String
+    orderBy: [order_historyOrderBy!]
+  ): order_historyConnection
   price: BigInt
   row: JSON
 }
@@ -491,9 +420,102 @@ type misterdonutUpdateResponse {
   records: [misterdonut!]!
 }
 
+type order_history {
+  created_at: Datetime
+  id: BigInt!
+  misterdonut: misterdonut
+  misterdonut_id: BigInt
+  order_date: Datetime
+  profile: profile
+  profile_id: UUID
+}
+
+type order_historyConnection {
+  edges: [order_historyEdge!]!
+  pageInfo: PageInfo!
+}
+
+type order_historyDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history!]!
+}
+
+type order_historyEdge {
+  cursor: String!
+  node: order_history!
+}
+
+input order_historyFilter {
+  created_at: DatetimeFilter
+  id: BigIntFilter
+  misterdonut_id: BigIntFilter
+  order_date: DatetimeFilter
+  profile_id: UUIDFilter
+}
+
+input order_historyInsertInput {
+  created_at: Datetime
+  misterdonut_id: BigInt
+  order_date: Datetime
+  profile_id: UUID
+}
+
+type order_historyInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history!]!
+}
+
+input order_historyOrderBy {
+  created_at: OrderByDirection
+  id: OrderByDirection
+  misterdonut_id: OrderByDirection
+  order_date: OrderByDirection
+  profile_id: OrderByDirection
+}
+
+input order_historyUpdateInput {
+  created_at: Datetime
+  misterdonut_id: BigInt
+  order_date: Datetime
+  profile_id: UUID
+}
+
+type order_historyUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history!]!
+}
+
 type profile {
   avatar_url: String
   id: UUID!
+  order_historyCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: order_historyFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [order_historyOrderBy!]
+  ): order_historyConnection
   updated_at: Datetime
   username: String
   website: String
