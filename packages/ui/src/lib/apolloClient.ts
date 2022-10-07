@@ -15,7 +15,7 @@ const apikey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 const uri = process.env.NEXT_PUBLIC_SUPABASE_URL
   ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/graphql/v1`
-  : "/graphql";
+  : "http://localhost:4449/graphql";
 
 const link = createHttpLink({
   uri,

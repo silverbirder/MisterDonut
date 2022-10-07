@@ -1,16 +1,26 @@
 import { initialize, mswDecorator } from "msw-storybook-addon";
-import { ApolloProvider, MuiProvider } from "@misterdonut/ui";
+import { ApolloProvider, MuiProvider, SupabaseProvider } from "@misterdonut/ui";
 
 // Initialize MSW
 initialize();
 
+const mockClient = {
+  auth: {
+    user: () => {
+      return { id: "id" };
+    },
+  },
+};
+
 /** @type {import('@storybook/react').DecoratorFn}  */
 const withApolloProvider = (Story) => (
-  <ApolloProvider>
-    <MuiProvider>
-      <Story />
-    </MuiProvider>
-  </ApolloProvider>
+  <SupabaseProvider client={mockClient}>
+    <ApolloProvider>
+      <MuiProvider>
+        <Story />
+      </MuiProvider>
+    </ApolloProvider>
+  </SupabaseProvider>
 );
 
 /** @type {import('@storybook/react').DecoratorFn}  */
