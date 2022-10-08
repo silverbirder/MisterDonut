@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/await-thenable */
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { within } from "@storybook/testing-library";
-import { SignUp, SignUpProps } from "./SignUp";
+import { SignUp } from "./SignUp";
 
 type Component = typeof SignUp;
 type Meta = ComponentMeta<Component>;
@@ -13,9 +13,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: ComponentStory<Component> = ({ children }: SignUpProps) => (
-  <SignUp>{children}</SignUp>
-);
+const Template: ComponentStory<Component> = () => <SignUp />;
 
 export const Default = Template.bind({});
 
