@@ -4,17 +4,9 @@ import { ApolloProvider, MuiProvider, SupabaseProvider } from "@misterdonut/ui";
 // Initialize MSW
 initialize();
 
-const mockClient = {
-  auth: {
-    user: () => {
-      return { id: "id" };
-    },
-  },
-};
-
 /** @type {import('@storybook/react').DecoratorFn}  */
 const withApolloProvider = (Story) => (
-  <SupabaseProvider client={mockClient}>
+  <SupabaseProvider>
     <ApolloProvider>
       <MuiProvider>
         <Story />

@@ -10,7 +10,7 @@ export const SupabaseContext = createContext<SupabaseClient | null>(null);
 
 const createSupabaseClient = () =>
   createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || "http://localhost:4449",
+    process.env.NEXT_PUBLIC_SUPABASE_URL || "http://localhost:6006",
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "key"
   );
 
