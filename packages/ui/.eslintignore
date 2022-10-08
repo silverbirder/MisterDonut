@@ -1,2 +1,4 @@
 schema.graphql
 setupFile.js
+plopfile.js
+generators/component/index.js
