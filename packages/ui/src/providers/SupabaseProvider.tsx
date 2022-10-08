@@ -2,7 +2,6 @@ import { createContext } from "react";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 type Props = {
-  client?: SupabaseClient;
   children: React.ReactNode;
 };
 
@@ -14,8 +13,8 @@ const createSupabaseClient = () =>
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "key"
   );
 
-export const SupabaseProvider = ({ client, children }: Props) => (
-  <SupabaseContext.Provider value={client || createSupabaseClient()}>
+export const SupabaseProvider = ({ children }: Props) => (
+  <SupabaseContext.Provider value={createSupabaseClient()}>
     {children}
   </SupabaseContext.Provider>
 );
