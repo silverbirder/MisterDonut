@@ -1,16 +1,18 @@
 import { initialize, mswDecorator } from "msw-storybook-addon";
-import { ApolloProvider, MuiProvider } from "@misterdonut/ui";
+import { ApolloProvider, MuiProvider, SupabaseProvider } from "@misterdonut/ui";
 
 // Initialize MSW
 initialize();
 
 /** @type {import('@storybook/react').DecoratorFn}  */
 const withApolloProvider = (Story) => (
-  <ApolloProvider>
-    <MuiProvider>
-      <Story />
-    </MuiProvider>
-  </ApolloProvider>
+  <SupabaseProvider>
+    <ApolloProvider>
+      <MuiProvider>
+        <Story />
+      </MuiProvider>
+    </ApolloProvider>
+  </SupabaseProvider>
 );
 
 /** @type {import('@storybook/react').DecoratorFn}  */

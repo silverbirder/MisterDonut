@@ -9,8 +9,8 @@ export const SupabaseContext = createContext<SupabaseClient | null>(null);
 
 const createSupabaseClient = () =>
   createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+    process.env.NEXT_PUBLIC_SUPABASE_URL || "http://localhost:6006",
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "key"
   );
 
 export const SupabaseProvider = ({ children }: Props) => (
