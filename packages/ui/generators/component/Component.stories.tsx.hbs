@@ -1,0 +1,30 @@
+/* eslint-disable @typescript-eslint/await-thenable */
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { within } from "@storybook/testing-library";
+import { {{ properCase name }}, {{ properCase name }}Props } from "./{{ properCase name }}";
+
+type Component = typeof {{ properCase name }};
+type Meta = ComponentMeta<Component>;
+
+const meta: Meta = {
+  {{#if title}}
+  title: '{{ title }}/{{ properCase name }}',
+  {{else}}
+  title: '{{ properCase name }}',
+  {{/if}}
+  component: {{ properCase name }},
+};
+
+export default meta;
+
+const Template: ComponentStory<Component> = ({ children }: {{ properCase name }}Props) => (
+  <{{ properCase name }}>{children}</{{ properCase name }}>
+);
+
+  
+
+export const Default = Template.bind({});
+
+Default.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+};
