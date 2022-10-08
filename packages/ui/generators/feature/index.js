@@ -31,6 +31,7 @@ module.exports = {
       {
         type: "add",
         path: featuresDir + "/{{name}}/hooks/index.ts",
+        template: "export {};\n",
       },
       {
         type: "add",
@@ -43,6 +44,7 @@ module.exports = {
       {
         type: "add",
         path: featuresDir + "/{{name}}/types/index.ts",
+        template: "export type {};\n",
       },
     ];
   },
