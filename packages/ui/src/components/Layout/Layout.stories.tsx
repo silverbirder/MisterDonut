@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/await-thenable */
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { within } from "@storybook/testing-library";
-import { Title, TitleProps } from "./Title";
+import { Layout, LayoutProps } from "./Layout";
 
-type Component = typeof Title;
+type Component = typeof Layout;
 type Meta = ComponentMeta<Component>;
 
 const meta: Meta = {
-  title: "Layout/Title",
-  component: Title,
-  args: {
-    children: <div>Hello</div>,
-  },
+  title: "Layout",
+  component: Layout,
 };
 
 export default meta;
 
-const Template: ComponentStory<Component> = ({ children }: TitleProps) => (
-  <Title>{children}</Title>
+const Template: ComponentStory<Component> = ({ children }: LayoutProps) => (
+  <Layout>{children}</Layout>
 );
 
 export const Default = Template.bind({});
