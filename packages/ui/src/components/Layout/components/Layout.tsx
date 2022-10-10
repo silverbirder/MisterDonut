@@ -99,7 +99,7 @@ const Copyright = (props: any) => (
       color="inherit"
       href="https://silverbirder-misterdonut-web.vercel.app"
     >
-      silverbirder misterdonut web
+      love donuts
     </Link>{" "}
     {new Date().getFullYear()}.
   </Typography>
@@ -232,10 +232,10 @@ export const Layout = ({ children }: LayoutProps) => {
               horizontal: "left",
             }}
           >
-            <Typography sx={{ p: 2 }}>Logout</Typography>
-            <Typography sx={{ p: 2 }}>Login</Typography>
-            <Typography sx={{ p: 2 }}>SignUp</Typography>
-            <Typography sx={{ p: 2 }}>Settings</Typography>
+            {profile && <Typography sx={{ p: 2 }}>Logout</Typography>}
+            {profile && <Typography sx={{ p: 2 }}>Settings</Typography>}
+            {!profile && <Typography sx={{ p: 2 }}>Login</Typography>}
+            {!profile && <Typography sx={{ p: 2 }}>SignUp</Typography>}
           </Popover>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

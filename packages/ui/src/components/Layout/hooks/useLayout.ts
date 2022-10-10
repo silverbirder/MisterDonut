@@ -3,7 +3,7 @@ import { useMyProfileQuery } from "@misterdonut/graphql";
 import { Profile } from "../types";
 
 export type UseLayoutArgs = {
-    uid: string;
+  uid: string;
 };
 export type UseLayoutReturn = {
   profile: Profile | null;
@@ -12,7 +12,10 @@ export type UseLayoutReturn = {
 };
 
 export const useLayout = ({ uid }: UseLayoutArgs): UseLayoutReturn => {
-  const { data, error, loading } = useMyProfileQuery({ variables: { uid } });
+  const { data, error, loading } = useMyProfileQuery({
+    variables: { uid },
+    skip: uid === "",
+  });
   const profiles: Profile[] =
     data?.profileCollection?.edges.map((edge) => ({
       avatarUrl: edge.node.avatar_url || "",
