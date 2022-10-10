@@ -119,6 +119,17 @@ type Mutation {
   ): order_historyDeleteResponse!
 
   """Deletes zero or more records from the collection"""
+  deleteFromorder_history_detailCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: order_history_detailFilter
+  ): order_history_detailDeleteResponse!
+
+  """Deletes zero or more records from the collection"""
   deleteFromprofileCollection(
     """
     The maximum number of records in the collection permitted to be affected
@@ -129,6 +140,17 @@ type Mutation {
     filter: profileFilter
   ): profileDeleteResponse!
 
+  """Deletes zero or more records from the collection"""
+  deleteFromschema_migrationsCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: schema_migrationsFilter
+  ): schema_migrationsDeleteResponse!
+
   """Adds one or more `misterdonutInsertResponse` records to the collection"""
   insertIntomisterdonutCollection(objects: [misterdonutInsertInput!]!): misterdonutInsertResponse
 
@@ -137,8 +159,18 @@ type Mutation {
   """
   insertIntoorder_historyCollection(objects: [order_historyInsertInput!]!): order_historyInsertResponse
 
+  """
+  Adds one or more `order_history_detailInsertResponse` records to the collection
+  """
+  insertIntoorder_history_detailCollection(objects: [order_history_detailInsertInput!]!): order_history_detailInsertResponse
+
   """Adds one or more `profileInsertResponse` records to the collection"""
   insertIntoprofileCollection(objects: [profileInsertInput!]!): profileInsertResponse
+
+  """
+  Adds one or more `schema_migrationsInsertResponse` records to the collection
+  """
+  insertIntoschema_migrationsCollection(objects: [schema_migrationsInsertInput!]!): schema_migrationsInsertResponse
 
   """Updates zero or more records in the collection"""
   updatemisterdonutCollection(
@@ -173,6 +205,22 @@ type Mutation {
   ): order_historyUpdateResponse!
 
   """Updates zero or more records in the collection"""
+  updateorder_history_detailCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: order_history_detailFilter
+
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: order_history_detailUpdateInput!
+  ): order_history_detailUpdateResponse!
+
+  """Updates zero or more records in the collection"""
   updateprofileCollection(
     """
     The maximum number of records in the collection permitted to be affected
@@ -187,6 +235,22 @@ type Mutation {
     """
     set: profileUpdateInput!
   ): profileUpdateResponse!
+
+  """Updates zero or more records in the collection"""
+  updateschema_migrationsCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the critera"""
+    filter: schema_migrationsFilter
+
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: schema_migrationsUpdateInput!
+  ): schema_migrationsUpdateResponse!
 }
 
 """Defines a per-field sorting order"""
@@ -255,6 +319,27 @@ type Query {
     orderBy: [order_historyOrderBy!]
   ): order_historyConnection
 
+  """A pagable collection of type `order_history_detail`"""
+  order_history_detailCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: order_history_detailFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [order_history_detailOrderBy!]
+  ): order_history_detailConnection
+
   """A pagable collection of type `profile`"""
   profileCollection(
     """Query values in the collection after the provided cursor"""
@@ -275,6 +360,27 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [profileOrderBy!]
   ): profileConnection
+
+  """A pagable collection of type `schema_migrations`"""
+  schema_migrationsCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: schema_migrationsFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [schema_migrationsOrderBy!]
+  ): schema_migrationsConnection
 }
 
 """
@@ -323,7 +429,7 @@ type misterdonut {
   id: BigInt!
   img: String
   name: String
-  order_historyCollection(
+  order_history_detailCollection(
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
@@ -331,7 +437,7 @@ type misterdonut {
     before: Cursor
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: order_historyFilter
+    filter: order_history_detailFilter
 
     """Query the first `n` records in the collection"""
     first: Int
@@ -340,8 +446,8 @@ type misterdonut {
     last: Int
 
     """Sort order to apply to the collection"""
-    orderBy: [order_historyOrderBy!]
-  ): order_historyConnection
+    orderBy: [order_history_detailOrderBy!]
+  ): order_history_detailConnection
   price: BigInt
   row: JSON
 }
@@ -423,9 +529,26 @@ type misterdonutUpdateResponse {
 type order_history {
   created_at: Datetime
   id: BigInt!
-  misterdonut: misterdonut
-  misterdonut_id: BigInt
   order_date: Datetime
+  order_history_detailCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: order_history_detailFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [order_history_detailOrderBy!]
+  ): order_history_detailConnection
   profile: profile
   profile_id: UUID
 }
@@ -451,14 +574,12 @@ type order_historyEdge {
 input order_historyFilter {
   created_at: DatetimeFilter
   id: BigIntFilter
-  misterdonut_id: BigIntFilter
   order_date: DatetimeFilter
   profile_id: UUIDFilter
 }
 
 input order_historyInsertInput {
   created_at: Datetime
-  misterdonut_id: BigInt
   order_date: Datetime
   profile_id: UUID
 }
@@ -474,14 +595,12 @@ type order_historyInsertResponse {
 input order_historyOrderBy {
   created_at: OrderByDirection
   id: OrderByDirection
-  misterdonut_id: OrderByDirection
   order_date: OrderByDirection
   profile_id: OrderByDirection
 }
 
 input order_historyUpdateInput {
   created_at: Datetime
-  misterdonut_id: BigInt
   order_date: Datetime
   profile_id: UUID
 }
@@ -492,6 +611,75 @@ type order_historyUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [order_history!]!
+}
+
+type order_history_detail {
+  created_at: Datetime
+  id: BigInt!
+  misterdonut: misterdonut
+  misterdonut_id: BigInt
+  order_history: order_history
+  order_history_id: BigInt
+}
+
+type order_history_detailConnection {
+  edges: [order_history_detailEdge!]!
+  pageInfo: PageInfo!
+}
+
+type order_history_detailDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history_detail!]!
+}
+
+type order_history_detailEdge {
+  cursor: String!
+  node: order_history_detail!
+}
+
+input order_history_detailFilter {
+  created_at: DatetimeFilter
+  id: BigIntFilter
+  misterdonut_id: BigIntFilter
+  order_history_id: BigIntFilter
+}
+
+input order_history_detailInsertInput {
+  created_at: Datetime
+  misterdonut_id: BigInt
+  order_history_id: BigInt
+}
+
+type order_history_detailInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history_detail!]!
+}
+
+input order_history_detailOrderBy {
+  created_at: OrderByDirection
+  id: OrderByDirection
+  misterdonut_id: OrderByDirection
+  order_history_id: OrderByDirection
+}
+
+input order_history_detailUpdateInput {
+  created_at: Datetime
+  misterdonut_id: BigInt
+  order_history_id: BigInt
+}
+
+type order_history_detailUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [order_history_detail!]!
 }
 
 type profile {
@@ -585,4 +773,58 @@ type profileUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [profile!]!
+}
+
+type schema_migrations {
+  version: String!
+}
+
+type schema_migrationsConnection {
+  edges: [schema_migrationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type schema_migrationsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [schema_migrations!]!
+}
+
+type schema_migrationsEdge {
+  cursor: String!
+  node: schema_migrations!
+}
+
+input schema_migrationsFilter {
+  version: StringFilter
+}
+
+input schema_migrationsInsertInput {
+  version: String
+}
+
+type schema_migrationsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [schema_migrations!]!
+}
+
+input schema_migrationsOrderBy {
+  version: OrderByDirection
+}
+
+input schema_migrationsUpdateInput {
+  version: String
+}
+
+type schema_migrationsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [schema_migrations!]!
 }

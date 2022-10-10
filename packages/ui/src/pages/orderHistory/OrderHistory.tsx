@@ -32,7 +32,6 @@ export const OrderHistory = () => {
         objects: [
           {
             profile_id: userId,
-            misterdonut_id: 3,
             order_date: "2022-09-01 10:00:00+09:00",
           },
         ],
