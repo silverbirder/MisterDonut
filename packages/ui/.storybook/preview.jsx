@@ -5,7 +5,7 @@ import { ApolloProvider, MuiProvider, SupabaseProvider } from "@misterdonut/ui";
 initialize();
 
 /** @type {import('@storybook/react').DecoratorFn}  */
-const withApolloProvider = (Story) => (
+const withProvider = (Story) => (
   <SupabaseProvider>
     <ApolloProvider>
       <MuiProvider>
@@ -16,7 +16,7 @@ const withApolloProvider = (Story) => (
 );
 
 /** @type {import('@storybook/react').DecoratorFn}  */
-export const decorators = [mswDecorator, withApolloProvider];
+export const decorators = [mswDecorator, withProvider];
 
 /** @type {import('@storybook/react').Parameters} */
 export const parameters = {

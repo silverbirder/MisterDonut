@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -25,6 +25,9 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import { SupabaseContext } from "@ui/providers";
+import Avatar from "@mui/material/Avatar";
+import { useLayout } from "../hooks";
 
 const MainListItems = () => (
   <>
@@ -90,8 +93,8 @@ const SecondaryListItems = () => (
 const Copyright = (props: any) => (
   <Typography variant="body2" color="text.secondary" align="center" {...props}>
     {"Copyright © "}
-    <Link color="inherit" href="https://mui.com/">
-      Your Website
+    <Link color="inherit" href="https://silverbirder-misterdonut-web.vercel.app">
+      silverbirder misterdonut web
     </Link>{" "}
     {new Date().getFullYear()}.
   </Typography>
@@ -156,6 +159,11 @@ export const Layout = ({ children }: LayoutProps) => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const supabase = useContext(SupabaseContext);
+  const user = supabase?.auth.user();
+  const { profile } = useLayout({
+    uid: (user && user.id) || "",
+  });
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -184,8 +192,13 @@ export const Layout = ({ children }: LayoutProps) => {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            Love Donuts
           </Typography>
+          <IconButton color="inherit">
+            {profile && (
+              <Avatar alt={profile.username} src={profile.avatarUrl} />
+            )}
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
