@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useContext, useState } from "react";
+import { useContext, useState, MouseEvent } from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -27,6 +27,8 @@ import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { SupabaseContext } from "@ui/providers";
 import Avatar from "@mui/material/Avatar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Popover from "@mui/material/Popover";
 import { useLayout } from "../hooks";
 
 const MainListItems = () => (
@@ -93,7 +95,10 @@ const SecondaryListItems = () => (
 const Copyright = (props: any) => (
   <Typography variant="body2" color="text.secondary" align="center" {...props}>
     {"Copyright © "}
-    <Link color="inherit" href="https://silverbirder-misterdonut-web.vercel.app">
+    <Link
+      color="inherit"
+      href="https://silverbirder-misterdonut-web.vercel.app"
+    >
       silverbirder misterdonut web
     </Link>{" "}
     {new Date().getFullYear()}.
@@ -164,6 +169,18 @@ export const Layout = ({ children }: LayoutProps) => {
   const { profile } = useLayout({
     uid: (user && user.id) || "",
   });
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const openAnchor = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -194,11 +211,32 @@ export const Layout = ({ children }: LayoutProps) => {
           >
             Love Donuts
           </Typography>
-          <IconButton color="inherit">
-            {profile && (
+          <IconButton
+            aria-describedby={id}
+            color="inherit"
+            onClick={handleClick}
+          >
+            {profile ? (
               <Avatar alt={profile.username} src={profile.avatarUrl} />
+            ) : (
+              <AccountCircleIcon />
             )}
           </IconButton>
+          <Popover
+            id={id}
+            open={openAnchor}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <Typography sx={{ p: 2 }}>Logout</Typography>
+            <Typography sx={{ p: 2 }}>Login</Typography>
+            <Typography sx={{ p: 2 }}>SignUp</Typography>
+            <Typography sx={{ p: 2 }}>Settings</Typography>
+          </Popover>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
