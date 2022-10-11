@@ -29,6 +29,7 @@ import { SupabaseContext } from "@ui/providers";
 import Avatar from "@mui/material/Avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Popover from "@mui/material/Popover";
+import { Link as NextLink } from "@ui/lib";
 import { useLayout } from "../hooks";
 
 const MainListItems = () => (
@@ -234,8 +235,16 @@ export const Layout = ({ children }: LayoutProps) => {
           >
             {profile && <Typography sx={{ p: 2 }}>Logout</Typography>}
             {profile && <Typography sx={{ p: 2 }}>Settings</Typography>}
-            {!profile && <Typography sx={{ p: 2 }}>Login</Typography>}
-            {!profile && <Typography sx={{ p: 2 }}>SignUp</Typography>}
+            {!profile && (
+              <Typography sx={{ p: 2 }}>
+                <NextLink href="/signIn">Login</NextLink>
+              </Typography>
+            )}
+            {!profile && (
+              <Typography sx={{ p: 2 }}>
+                <NextLink href="/signUp">SignUp</NextLink>
+              </Typography>
+            )}
           </Popover>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
