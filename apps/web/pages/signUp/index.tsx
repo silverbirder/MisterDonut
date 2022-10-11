@@ -1,10 +1,8 @@
 import dynamic from "next/dynamic";
 
-const SignUp = dynamic<unknown>(
-  () => import("@misterdonut/ui/").then((module) => module.SignUp),
+const SignUpPage = dynamic<unknown>(
+  () => import("@misterdonut/ui/").then((module) => module.SignUpPage),
   { ssr: false, loading: () => <>Loading component...</> }
 );
-
-const SignUpPage = () => <SignUp />;
 
 export default SignUpPage;

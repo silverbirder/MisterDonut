@@ -1,1 +1,1 @@
-export { ListDonuts } from "@ui/features/donuts";
+export { ListDonuts as DonutsPage } from "@ui/features/donuts";
