@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useContext, useState, MouseEvent } from "react";
+import { useContext, useState, MouseEvent, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -30,6 +30,10 @@ import Avatar from "@mui/material/Avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Popover from "@mui/material/Popover";
 import { Link as NextLink } from "@ui/lib";
+import Button from "@mui/material/Button";
+import { User } from "@supabase/supabase-js";
+import Snackbar from "@mui/material/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
 import { useLayout } from "../hooks";
 
 const MainListItems = () => (
@@ -166,11 +170,17 @@ export const Layout = ({ children }: LayoutProps) => {
     setOpen(!open);
   };
   const supabase = useContext(SupabaseContext);
-  const user = supabase?.auth.user();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    setUser(supabase?.auth.user() || null);
+  }, [supabase?.auth]);
+
   const { profile } = useLayout({
     uid: (user && user.id) || "",
   });
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [openSnack, setOpenSnack] = useState(false);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -179,9 +189,23 @@ export const Layout = ({ children }: LayoutProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const logoutClickHandler = () => {
+    supabase?.auth.signOut().catch(() => {});
+    setUser(null);
+    setOpenSnack(true);
+  };
 
   const openAnchor = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+  const handleSnackClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnack(false);
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -233,7 +257,13 @@ export const Layout = ({ children }: LayoutProps) => {
               horizontal: "left",
             }}
           >
-            {profile && <Typography sx={{ p: 2 }}>Logout</Typography>}
+            {profile && (
+              <Typography sx={{ p: 2 }}>
+                <Button color="inherit" onClick={logoutClickHandler}>
+                  Logout
+                </Button>
+              </Typography>
+            )}
             {profile && <Typography sx={{ p: 2 }}>Settings</Typography>}
             {!profile && (
               <Typography sx={{ p: 2 }}>
@@ -253,6 +283,12 @@ export const Layout = ({ children }: LayoutProps) => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      <Snackbar
+        open={openSnack}
+        autoHideDuration={6000}
+        onClose={handleSnackClose}
+        message="Logout"
+      />
       <Drawer variant="permanent" open={open}>
         <Toolbar
           sx={{
