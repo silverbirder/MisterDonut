@@ -12,16 +12,8 @@ import Popover from "@mui/material/Popover";
 import { Link } from "@ui/lib";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import {
-  useState,
-  MouseEvent,
-  useContext,
-  useEffect,
-  SyntheticEvent,
-} from "react";
-import { User } from "@supabase/supabase-js";
-import { SupabaseContext } from "@ui/providers";
-import { useLayout } from "../../hooks";
+import { useState, MouseEvent, SyntheticEvent } from "react";
+import { Profile } from "../../types";
 
 const drawerWidth = 240;
 
@@ -50,20 +42,16 @@ const AppBar = styled(MuiAppBar, {
 export type HeaderProps = {
   open: boolean;
   toggleOpen: () => void;
+  profile: Profile | null;
+  logoutHandler: () => void;
 };
 
-export const Header = ({ open, toggleOpen }: HeaderProps) => {
-  const supabase = useContext(SupabaseContext);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    setUser(supabase?.auth.user() || null);
-  }, [supabase?.auth]);
-
-  const { profile } = useLayout({
-    uid: (user && user.id) || "",
-  });
-
+export const Header = ({
+  open,
+  toggleOpen,
+  profile,
+  logoutHandler,
+}: HeaderProps) => {
   const [popOverEl, setPopOverEl] = useState<HTMLButtonElement | null>(null);
   const openPopOver = (event: MouseEvent<HTMLButtonElement>) =>
     setPopOverEl(event.currentTarget);
@@ -80,8 +68,7 @@ export const Header = ({ open, toggleOpen }: HeaderProps) => {
   };
 
   const logoutClickHandler = () => {
-    supabase?.auth.signOut().catch(() => {});
-    setUser(null);
+    logoutHandler();
     setOpenSnack(true);
   };
 
