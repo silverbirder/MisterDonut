@@ -5,14 +5,14 @@ import { within } from "@storybook/testing-library";
 import { User } from "@supabase/supabase-js";
 import { SupabaseContext } from "@ui/providers";
 import { useState, useContext, useEffect } from "react";
-import { Layout, LayoutProps } from "./Layout";
+import { Main, MainProps } from "./Main";
 
-type Component = typeof Layout;
+type Component = typeof Main;
 type Meta = ComponentMeta<Component>;
 
 const meta: Meta = {
-  title: "Layout",
-  component: Layout,
+  title: "Layout/Main",
+  component: Main,
   parameters: {
     msw: [mockMyProfile, mockSignIn],
   },
@@ -20,7 +20,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: ComponentStory<Component> = ({ children }: LayoutProps) => {
+const Template: ComponentStory<Component> = ({ children }: MainProps) => {
   const [loginUser, setLoginUser] = useState<User | null>(null);
   const supabase = useContext(SupabaseContext);
   useEffect(() => {
@@ -29,14 +29,8 @@ const Template: ComponentStory<Component> = ({ children }: LayoutProps) => {
       .then(({ user }) => setLoginUser(user))
       .catch(() => {});
   }, [supabase?.auth]);
-  return loginUser ? (
-    <Layout>{children}</Layout>
-  ) : (
-    <div>Wait Storybook ...</div>
-  );
-}
-
-  
+  return loginUser ? <Main>{children}</Main> : <div>Wait Storybook ...</div>;
+};
 
 export const Default = Template.bind({});
 
