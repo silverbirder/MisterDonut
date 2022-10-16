@@ -12,7 +12,13 @@ import Popover from "@mui/material/Popover";
 import { Link } from "@ui/lib";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import { useState, MouseEvent, Dispatch, useContext, useEffect } from "react";
+import {
+  useState,
+  MouseEvent,
+  useContext,
+  useEffect,
+  SyntheticEvent,
+} from "react";
 import { User } from "@supabase/supabase-js";
 import { SupabaseContext } from "@ui/providers";
 import { useLayout } from "../../hooks";
@@ -58,32 +64,25 @@ export const Header = ({ open, toggleOpen }: HeaderProps) => {
     uid: (user && user.id) || "",
   });
 
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [popOverEl, setPopOverEl] = useState<HTMLButtonElement | null>(null);
+  const openPopOver = (event: MouseEvent<HTMLButtonElement>) =>
+    setPopOverEl(event.currentTarget);
+  const closePopOver = () => setPopOverEl(null);
+  const openAnchor = Boolean(popOverEl);
+
   const [openSnack, setOpenSnack] = useState(false);
-
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const logoutClickHandler = () => {
-    supabase?.auth.signOut().catch(() => {});
-    setUser(null);
-    setOpenSnack(true);
-  };
-
-  const openAnchor = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-  const handleSnackClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
+  const popOverId = open ? "simple-popover" : undefined;
+  const closeSnack = (event: SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnack(false);
+  };
+
+  const logoutClickHandler = () => {
+    supabase?.auth.signOut().catch(() => {});
+    setUser(null);
+    setOpenSnack(true);
   };
 
   return (
@@ -116,9 +115,9 @@ export const Header = ({ open, toggleOpen }: HeaderProps) => {
             Love Donuts
           </Typography>
           <IconButton
-            aria-describedby={id}
+            aria-describedby={popOverId}
             color="inherit"
-            onClick={handleClick}
+            onClick={openPopOver}
           >
             {profile ? (
               <Avatar alt={profile.username} src={profile.avatarUrl} />
@@ -127,10 +126,10 @@ export const Header = ({ open, toggleOpen }: HeaderProps) => {
             )}
           </IconButton>
           <Popover
-            id={id}
+            id={popOverId}
             open={openAnchor}
-            anchorEl={anchorEl}
-            onClose={handleClose}
+            anchorEl={popOverEl}
+            onClose={closePopOver}
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",
@@ -165,7 +164,7 @@ export const Header = ({ open, toggleOpen }: HeaderProps) => {
       <Snackbar
         open={openSnack}
         autoHideDuration={6000}
-        onClose={handleSnackClose}
+        onClose={closeSnack}
         message="Logout"
       />
     </>
