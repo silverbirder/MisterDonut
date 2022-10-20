@@ -18,13 +18,15 @@ export const SignUp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    supabase?.auth
-      .signUp({
+    supabase.signUp(
+      {
         email: data.get("email")?.toString(),
         password: data.get("password")?.toString(),
-      })
-      .then(() => router.push("/"))
-      .catch(() => {});
+      },
+      () => {
+        router.push("/").catch(() => {});
+      }
+    );
   };
 
   return (
