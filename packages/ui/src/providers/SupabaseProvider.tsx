@@ -95,6 +95,11 @@ export const SupabaseProvider = ({ children }: Props) => {
     [client.auth]
   );
 
+  // 初回ロード時に認証済みユーザーをセットする
+  useEffect(() => {
+    setUser(client.auth.user());
+  }, [client.auth]);
+
   useEffect(() => {
     refetch({ uid: user?.id }).catch(() => {});
   }, [refetch, user]);
@@ -108,15 +113,19 @@ export const SupabaseProvider = ({ children }: Props) => {
       })) || [],
     [profileQuery]
   );
+  const profile = useMemo(
+    () => (user === null || profiles.length === 0 ? null : profiles[0]),
+    [profiles, user]
+  );
 
   const value: SupabaseProps = useMemo(
     () => ({
-      profile: profiles.length > 0 ? profiles[0] : null,
+      profile,
       signOut,
       signIn,
       signUp,
     }),
-    [profiles, signIn, signOut, signUp]
+    [profile, signIn, signOut, signUp]
   );
 
   return (
