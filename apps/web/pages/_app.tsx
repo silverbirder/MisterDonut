@@ -9,15 +9,15 @@ import {
 } from "@misterdonut/ui";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <SupabaseProvider>
-    <ApolloProvider>
+  <ApolloProvider>
+    <SupabaseProvider>
       <MuiProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </MuiProvider>
-    </ApolloProvider>
-  </SupabaseProvider>
+    </SupabaseProvider>
+  </ApolloProvider>
 );
 
 export default MyApp;

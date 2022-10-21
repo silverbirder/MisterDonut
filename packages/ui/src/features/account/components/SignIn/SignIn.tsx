@@ -20,16 +20,15 @@ export const SignIn = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    supabase?.auth
-      .signIn(
-        {
-          email: data.get("email")?.toString(),
-          password: data.get("password")?.toString(),
-        },
-        { redirectTo: "/#" }
-      )
-      .then(() => router.push("/"))
-      .catch(() => {});
+    supabase.signIn(
+      {
+        email: data.get("email")?.toString(),
+        password: data.get("password")?.toString(),
+      },
+      () => {
+        router.push("/").catch(() => {});
+      }
+    );
   };
 
   return (
