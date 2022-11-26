@@ -1,10 +1,4 @@
 # Misterdonut
 
-Simple CRUD application for verification based on turborepo.
-
-## Getting Started
-
-```
-yarn
-yarn dev
-```
+This application records the purchase history of misterdonut. 
+Development is currently pending.
